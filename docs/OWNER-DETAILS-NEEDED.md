@@ -49,8 +49,8 @@ The current policy says the app makes no network requests. That is not true for 
 | D2 | **How long** AccessCore keeps that data, and who can access it | 2026-10-12: as the service works today: kept while the subscription is active and afterwards so Pro can be restored; deleted on request; logs deleted within 30 days |
 | D3 | Will the public release use the **production** AccessCore environment? (v8 points at DEV) | |
 | D4 | Your Play Console **Data safety** answers, so the website policy says the same thing | |
-| D5 | The **effective date** to print on the updated Privacy Policy and Terms | 12 October 2026. For the PPTK_SUB03 (Pro codes) update: the day it is published, set in `site.config.json` `policyDate` |
-| D6 | PPTK_SUB03 (Pro codes) promises in Privacy §5: **code names never name a person** (use "Gift 01", not a person's name); an email address used to **send a code is used only for that**; Free users with no code still make **no** licence-service call | |
+| D5 | The **effective date** to print on the updated Privacy Policy and Terms | 12 October 2026 (owner, 2026-10-12: also for the PPTK_SUB03 Pro codes update) |
+| D6 | PPTK_SUB03 (Pro codes) promises in Privacy §5: **code names never name a person** (use "Gift 01", not a person's name); an email address used to **send a code is used only for that**; Free users with no code still make **no** licence-service call | 2026-10-12: no person-identifiable part in codes or their names (owner); Terms keep the "no cash value" line (owner). Email use and Free = no call: not yet confirmed |
 
 ## E. Optional decisions
 
