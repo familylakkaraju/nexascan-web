@@ -25,7 +25,7 @@ Play Console also shows this email publicly.
 | B1 | **Exact legal name** of the business behind "GreenPlant Technologies" (and whether it is a sole trader, partnership or limited company) | Privacy Policy "who we are" (the data controller), Terms | Sole trader: Kalyana Lakkamraju, Witham (2026-10-12) |
 | B2 | If a registered company: **company number, place of registration, registered office address** | UK rules generally require these on a company's website; also identifies the data controller | |
 | B3 | **Business postal address** for legal notices (if different from B2, or if not a company) | Privacy Policy / Terms contact section | |
-| B4 | **Governing law and courts** for the Terms (e.g. "England and Wales") | Terms §11 | |
+| B4 | **Governing law and courts** for the Terms (e.g. "England and Wales") | Terms §11 | England and Wales (owner, 2026-10-12) |
 | B5 | ICO registration number, if you have one (optional) | Privacy Policy | |
 | B6 | Confirm the developer name shown on Google Play matches B1 / "GreenPlant Technologies" | Consistency between site and listing | |
 
