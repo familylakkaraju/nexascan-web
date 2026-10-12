@@ -25,7 +25,7 @@ Play Console also shows this email publicly.
 | B1 | **Exact legal name** of the business behind "GreenPlant Technologies" (and whether it is a sole trader, partnership or limited company) | Privacy Policy "who we are" (the data controller), Terms | Sole trader: Kalyana Lakkamraju, Witham (2026-10-12) |
 | B2 | If a registered company: **company number, place of registration, registered office address** | UK rules generally require these on a company's website; also identifies the data controller | |
 | B3 | **Business postal address** for legal notices (if different from B2, or if not a company) | Privacy Policy / Terms contact section | |
-| B4 | **Governing law and courts** for the Terms (e.g. "England and Wales") | Terms §11 | |
+| B4 | **Governing law and courts** for the Terms (e.g. "England and Wales") | Terms §11 | England and Wales (owner, 2026-10-12) |
 | B5 | ICO registration number, if you have one (optional) | Privacy Policy | |
 | B6 | Confirm the developer name shown on Google Play matches B1 / "GreenPlant Technologies" | Consistency between site and listing | |
 
@@ -49,7 +49,8 @@ The current policy says the app makes no network requests. That is not true for 
 | D2 | **How long** AccessCore keeps that data, and who can access it | 2026-10-12: as the service works today: kept while the subscription is active and afterwards so Pro can be restored; deleted on request; logs deleted within 30 days |
 | D3 | Will the public release use the **production** AccessCore environment? (v8 points at DEV) | |
 | D4 | Your Play Console **Data safety** answers, so the website policy says the same thing | |
-| D5 | The **effective date** to print on the updated Privacy Policy and Terms | 12 October 2026 |
+| D5 | The **effective date** to print on the updated Privacy Policy and Terms | 12 October 2026 (owner, 2026-10-12: also for the PPTK_SUB03 Pro codes update) |
+| D6 | PPTK_SUB03 (Pro codes) promises in Privacy §5: **code names never name a person** (use "Gift 01", not a person's name); an email address used to **send a code is used only for that**; Free users with no code still make **no** licence-service call | 2026-10-12: no person-identifiable part in codes or their names (owner); Terms keep the "no cash value" line (owner). Email used only to send the code, and Free with no code = no licence-service call: promised by the owner, 2026-10-12 |
 
 ## E. Optional decisions
 
