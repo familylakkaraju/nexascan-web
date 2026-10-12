@@ -3,7 +3,7 @@
 The website cannot publish these until you provide them. Some are visible on the live site today as
 `[… REQUIRED]` placeholders. Fill in each **Answer** line, or send the answers in chat.
 
-Prepared 2026-10-08. This is a checklist, not legal advice: for the legal items, check with whoever advises the business.
+Prepared 2026-10-08, updated 2026-10-12. This is a checklist, not legal advice: for the legal items, check with whoever advises the business.
 
 ---
 
@@ -22,7 +22,7 @@ Play Console also shows this email publicly.
 
 | # | Item | Why it's needed | Answer |
 |---|---|---|---|
-| B1 | **Exact legal name** of the business behind "GreenPlant Technologies" (and whether it is a sole trader, partnership or limited company) | Privacy Policy "who we are" (the data controller), Terms | |
+| B1 | **Exact legal name** of the business behind "GreenPlant Technologies" (and whether it is a sole trader, partnership or limited company) | Privacy Policy "who we are" (the data controller), Terms | Sole trader: Kalyana Lakkamraju, Witham (2026-10-12) |
 | B2 | If a registered company: **company number, place of registration, registered office address** | UK rules generally require these on a company's website; also identifies the data controller | |
 | B3 | **Business postal address** for legal notices (if different from B2, or if not a company) | Privacy Policy / Terms contact section | |
 | B4 | **Governing law and courts** for the Terms (e.g. "England and Wales") | Terms §11 | |
@@ -46,10 +46,10 @@ The current policy says the app makes no network requests. That is not true for 
 | # | Item | Answer |
 |---|---|---|
 | D1 | After a Pro purchase the app sends the **purchase token, an installation key/proof and an installation id** to the AccessCore licence service (AWS, London region eu-west-2). Is that complete and correct? | |
-| D2 | **How long** AccessCore keeps that data, and who can access it | |
+| D2 | **How long** AccessCore keeps that data, and who can access it | 2026-10-12: as the service works today: kept while the subscription is active and afterwards so Pro can be restored; deleted on request; logs deleted within 30 days |
 | D3 | Will the public release use the **production** AccessCore environment? (v8 points at DEV) | |
 | D4 | Your Play Console **Data safety** answers, so the website policy says the same thing | |
-| D5 | The **effective date** to print on the updated Privacy Policy and Terms | |
+| D5 | The **effective date** to print on the updated Privacy Policy and Terms | 12 October 2026 |
 
 ## E. Optional decisions
 
