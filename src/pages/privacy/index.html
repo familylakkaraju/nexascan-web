@@ -17,7 +17,7 @@
         <li>NexaScan <strong>never uploads your documents</strong>, images or the text in them, to us or to anyone else.</li>
         <li>There is <strong>no account</strong>, no sign-in, no advertising, and no analytics or crash-reporting service.</li>
         <li>Your documents are kept in the app's <strong>private storage</strong> and are left out of Google cloud backups. They leave the app <strong>only when you share them or open them in another app</strong>.</li>
-        <li>If you <strong>buy NexaScan Pro</strong>, the app checks your subscription with Google Play and with our licence service. It keeps the purchase token only as a one-way hash, with a random identifier for your installation. Nothing it keeps identifies you: no name, email address, Google account or documents (section 5).</li>
+        <li>If you <strong>buy NexaScan Pro or redeem a Pro code</strong>, the app checks your Pro status with our licence service (and, for a purchase, with Google Play), first when Pro starts and then again from time to time. The licence service keeps the purchase token and the code only as one-way hashes, with a random identifier for your installation. Nothing it keeps identifies you: no name, email address, Google account or documents (section 5).</li>
         <li>Google's text-recognition component (ML Kit) may send <strong>limited diagnostic data</strong> to Google. It never includes your images or text (section 4).</li>
       </ul>
     </div>
@@ -33,12 +33,12 @@
       <li><strong>The documents it creates</strong>: PDFs, images, Word and Excel files, and the text it recognises in them. Word and Excel files record the name of the file they were made from as their title.</li>
       <li><strong>Passwords you type</strong> in Protect. They are used once to encrypt the new copy, and are never saved or logged.</li>
       <li><strong>A few app settings</strong>, such as whether you've seen the introduction and the app tour.</li>
-      <li><strong>If you buy Pro</strong>: the subscription status the app has confirmed, and the private half of the installation key, which never leaves your phone (section 5).</li>
+      <li><strong>If you buy Pro or redeem a code</strong>: the Pro status the app has confirmed (where your Pro comes from, when it ends and when to check it again), and the private half of the installation key, which never leaves your phone (section 5). A code you type is sent to the licence service to redeem it and isn't saved on your phone.</li>
     </ul>
     <p>All of this stays on your phone, and we never receive it. If your phone's Google backup is turned on, Android may include the app settings in that backup, but never your documents (section 8).</p>
 
     <h2 id="collected">3. What we collect</h2>
-    <p>We don't collect your documents, images, recognised text, file names or contacts, and NexaScan has no advertising or analytics SDK. The only data that reaches us is the licence data described in section 5, and only if you buy NexaScan Pro.</p>
+    <p>We don't collect your documents, images, recognised text, file names or contacts, and NexaScan has no advertising or analytics SDK. The only data that reaches us is the licence data described in section 5, and only if you buy NexaScan Pro or redeem a code.</p>
 
     <h2 id="third-parties">4. Third-party components</h2>
     <div class="table-wrap">
@@ -53,16 +53,24 @@
       </table>
     </div>
 
-    <h2 id="purchases">5. Purchases and the licence check</h2>
+    <h2 id="purchases">5. NexaScan Pro and the licence check</h2>
+    <h3 id="buying">Buying Pro</h3>
     <p>NexaScan Pro is bought through Google Play. Google processes the payment, and we never receive your card or payment details.</p>
-    <p>After a purchase, the app confirms the subscription with our licence service so that Pro can be unlocked, kept active and restored. For this, the app sends:</p>
+    <p>After a purchase, the app confirms the subscription with our licence service so that Pro can be unlocked, kept active and restored. While you use the app, it confirms the subscription again about once a week, so that renewals, cancellations and refunds reach your phone. For this, the app sends:</p>
     <ul>
       <li>the <strong>purchase token</strong> that Google Play issues for your subscription. The licence service uses it to check the subscription with Google Play, and stores it only as a <strong>one-way hash</strong>, which can't be turned back into the token;</li>
       <li>an <strong>installation identifier</strong>, made from a random key that the app creates in your phone's secure key store, together with a signature proving the request comes from this installation. It isn't based on your phone's serial number or other hardware IDs, your phone number or your Google account.</li>
     </ul>
-    <p>The licence service keeps only the hashed purchase token, the installation identifier with its public key, and the state of the subscription: the plan, when it started, when the paid period ends, and whether it renews. It doesn't receive or store your name, email address, Google account, payment details, IP address, documents or their text, and you don't need an account. It runs on Amazon Web Services in the United Kingdom (London region).</p>
-    <p>We keep these records while your subscription is active, and afterwards so that Pro can be restored on this phone or a new one. Because they contain nothing that identifies you, we can't find them from your name or email address. Uninstalling NexaScan deletes the key on your phone, so that installation identifier can't be used again. The licence service's own logs are deleted automatically within 30 days.</p>
-    <p>If you never buy Pro, the app doesn't contact the licence service at all.</p>
+
+    <h3 id="codes">Redeeming a code</h3>
+    <p>We give free Pro codes to Google Play's app reviewers, to testers, and to people we choose to give Pro as a gift or for promoting NexaScan. Codes are never sold. When you redeem one in <strong>Settings › NexaScan Pro</strong>, the app sends the code with the same installation identifier and signature described above.</p>
+    <p>The licence service stores codes only as <strong>one-way hashes</strong>. For your installation, it records a grant: which code it came from, the name we gave that code (such as "Google Play review"), when you redeemed it, when it ends, and whether we withdrew it. The names we give codes describe what they're for and never name a person. While you have Pro from a code, the app checks your Pro status with the licence service more often, when you open the app or a Pro tool, so that a new end date or a withdrawn code reaches your phone.</p>
+    <p>If we send you a code by email or message, we use your address only to send it. The licence service doesn't record who received a code.</p>
+
+    <h3 id="licence-records">What the licence service keeps</h3>
+    <p>The licence service keeps only the hashed purchase token, the installation identifier with its public key, and the state of the subscription: the plan, when it started, when the paid period ends, and whether it renews. For a code, it keeps the hashed code and the grant described above. It doesn't receive or store your name, email address, Google account, payment details, IP address, documents or their text, and you don't need an account. It runs on Amazon Web Services in the United Kingdom (London region).</p>
+    <p>We keep these records while your subscription is active, and afterwards so that Pro can be restored on this phone or a new one. Grants from codes are kept after the code ends, as the record of how each code was used. Because these records contain nothing that identifies you, we can't find them from your name or email address. Uninstalling NexaScan deletes the key on your phone, so that installation identifier can't be used again. The licence service's own logs are deleted automatically within 30 days.</p>
+    <p>If you never buy Pro or redeem a code, the app doesn't contact the licence service at all.</p>
 
     <h2 id="shared">6. Data sharing</h2>
     <p>We don't sell or rent your data. When you tap <strong>Share</strong> or <strong>Open</strong>, Android passes the chosen file to the app you pick, and that app's privacy policy applies. The licence data in section 5 is processed by Amazon Web Services on our behalf, and Google Play handles purchases under its own terms.</p>
@@ -74,7 +82,7 @@
         <tbody>
           <tr><td>Camera</td><td>To scan documents. It is requested the first time you scan and used only on the scanner screen. You can refuse it and still use every other tool.</td></tr>
           <tr><td>Photos and files</td><td>Never requested. NexaScan opens only the files you pick in Android's file picker or send to it from another app, and that needs no permission. The app's details may list photo and storage access, but NexaScan never asks for it, so it can't look through your photos or files.</td></tr>
-          <tr><td>Internet and network state</td><td>For Google Play purchases and the licence check (section 5), and for ML Kit's diagnostic data (section 4). Scanning and every document tool work without a connection.</td></tr>
+          <tr><td>Internet and network state</td><td>For Google Play purchases, redeeming codes and the licence check (section 5), and for ML Kit's diagnostic data (section 4). Scanning and every document tool work without a connection.</td></tr>
           <tr><td>Google Play billing</td><td>To offer and manage the NexaScan Pro subscription.</td></tr>
         </tbody>
       </table>
@@ -94,7 +102,7 @@
     <h2 id="security">10. Security</h2>
     <ul>
       <li>Processing happens on the phone, so your documents don't travel over the Internet when you use NexaScan.</li>
-      <li>The licence check (section 5) travels over an encrypted HTTPS connection.</li>
+      <li>The licence check and code redemption (section 5) travel over an encrypted HTTPS connection.</li>
       <li>Protect (Pro) encrypts a new copy of the PDF with <strong>AES-256</strong>. Your original file is unchanged, and your password isn't stored. The Protect screen blocks screenshots while you type.</li>
       <li>NexaScan doesn't add its own encryption to documents in its storage. They rely on Android's app sandbox and device encryption. For sensitive files, use Protect.</li>
     </ul>
