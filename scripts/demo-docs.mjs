@@ -76,6 +76,13 @@ function letter() {
   </svg>`;
 }
 
+// The letter with a large grey diagonal "DRAFT" watermark across its text, for Remove Watermark captures.
+function watermarkedLetter() {
+  const mark = `<text x="${W / 2}" y="${H / 2 + 60}" text-anchor="middle" font-family="${font}" font-size="300" font-weight="800"
+    fill="#8e9499" fill-opacity=".38" transform="rotate(-38 ${W / 2} ${H / 2})">DRAFT</text>`;
+  return letter().replace(/<\/svg>\s*$/, `${mark}</svg>`);
+}
+
 // A phone photo of the page: grey-warm paper, a soft hand shadow from one corner, tilted, on a dark desk.
 async function photo(svg, name, angle) {
   const page = await sharp(Buffer.from(svg)).png().toBuffer();
@@ -101,4 +108,6 @@ await photo(letter(), 'demo-letter.jpg', 3);
 // Flat A4 pages for printing, so live-camera and creased-paper shots also use fictional content.
 await sharp(Buffer.from(invoice())).png().toFile(path.join(out, 'print-invoice.png'));
 await sharp(Buffer.from(letter())).png().toFile(path.join(out, 'print-letter.png'));
+// A flat page to open in Remove Watermark (as a file, not a camera shot).
+await sharp(Buffer.from(watermarkedLetter())).png().toFile(path.join(out, 'watermark-letter.png'));
 console.log('demo documents written to', out);
