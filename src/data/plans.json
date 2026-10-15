@@ -1,7 +1,7 @@
 {
-  "$comment": "The one source for what NexaScan offers on Free and Pro. Checked against the app's code and product catalogue (config/PrivatePdfToolkit/product-catalog.json) at app commit 1c4a9da, Google Play versionCode 10, on 2026-10-12 (the 2026-10-08 check of versionCode 8 also used the installed app). Tool and group names are the ones on the app's All Tools screen. Change the app first, then this file. The Features and Pricing pages are generated from it. 'limit' is the Free limit; Pro lifts it (the app never promises 'unlimited').",
-  "checked": "2026-10-12",
-  "appVersion": "1.0 (versionCode 10)",
+  "$comment": "The one source for what NexaScan offers on Free and Pro. Checked against the app's code and product catalogue (config/PrivatePdfToolkit/product-catalog.json, catalogVersion 7) at app commit 178f39e (main, Google Play versionCode 11, the first Closed Testing build) on 2026-10-15; earlier checks: 1c4a9da / versionCode 10 on 2026-10-12, versionCode 8 with the installed app on 2026-10-08. Tool and group names are the ones on the app's All Tools screen. Change the app first, then this file. The Features and Pricing pages are generated from it. 'limit' is the Free limit; Pro lifts it (the app never promises 'unlimited'). A few per-run device limits apply to everyone, Pro included (the app's ToolPageLimits and RemovalLimits: Extract Text 10 pages, PDF to Images 20 (10 in its long-image format; the scanner's long image takes every page), Word 50, Remove Watermark / Handwriting 100 pages and 50 MB, with Check all pages up to 25 pages); the comparison rows and the Features details say so.",
+  "checked": "2026-10-15",
+  "appVersion": "1.0 (versionCode 11)",
   "pricing": {
     "$comment": "Prices come from Google Play at run time, not from the app. Set confirmed to true only when the owner confirms the production prices; until then the site says prices are shown in Google Play.",
     "confirmed": false,
@@ -28,7 +28,7 @@
         { "name": "Edit PDF", "benefit": "Write, draw, sign, obscure (pixelate) and watermark on any page, then save an edited copy.", "tier": "pro" },
         { "name": "Add Page Numbers", "benefit": "Number pages in the position and style you choose.", "tier": "pro" },
         { "name": "Watermark PDF", "benefit": "Add a text or logo watermark to a whole PDF.", "tier": "pro" },
-        { "name": "Remove Watermark", "benefit": "Brush over a watermark or stamp on a PDF page or a photo. Similar marks are found and cleaned away, keeping your text, and you can remove them on all pages at once. Saved as a new copy.", "tier": "pro" },
+        { "name": "Remove Watermark", "benefit": "Brush over a watermark or stamp on a PDF page or a photo. Similar marks are found and cleaned away, keeping your text. On a document of up to 25 pages, you can check the marks found on every page and remove them in one go. Saved as a new copy.", "tier": "pro" },
         { "name": "Remove Handwriting", "benefit": "Brush over pen or pencil marks on a PDF page or a photo. Similar strokes are found and cleaned away, keeping your text. Saved as a new copy.", "tier": "pro" }
       ]
     },
@@ -46,9 +46,9 @@
       "name": "View & OCR",
       "summary": "Text recognition runs on your phone.",
       "tools": [
-        { "name": "Document Viewer", "benefit": "Open PDFs and images, zoom, and search the text. Scanned pages are recognised on your phone first.", "tier": "free", "limit": "scanned PDFs up to 10 pages for search" },
+        { "name": "Document Viewer", "benefit": "Open PDFs and images, zoom, and search the text. Scanned pages are recognised on your phone first. Password-protected PDFs open once you enter the password.", "tier": "free", "limit": "scanned PDFs up to 10 pages for search" },
         { "name": "Extract Text", "benefit": "Recognise the text in a photo or scanned PDF, then copy or share it.", "tier": "free", "limit": "10 pages at a time" },
-        { "name": "Make Searchable PDF", "benefit": "Add an invisible text layer so a scanned PDF can be searched and copied.", "tier": "free", "limit": "10 pages at a time" },
+        { "name": "Make Searchable PDF", "benefit": "Add an invisible text layer so a scanned PDF can be searched and copied.", "tier": "pro" },
         { "name": "OCR Document Viewer", "benefit": "Select, copy and share text straight off scanned pages.", "tier": "pro" }
       ]
     },
@@ -56,9 +56,9 @@
       "name": "Convert & Export",
       "summary": "Get the file the next person needs.",
       "tools": [
-        { "name": "PDF / Image to Word", "benefit": "Editable .docx with paragraphs, headings and tables.", "tier": "free", "limit": "10 pages at a time" },
+        { "name": "PDF / Image to Word", "benefit": "Turn a PDF or a photo into a Word document.", "tier": "free", "limit": "50 pages at a time" },
         { "name": "PDF / Image to Excel", "benefit": "Tables become sheets, with numbers and dates kept as values.", "tier": "free", "limit": "10 pages at a time" },
-        { "name": "PDF to Images", "benefit": "One JPEG per page, or with Pro, one long image of every page.", "tier": "free", "limit": "10 pages at a time" },
+        { "name": "PDF to Images", "benefit": "One JPEG per page, or with Pro, one long image of up to 10 pages.", "tier": "free", "limit": "10 pages at a time" },
         { "name": "PDF / Image to Word Pro", "benefit": "Word documents that follow the original page layout.", "tier": "pro" },
         { "name": "PDF / Image to Excel Pro", "benefit": "Spreadsheets that keep complex tables and formatting.", "tier": "pro" }
       ]
@@ -83,14 +83,18 @@
     { "feature": "Clean-up looks", "free": "Original, Light, Enhance, B&W, Grayscale", "pro": "4 more: Magic Pro, No Shadow, Eco and Invert" },
     { "feature": "Save as PDF or JPEG images", "free": true, "pro": true },
     { "feature": "Save every page as one long image", "free": false, "pro": true },
-    { "feature": "Text recognition: searchable PDFs and Extract Text", "free": "10 pages at a time", "pro": "Free limit lifted" },
+    { "feature": "Extract Text from photos and scanned PDFs", "free": "10 pages at a time", "pro": "10 pages at a time" },
+    { "feature": "Search scanned PDFs in the Document Viewer", "free": "Up to 10 pages", "pro": "Free limit lifted" },
+    { "feature": "Searchable PDFs (Make Searchable PDF, and Make PDF searchable when you save a scan)", "free": false, "pro": true },
     { "feature": "Select text on scanned pages (OCR Document Viewer)", "free": false, "pro": true },
-    { "feature": "PDF or photo to Word and Excel", "free": "10 pages at a time", "pro": "Free limit lifted" },
+    { "feature": "PDF or photo to Word", "free": "50 pages at a time", "pro": "50 pages at a time" },
+    { "feature": "PDF or photo to Excel", "free": "10 pages at a time", "pro": "Free limit lifted" },
     { "feature": "Layout-faithful Word Pro and Excel Pro", "free": false, "pro": true },
     { "feature": "Merge PDFs", "free": "3 files at a time", "pro": "Free limit lifted" },
     { "feature": "Split, rotate, reorder and delete pages", "free": true, "pro": true },
     { "feature": "Compress PDF", "free": "High quality, files up to 50 MB", "pro": "+ Balanced and Maximum compression, files up to 500 MB" },
-    { "feature": "Image to PDF and PDF to images", "free": "10 at a time", "pro": "Free limit lifted" },
+    { "feature": "Image to PDF", "free": "10 images at a time", "pro": "Free limit lifted" },
+    { "feature": "PDF to images", "free": "10 pages at a time", "pro": "20 pages at a time" },
     { "feature": "Sign PDF and Crop & Enhance", "free": "PDFs up to 10 pages", "pro": "Free limit lifted" },
     { "feature": "Add text, drawing and your signature to pages", "free": true, "pro": true },
     { "feature": "Edit PDF, Obscure (pixelate), watermarks, page numbers, multi-page sheets", "free": false, "pro": true },
@@ -101,8 +105,8 @@
   "proHighlights": [
     "Longer scans and bigger jobs: the 10-page, 3-file and 50 MB Free limits are lifted",
     "Four more clean-up looks: Magic Pro, No Shadow, Eco and Invert",
-    "Remove Watermark and Remove Handwriting, on one page or all pages",
-    "Select text on scanned pages, and save pages as one long image",
+    "Remove Watermark and Remove Handwriting, on one page or across up to 25 pages",
+    "Searchable PDFs, select text on scanned pages, and save pages as one long image",
     "Word Pro and Excel Pro conversions that follow the original layout",
     "Edit PDF, watermarks, page numbers and multi-page sheets",
     "Password protection with AES-256"
