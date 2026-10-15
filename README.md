@@ -72,6 +72,6 @@ run the same checks without deploying. In the repository's **Settings › Pages*
 
 ## Accuracy rule
 
-Every product, privacy and security claim on this site was checked against the app's source code (PDFToolKit,
-NexaScan versionCode 8). Before changing a claim, check it against the app. The privacy policy in particular
+Every product, privacy and security claim on this site was checked against the app's source code (PDFToolKit;
+last full check 2026-10-15, app commit 178f39e, Google Play versionCode 11; see `src/data/plans.json`). Before changing a claim, check it against the app. The privacy policy in particular
 must stay in step with the app's permissions, network calls, SDKs and billing.
