@@ -31,7 +31,8 @@
       <li><strong>Camera images</strong>, when you scan a document.</li>
       <li><strong>Files you choose</strong>: PDFs and images (JPG, JPEG, PNG) you pick with Android's file picker, or send to NexaScan from another app with Open with or Share. A PDF you open in NexaScan from another app is kept as an unchanged copy in its Documents until you delete it.</li>
       <li><strong>The documents it creates</strong>: PDFs, images, Word and Excel files, and the text it recognises in them. Word and Excel files record the name of the file they were made from as their title.</li>
-      <li><strong>Passwords you type</strong> in Protect. They are used once to encrypt the new copy, and are never saved or logged.</li>
+      <li><strong>Passwords you type</strong> in Protect, or to open a password-protected PDF in the Document Viewer. A Protect password is used once to encrypt the new copy; an opening password is used only to unlock that PDF. Neither is ever saved or logged.</li>
+      <li><strong>An unlocked copy of a password-protected PDF</strong>, while you have it open in the Document Viewer. It is kept in the app's private storage and deleted when you close the document. If the app stops unexpectedly while it is open, the leftover copy is deleted when the app next clears its temporary files. Your original file stays protected.</li>
       <li><strong>A few app settings</strong>, such as whether you've seen the introduction and the app tour.</li>
       <li><strong>If you buy Pro or redeem a code</strong>: the Pro status the app has confirmed (where your Pro comes from, when it ends and when to check it again), and the private half of the installation key, which never leaves your phone (section 5). A code you type is sent to the licence service to redeem it and isn't saved on your phone.</li>
     </ul>
@@ -112,6 +113,7 @@
       <li>Processing happens on the phone, so your documents don't travel over the Internet when you use NexaScan.</li>
       <li>The licence check and code redemption (section 5) travel over an encrypted HTTPS connection.</li>
       <li>Protect (Pro) encrypts a new copy of the PDF with <strong>AES-256</strong>. Your original file is unchanged, and your password isn't stored. The Protect screen blocks screenshots while you type.</li>
+      <li>The Document Viewer's password box for opening a protected PDF also blocks screenshots, and the password isn't stored.</li>
       <li>NexaScan doesn't add its own encryption to documents in its storage. They rely on Android's app sandbox and device encryption. For sensitive files, use Protect.</li>
     </ul>
 
