@@ -15,7 +15,8 @@
       <ul>
         <li>Scanning, clean-up, text recognition, conversion and every PDF tool run <strong>on your phone</strong>.</li>
         <li>NexaScan <strong>never uploads your documents</strong>, images or the text in them, to us or to anyone else.</li>
-        <li>There is <strong>no account</strong>, no sign-in, no advertising, and no analytics or crash-reporting service.</li>
+        <li>There is <strong>no account</strong>, no sign-in and no advertising.</li>
+        <li><strong>Usage data and crash reports are off unless you turn them on.</strong> If you do, technical data goes to Google's Firebase. It never includes your documents, images, text or file names (section 4).</li>
         <li>Your documents are kept in the app's <strong>private storage</strong> and are left out of Google cloud backups. They leave the app <strong>only when you share them or open them in another app</strong>.</li>
         <li>If you <strong>buy NexaScan Pro or redeem a Pro code</strong>, the app checks your Pro status with our licence service (and, for a purchase, with Google Play), first when Pro starts and then again from time to time. The licence service keeps the purchase token and the code only as one-way hashes, with a random identifier for your installation. Nothing it keeps identifies you: no name, email address, Google account or documents (section 5).</li>
         <li>Google's text-recognition component (ML Kit) may send <strong>limited diagnostic data</strong> to Google. It never includes your images or text (section 4).</li>
@@ -39,7 +40,7 @@
     <p>All of this stays on your phone, and we never receive it. If your phone's Google backup is turned on, Android may include the app settings in that backup, but never your documents (section 8).</p>
 
     <h2 id="collected">3. What we collect</h2>
-    <p>We don't collect your documents, images, recognised text, file names or contacts, and NexaScan has no advertising or analytics SDK. The only data that reaches us is the licence data described in section 5, and only if you buy NexaScan Pro or redeem a code.</p>
+    <p>We don't collect your documents, images, recognised text, file names or contacts, and NexaScan has no advertising SDK. Two kinds of data can reach us. One is the licence data described in section 5, only if you buy NexaScan Pro or redeem a code. The other is usage data and crash reports, only if you turn them on (section 4).</p>
 
     <h2 id="third-parties">4. Third-party components</h2>
     <div class="table-wrap">
@@ -49,10 +50,26 @@
           <tr><td>Google ML Kit Text Recognition (model built into the app)</td><td>Recognises text in scans and images, on the phone.</td><td>Your images and text are <strong>not</strong> sent. ML Kit may send limited diagnostic and usage information (for example device model, app version and how the feature performed) to Google. See <a href="https://developers.google.com/ml-kit/android-data-disclosure" rel="noopener">Google's ML Kit data disclosure</a>.</td></tr>
           <tr><td>Google Play Billing</td><td>Shows NexaScan Pro plans, handles purchases and restores them.</td><td>Handled by Google Play under <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>. The app contacts it when you open the Pro screen or restore purchases. Once you've started a purchase on this phone, it also checks your subscription with Google Play when you open the app.</td></tr>
           <tr><td>AndroidX CameraX</td><td>Camera preview and capture for scanning.</td><td>None.</td></tr>
+          <tr><td>Google Analytics for Firebase</td><td>If you turn on <strong>Usage data</strong>: tells us which features are used, how long they take and whether they finish.</td><td>Only if you turn it on: see "Usage data and crash reports" below.</td></tr>
+          <tr><td>Firebase Crashlytics</td><td>If you turn on <strong>Crash reports</strong>: tells us when the app crashes or stops responding, and where in its code.</td><td>Only if you turn it on: see "Usage data and crash reports" below.</td></tr>
           <tr><td>PDF, image and Office libraries (PDFsharp, PdfPig, ImageSharp, Open XML SDK)</td><td>Reading and writing PDFs, images, Word and Excel files.</td><td>None.</td></tr>
         </tbody>
       </table>
     </div>
+
+    <h3 id="usage-crash">Usage data and crash reports</h3>
+    <p>Both are <strong>off unless you turn them on</strong>. The app asks once, and you can change your answer at any time in <strong>Settings › Usage and crash data</strong>. We rely on your consent. Firebase doesn't start until you agree, and nothing is sent before that.</p>
+    <ul>
+      <li><strong>Usage data</strong> (Google Analytics for Firebase): which feature ran, such as a filter or a PDF tool; whether it finished, failed or was cancelled; how long it took; a range for the number of pages; a category for the type of error; which Pro screens were seen and the result of a purchase, restore or code (the outcome and the plan's billing period only); and whether you use Free or Pro. Google Analytics also records its own usage events, such as the first time the app is opened and how long it stays open.</li>
+      <li><strong>Crash reports</strong> (Firebase Crashlytics): the type of error and the names of the app's code it passed through. If the app stops responding, the report includes a list of what each part of the app was doing at that moment.</li>
+      <li><strong>What Firebase adds:</strong> an installation ID it creates for this copy of the app (not your name or your phone's serial number), the app version, the Android version, and the language and country settings of your phone. Crash reports also include the phone's model, manufacturer, memory, storage, whether it is rooted, and the type of network connection. Google may see your IP address when data is sent.</li>
+      <li><strong>What is never sent:</strong> your documents, images, thumbnails, handwriting, recognised text, file names, folder paths, document titles, purchase tokens, receipts or redeem codes. The text of an error can contain a file's location, so the app removes it before a report is made.</li>
+      <li><strong>Not collected at all:</strong> the advertising ID. Ad personalisation is off, and nothing is linked to Google Ads.</li>
+    </ul>
+    <p>Turning a choice off stops sending from then on and deletes what is waiting on your phone. Data Google has already received is kept for up to 14 months (usage data) or 90 days (crash reports) and then deleted. Because this data isn't linked to your name or email address, we usually can't find yours to delete it sooner. Google processes it for us as a service provider, and may do so outside the UK. See <a href="https://firebase.google.com/support/privacy" rel="noopener">Firebase's privacy information</a>.</p>
+
+    <h3 id="local-diagnostics">Local diagnostics</h3>
+    <p>Whatever you choose above, the app keeps a small technical log in its private storage: feature names, timings and error types, up to about 1 MB, for up to 14 days. It holds no document content, file names or text, and it isn't included in Google backups. It leaves your phone only if you choose <strong>Share diagnostics</strong> or <strong>Save diagnostics</strong> in Settings, and you can clear it there at any time.</p>
 
     <h2 id="purchases">5. NexaScan Pro and the licence check</h2>
     <h3 id="buying">Buying Pro</h3>
@@ -91,7 +108,8 @@
         <tbody>
           <tr><td>Camera</td><td>To scan documents. It is requested the first time you scan and used only on the scanner screen. You can refuse it and still use every other tool.</td></tr>
           <tr><td>Photos and files</td><td>Never requested. NexaScan opens only the files you pick in Android's file picker or send to it from another app, and that needs no permission. The app's details may list photo and storage access, but NexaScan never asks for it, so it can't look through your photos or files.</td></tr>
-          <tr><td>Internet and network state</td><td>For Google Play purchases, redeeming codes and the licence check (section 5), and for ML Kit's diagnostic data (section 4). Scanning and every document tool work without a connection.</td></tr>
+          <tr><td>Internet and network state</td><td>For Google Play purchases, redeeming codes and the licence check (section 5), for ML Kit's diagnostic data (section 4), and for usage data and crash reports if you turn them on (section 4). Scanning and every document tool work without a connection.</td></tr>
+          <tr><td>Keep the phone awake (wake lock)</td><td>Used by Google's Firebase component to finish sending usage data, if you turn it on.</td></tr>
           <tr><td>Google Play billing</td><td>To offer and manage the NexaScan Pro subscription.</td></tr>
         </tbody>
       </table>
@@ -111,7 +129,7 @@
     <h2 id="security">10. Security</h2>
     <ul>
       <li>Processing happens on the phone, so your documents don't travel over the Internet when you use NexaScan.</li>
-      <li>The licence check and code redemption (section 5) travel over an encrypted HTTPS connection.</li>
+      <li>The licence check, code redemption (section 5), and usage data and crash reports (section 4) travel over an encrypted HTTPS connection.</li>
       <li>Protect (Pro) encrypts a new copy of the PDF with <strong>AES-256</strong>. Your original file is unchanged, and your password isn't stored. The Protect screen blocks screenshots while you type.</li>
       <li>The Document Viewer's password box for opening a protected PDF also blocks screenshots, and the password isn't stored.</li>
       <li>NexaScan doesn't add its own encryption to documents in its storage. They rely on Android's app sandbox and device encryption. For sensitive files, use Protect.</li>
