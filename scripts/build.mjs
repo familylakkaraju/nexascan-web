@@ -29,6 +29,81 @@ const pages = [];
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const proTag = '<span class="tag tag-pro">Pro</span>';
+// "ai": true in plans.json marks a tool that runs one of the app's on-device models (the Nexa Page Model, the Nexa
+// Watermark Model or ML Kit text recognition), checked against the app's code like every other claim.
+const aiTag = '<span class="tag tag-ai" title="Uses NexaScan\'s on-device AI">AI</span>';
+
+// One line icon per tool and tool family (24 × 24, drawn with the current colour). Keys are the "icon" values in
+// plans.json; an unknown key is a build error, so a new tool can't ship without one.
+const iconPaths = {
+  scan: '<path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M4 12h16"/>',
+  image: '<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M20.5 16l-5-5-8.5 8.5"/>',
+  sign: '<path d="M3 17c3-1 4-6 6-6s0 5 2 5 2-3 4-3 2 2 3 2"/><path d="M3 21h18"/>',
+  crop: '<path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/>',
+  edit: '<path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M14 8l3 3"/>',
+  numbers: '<path d="M9 4L7 20M17 4l-2 16M4 9h16M3 15h16"/>',
+  stamp: '<path d="M9 13V9.5a3 3 0 1 1 6 0V13"/><path d="M5 13h14v4H5zM6 21h12"/>',
+  eraser: '<path d="M8 20h12"/><path d="M4.5 15.5l9-9a2 2 0 0 1 2.8 0l2.2 2.2a2 2 0 0 1 0 2.8L12 18H7z"/><path d="M9 11l5 5"/>',
+  pen: '<path d="M12 19l7-7 3 3-7 7z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/>',
+  merge: '<path d="M8 6h5a4 4 0 0 1 4 4v10"/><path d="M14 17l3 3 3-3"/><rect x="3" y="3" width="5" height="6" rx="1"/>',
+  split: '<rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/>',
+  pages: '<rect x="7" y="3" width="13" height="15" rx="2"/><path d="M4 7v12a2 2 0 0 0 2 2h10"/>',
+  rotate: '<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>',
+  grid: '<rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/>',
+  eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  select: '<path d="M4 7V5h2M10 5h4M18 5h2v2M20 11v2M20 17v2h-2M14 19h-4M6 19H4v-2M4 13v-2"/><path d="M8 10h8M8 14h5"/>',
+  text: '<path d="M4 7V5h16v2M9 19h6M12 5v14"/>',
+  search: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/><path d="M14 3v5h5v2"/><circle cx="16.5" cy="16.5" r="3"/><path d="M21 21l-2.2-2.2"/>',
+  images: '<rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/><path d="M17 16l-4-4-7 7"/>',
+  word: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 12l1.5 5 2-4 2 4 1.5-5"/>',
+  sheet: '<rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M3.5 15h17M9.5 4v16"/>',
+  compress: '<path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><circle cx="12" cy="16" r="1.2"/>',
+  sparkle: '<path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/><path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8z"/>',
+  shield: '<path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  layers: '<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',
+};
+const icon = (key, size = 22) => {
+  if (!(key in iconPaths)) throw new Error(`unknown icon ${key}`);
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPaths[key]}</svg>`;
+};
+const allTools = () => plans.groups.flatMap((g) => g.tools);
+const heightAt900 = (ratio) => { const [w, h] = ratio.split('/').map(Number); return Math.round(900 * h / w); };
+const slug = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// The two looks that open an editor are shown on the letter they were captured on.
+const lookAlt = {
+  'No Watermark': 'A sample letter after its DRAFT watermark was found and removed',
+  'No Handwriting': 'A sample letter with the pen marks NexaScan found highlighted for removal',
+};
+
+// The Features page's screen gallery: [file in assets/screenshots, caption, alt text].
+const screens = [
+  ['tools', 'All Tools', 'The All Tools screen, with every tool grouped as Create, Edit & Sign, Organise Pages, View & OCR and Convert & Export'],
+  ['looks', 'Clean-up looks', 'A scanned invoice with the strip of clean-up looks below it, Nexa Magic and Nexa Renew among them'],
+  ['remove-watermark', 'Remove Watermark', 'Remove Watermark with a DRAFT watermark brushed over on a sample letter'],
+  ['edit-pdf', 'Edit PDF', 'Edit PDF with a signature placed on the invoice and the Sign, Add Text, Brush and Watermark tools'],
+  ['ocr-select', 'OCR Document Viewer', 'Rows of a scanned invoice selected in the OCR Document Viewer, with Copy and Share'],
+  ['extract-text', 'Extract Text', 'Extract Text showing the recognised words of a scanned invoice'],
+  ['convert', 'PDF to Word', 'A Word document created from the invoice, ready to open or share'],
+  ['save-as', 'Save a scan', 'Saving a scan as a PDF with Make PDF searchable and Extract text switched on'],
+];
+
+// The home page's Nexa AI studio: one before/after pair per clean-up, real app output on the fictional demo pages.
+const studio = [
+  { id: 'magic', before: 'magic-before', after: 'magic-after', label: 'Nexa Magic', ratio: '815 / 1156',
+    alt: ['The fictional letter photographed on yellowed paper with a coffee ring and a water mark', 'The same letter after Nexa Magic: white paper, crisp text, the stains gone'],
+    caption: 'Nexa Magic on a stained sample letter, captured in the app. Drag to compare.' },
+  { id: 'renew', before: 'renew-before', after: 'renew-after', label: 'Nexa Renew', ratio: '815 / 1156',
+    alt: ['The fictional letter on yellowed, stained paper', 'The same letter after Nexa Renew: rebuilt on fresh paper, keeping its green heading'],
+    caption: 'Nexa Renew on the same letter: rebuilt on fresh paper, colours kept. Drag to compare.' },
+  { id: 'shadow', before: 'shadow-before', after: 'shadow-after', label: 'No Shadow', ratio: '815 / 1156',
+    alt: ['The fictional invoice with a dark shadow across half of it', 'The same invoice after No Shadow, evenly lit'],
+    caption: 'No Shadow on a sample invoice, captured in the app. Drag to compare.' },
+  { id: 'watermark', before: 'watermark-before', after: 'watermark-after', label: 'Remove Watermark', ratio: '991 / 1298',
+    alt: ['The fictional letter with a large DRAFT watermark across it', 'The same letter after Remove Watermark: the watermark is gone and the text is intact'],
+    caption: 'Remove Watermark found and removed the DRAFT mark by itself. Drag to compare.' },
+];
 const cell = (v) => (v === true ? '<span class="yes" aria-label="Included">✓</span>'
   : v === false ? '<span class="no" aria-label="Not included">–</span>' : esc(v));
 
@@ -51,6 +126,58 @@ ${plans.compare.map((r) => `            <tr><th scope="row">${esc(r.feature)}</t
         </table></div>`,
   'pro-highlights': () => plans.proHighlights.map((h) => `<li>${esc(h)}</li>`).join('\n          '),
   'free-looks': () => esc(plans.looks.free.join(', ').replace(/, ([^,]+)$/, ' and $1')),
+  'pro-looks': () => esc(plans.looks.proNamed.join(', ').replace(/, ([^,]+)$/, ' and $1')),
+  'tool-count': () => String(allTools().length),
+  'looks-count': () => String(plans.looks.free.length + plans.looks.proNamed.length),
+  'pro-looks-count': () => String(plans.looks.proNamed.length),
+  // Home: one card per tool family, linking to that family on the Features page.
+  'tool-families': () => plans.groups.map((g) => `
+        <a class="family reveal" href="{{root}}features/#${esc(g.id)}">
+          <span class="family-icon">${icon(g.icon, 24)}</span>
+          <span class="family-count">${g.tools.length} ${g.tools.length === 1 ? 'tool' : 'tools'}</span>
+          <h3>${esc(g.name)}</h3>
+          <p>${esc(g.summary)}</p>
+          <span class="family-tools">${g.tools.map((t) => esc(t.name.replace(/^PDF \/ Image to /, 'To '))).join(' · ')}</span>
+        </a>`).join(''),
+  // Features: every family as a section of tool cards, each with its icon, Pro tag and Free limit.
+  'tool-sections': () => plans.groups.map((g) => `
+      <section class="tool-section" id="${esc(g.id)}" aria-labelledby="${esc(g.id)}-title">
+        <div class="tool-section-head reveal">
+          <span class="family-icon">${icon(g.icon, 24)}</span>
+          <div><h2 id="${esc(g.id)}-title">${esc(g.name)}</h2><p>${esc(g.summary)}</p></div>
+        </div>
+        <ul class="tool-cards">
+${g.tools.map((t) => `          <li class="tool-card reveal">
+            <span class="tool-icon">${icon(t.icon)}</span>
+            <h3>${esc(t.name)}${t.ai ? ` ${aiTag}` : ''}${t.tier === 'pro' ? ` ${proTag}` : ''}</h3>
+            <p>${esc(t.benefit)}</p>${t.limit ? `\n            <p class="tool-limit">Free: ${esc(t.limit)}</p>` : ''}
+          </li>`).join('\n')}
+        </ul>
+      </section>`).join('\n'),
+  // Home: the studio's before/after panels (the tabs are in the page; panel ids match their aria-controls).
+  'studio-panels': () => studio.map((s) => `
+      <figure class="studio-panel" id="panel-${s.id}" role="tabpanel" aria-labelledby="tab-${s.id}">
+        <div class="compare" data-compare style="aspect-ratio:${s.ratio}">
+          <img src="{{root}}assets/screenshots/${s.before}.webp" alt="${esc(s.alt[0])}" width="900" height="${heightAt900(s.ratio)}" loading="lazy">
+          <img class="compare-after" src="{{root}}assets/screenshots/${s.after}.webp" alt="${esc(s.alt[1])}" width="900" height="${heightAt900(s.ratio)}" loading="lazy">
+          <span class="compare-line" aria-hidden="true"></span>
+          <span class="compare-label before" aria-hidden="true">Photo</span>
+          <span class="compare-label after" aria-hidden="true">${esc(s.label)}</span>
+          <input type="range" min="0" max="100" value="50" aria-label="Compare the photographed page with the ${esc(s.label)} result">
+          <span class="compare-knob" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span>
+        </div>
+        <figcaption>${esc(s.caption)}</figcaption>
+      </figure>`).join(''),
+  // The twelve looks, the same page in each, Pro ones tagged.
+  'looks-grid': () => `<ul class="looks">
+${[...plans.looks.free.map((n) => [n, false]), ...plans.looks.proNamed.map((n) => [n, true])].map(([n, pro]) => `      <li class="look reveal"><img src="{{root}}assets/screenshots/look-${slug(n.replace(/&/g, ''))}.webp" alt="${esc(lookAlt[n] ?? `The sample invoice in the ${n} look`)}" width="400" height="567" loading="lazy">${esc(n)}${pro ? ` ${proTag}` : ''}</li>`).join('\n')}
+    </ul>`,
+  // Features: a strip of real screens, each a capture from the app on the fictional demo documents.
+  'screen-gallery': () => `<div class="gallery reveal">
+${screens.map(([file, caption, alt]) => `      <figure><div class="phone phone-sm"><img src="{{root}}assets/screenshots/${file}.webp" alt="${esc(alt)}" width="540" height="1094" loading="lazy"></div><figcaption>${esc(caption)}</figcaption></figure>`).join('\n')}
+    </div>`,
+  // Features: in-page navigation to each family.
+  'family-nav': () => plans.groups.map((g) => `<li><a href="#${esc(g.id)}">${icon(g.icon, 18)}${esc(g.name)}</a></li>`).join(''),
   'price-line': () => (plans.pricing.confirmed
     ? `${esc(plans.pricing.monthly)} a month or ${esc(plans.pricing.annual)} a year in the ${esc(plans.pricing.region)}. Google Play shows the price for your country before you pay.`
     : 'Monthly or yearly subscription. Google Play shows the price for your country before you pay.'),
@@ -159,6 +286,7 @@ function render(template, vars, depth = 0) {
       if (!(name in generators)) throw new Error(`unknown generator ${name}`);
       return generators[name]();
     })
+    .replace(/\{\{icon:([\w-]+)\}\}/g, (_, name) => icon(name, 20))
     .replace(/\{\{email:(\w+)\}\}/g, (_, key) => {
       // A contact address from site.config.json: a mailto link once it is filled in, the highlighted owner-input
       // marker while it still reads "[… REQUIRED]".

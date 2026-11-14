@@ -103,8 +103,73 @@ async function photo(svg, name, angle) {
     .toFile(path.join(out, name));
 }
 
+// The letter with blue-pen notes over it (a ring round a phrase, underlines, a margin note and a tick), for Remove
+// Handwriting and the scanner's No Handwriting look.
+function annotatedLetter() {
+  const pen = 'fill="none" stroke="#1f3fae" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".88"';
+  const ink = `
+    <ellipse cx="560" cy="580" rx="250" ry="36" ${pen} transform="rotate(-1.5 560 580)"/>
+    <path d="M104 742 C 300 748, 520 738, 760 746" ${pen}/>
+    <path d="M104 1004 C 260 1010, 420 1000, 600 1008" ${pen}/>
+    <path d="M940 520 l 22 26 l 44 -60" ${pen}/>
+    <text x="700" y="1200" font-family="Segoe Script, Ink Free, cursive" font-size="40" fill="#1f3fae" opacity=".9" transform="rotate(-5 700 1200)">call Tue?</text>
+    <path d="M760 1150 C 720 1110, 690 1070, 660 1030" ${pen}/>
+    <text x="600" y="1330" font-family="Segoe Script, Ink Free, cursive" font-size="44" fill="#1f3fae" opacity=".9" transform="rotate(-3 600 1330)">ok - J.S.</text>`;
+  return letter().replace(/<\/svg>\s*$/, `${ink}</svg>`);
+}
+
+// A creased page (Nexa Magic): one vertical and one horizontal fold, each a dark valley beside a light ridge, plus a
+// few soft crumple facets. Applied to the flat page before it is photographed.
+function creaseOverlay() {
+  const fold = (x1, y1, x2, y2, id) => `
+    <linearGradient id="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".47" stop-color="#000" stop-opacity=".16"/>
+      <stop offset=".5" stop-color="#000" stop-opacity=".42"/><stop offset=".53" stop-color="#fff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>`;
+  return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><defs>
+    ${fold(W / 2 - 60, 0, W / 2 + 60, 0, 'v')}${fold(0, H / 2 - 50, 0, H / 2 + 50, 'h')}
+    <filter id="f"><feGaussianBlur stdDeviation="40"/></filter></defs>
+    <rect x="${W / 2 - 60}" y="0" width="120" height="${H}" fill="url(#v)"/>
+    <rect x="0" y="${H / 2 - 50}" width="${W}" height="100" fill="url(#h)"/>
+    <g filter="url(#f)">
+      <polygon points="0,0 ${W * 0.3},${H * 0.12} ${W * 0.12},${H * 0.4}" fill="#000" opacity=".08"/>
+      <polygon points="${W},${H} ${W * 0.7},${H * 0.86} ${W * 0.9},${H * 0.62}" fill="#000" opacity=".09"/>
+      <polygon points="${W},0 ${W * 0.78},${H * 0.2} ${W * 0.95},${H * 0.3}" fill="#fff" opacity=".2"/></g></svg>`);
+}
+
+// An old, stained page (Nexa Renew): yellowed paper, faded ink, a coffee ring and a water mark.
+function stainOverlay() {
+  return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><defs>
+    <radialGradient id="ring" cx="50%" cy="50%" r="50%"><stop offset=".78" stop-color="#7a4a1a" stop-opacity="0"/>
+      <stop offset=".9" stop-color="#7a4a1a" stop-opacity=".35"/><stop offset="1" stop-color="#7a4a1a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="blot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#a07a3c" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#a07a3c" stop-opacity="0"/></radialGradient></defs>
+    <rect width="${W}" height="${H}" fill="#e9d9a8" opacity=".55"/>
+    <circle cx="960" cy="1420" r="170" fill="url(#ring)"/>
+    <ellipse cx="300" cy="300" rx="260" ry="180" fill="url(#blot)"/>
+    <ellipse cx="820" cy="980" rx="200" ry="120" fill="url(#blot)"/></svg>`);
+}
+
+// A hard shadow across half the page (No Shadow): a phone held over the page in a desk lamp's light.
+function shadowOverlay() {
+  return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><defs>
+    <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter></defs>
+    <polygon points="${W * 0.38},0 ${W},0 ${W},${H} ${W * 0.62},${H}" fill="#000" opacity=".5" filter="url(#soft)"/></svg>`);
+}
+
+// The flat page with an overlay multiplied (shading) or screened (highlights) onto it, as a PNG buffer's SVG source.
+async function marked(svg, overlay, blend = 'multiply') {
+  const page = await sharp(Buffer.from(svg)).png().toBuffer();
+  const out = await sharp(page).composite([{ input: overlay, blend }]).png().toBuffer();
+  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}" height="${H}"><image width="${W}" height="${H}" xlink:href="data:image/png;base64,${out.toString('base64')}"/></svg>`;
+}
+
 await photo(invoice(), 'demo-invoice.jpg', -4);
 await photo(letter(), 'demo-letter.jpg', 3);
+await photo(annotatedLetter(), 'demo-handwriting.jpg', -2);
+await photo(await marked(invoice(), creaseOverlay(), 'over'), 'demo-creased.jpg', 2);
+await photo(await marked(letter().replace(/fill="#1d1d1d"/g, 'fill="#55504a"'), stainOverlay()), 'demo-stained.jpg', -3);
+await photo(await marked(invoice(), shadowOverlay()), 'demo-shadow.jpg', 1);
 // Flat A4 pages for printing, so live-camera and creased-paper shots also use fictional content.
 await sharp(Buffer.from(invoice())).png().toFile(path.join(out, 'print-invoice.png'));
 await sharp(Buffer.from(letter())).png().toFile(path.join(out, 'print-letter.png'));

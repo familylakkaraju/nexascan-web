@@ -1,7 +1,7 @@
 {
-  "$comment": "The one source for what NexaScan offers on Free and Pro. Checked against the app's code and product catalogue (config/PrivatePdfToolkit/product-catalog.json, catalogVersion 7) at app commit 178f39e (main, Google Play versionCode 11, the first Closed Testing build) on 2026-10-15; earlier checks: 1c4a9da / versionCode 10 on 2026-10-12, versionCode 8 with the installed app on 2026-10-08. Tool and group names are the ones on the app's All Tools screen. Change the app first, then this file. The Features and Pricing pages are generated from it. 'limit' is the Free limit; Pro lifts it (the app never promises 'unlimited'). A few per-run device limits apply to everyone, Pro included (the app's ToolPageLimits and RemovalLimits: Extract Text 10 pages, PDF to Images 20 (10 in its long-image format; the scanner's long image takes every page), Word 50, Remove Watermark / Handwriting 100 pages and 50 MB, with Check all pages up to 25 pages); the comparison rows and the Features details say so.",
-  "checked": "2026-10-15",
-  "appVersion": "1.0 (versionCode 11)",
+  "$comment": "The one source for what NexaScan offers on Free and Pro. Checked against the app's code and product catalogue (config/PrivatePdfToolkit/product-catalog.json, catalogVersion 10) at app commit a42fe5b (main, ApplicationVersion 20) on 2026-11-14; earlier checks: 178f39e / catalogVersion 7 / versionCode 11 on 2026-10-15, 1c4a9da / versionCode 10 on 2026-10-12, versionCode 8 with the installed app on 2026-10-08. Tool and group names are the ones on the app's All Tools screen. Change the app first, then this file. The Features and Pricing pages are generated from it. 'limit' is the Free limit; Pro lifts it (the app never promises 'unlimited'). A few per-run device limits apply to everyone, Pro included (the app's ToolPageLimits and RemovalLimits: Extract Text 10 pages, PDF to Images 20 (10 in its long-image format; the scanner's long image takes every page), Word 50, Remove Watermark / Handwriting 100 pages and 50 MB, with Check all pages up to 25 pages); the comparison rows and the Features details say so.",
+  "checked": "2026-11-14",
+  "appVersion": "1.0 (versionCode 20)",
   "pricing": {
     "$comment": "Prices come from Google Play at run time, not from the app. Set confirmed to true only when the owner confirms the production prices; until then the site says prices are shown in Google Play.",
     "confirmed": false,
@@ -12,75 +12,81 @@
   },
   "groups": [
     {
+      "id": "create", "icon": "scan",
       "name": "Create",
       "summary": "Turn paper and photos into PDFs.",
       "tools": [
-        { "name": "Scan Document", "benefit": "Finds the page edges live and straightens every shot. Turn on Auto Capture and it takes the picture when the page is steady. It outlines TVs, monitors and picture frames too.", "tier": "free", "limit": "10 pages per document" },
-        { "name": "Image to PDF", "benefit": "Turn photos into one PDF, or one PDF per photo.", "tier": "free", "limit": "10 images at a time" }
+        { "name": "Scan Document", "ai": true, "icon": "scan", "benefit": "Finds the page edges live and straightens every shot. Turn on Auto Capture and it takes the picture when the page is steady. It outlines TVs, monitors and picture frames too. Add photos or PDF pages, then save as a PDF or JPEG images.", "tier": "free", "limit": "10 pages per document" },
+        { "name": "Image to PDF", "icon": "image", "benefit": "Turn photos into one PDF, or one PDF per photo.", "tier": "free", "limit": "10 images at a time" }
       ]
     },
     {
+      "id": "edit-sign", "icon": "edit",
       "name": "Edit & Sign",
       "summary": "Finish a document before it goes anywhere.",
       "tools": [
-        { "name": "Sign PDF", "benefit": "Draw your signature and place it on any page, then save a signed copy.", "tier": "free", "limit": "PDFs up to 10 pages" },
-        { "name": "Crop & Enhance", "benefit": "Open a PDF or photo as editable pages, then crop, rotate, retake, clean up, add text, drawing or a signature, and save a new copy.", "tier": "free", "limit": "PDFs up to 10 pages" },
-        { "name": "Edit PDF", "benefit": "Write, draw, sign, obscure (pixelate) and watermark on any page, then save an edited copy.", "tier": "pro" },
-        { "name": "Add Page Numbers", "benefit": "Number pages in the position and style you choose.", "tier": "pro" },
-        { "name": "Watermark PDF", "benefit": "Add a text or logo watermark to a whole PDF.", "tier": "pro" },
-        { "name": "Remove Watermark", "benefit": "Brush over a watermark or stamp on a PDF page or a photo. Similar marks are found and cleaned away, keeping your text. On a document of up to 25 pages, you can check the marks found on every page and remove them in one go. Saved as a new copy.", "tier": "pro" },
-        { "name": "Remove Handwriting", "benefit": "Brush over pen or pencil marks on a PDF page or a photo. Similar strokes are found and cleaned away, keeping your text. Saved as a new copy.", "tier": "pro" }
+        { "name": "Sign PDF", "icon": "sign", "benefit": "Draw your signature and place it on any page, then save a signed copy.", "tier": "free", "limit": "PDFs up to 10 pages" },
+        { "name": "Crop & Enhance", "ai": true, "icon": "crop", "benefit": "Open a PDF or photo as editable pages, then crop, rotate, retake, clean up with any look, add text, drawing or a signature, and save a new copy.", "tier": "free", "limit": "PDFs up to 10 pages, with 3 text boxes and 20 pen strokes per document" },
+        { "name": "Edit PDF", "icon": "edit", "benefit": "Write, draw and sign, add boxes, circles and arrows, tick, cross or date a form in one tap, obscure (pixelate) and watermark on any page, then save an edited copy. Pro also keeps your signature and initials on this phone, ready to reuse.", "tier": "pro" },
+        { "name": "Add Page Numbers", "icon": "numbers", "benefit": "Number pages in the position and style you choose.", "tier": "pro" },
+        { "name": "Watermark PDF", "icon": "stamp", "benefit": "Add a text or logo watermark to a whole PDF, once or tiled.", "tier": "pro" },
+        { "name": "Remove Watermark", "ai": true, "icon": "eraser", "benefit": "Brush over a watermark or stamp on a PDF page or a photo. Similar marks are found and cleaned away, keeping your text. On a document of up to 25 pages, you can check the marks found on every page and remove them in one go. Saved as a new copy.", "tier": "pro" },
+        { "name": "Remove Handwriting", "ai": true, "icon": "pen", "benefit": "Brush over pen or pencil marks on a PDF page or a photo. Similar strokes are found and cleaned away, keeping your text. Saved as a new copy.", "tier": "pro" }
       ]
     },
     {
+      "id": "organise", "icon": "pages",
       "name": "Organise Pages",
       "summary": "Reshape PDFs page by page.",
       "tools": [
-        { "name": "Merge PDF", "benefit": "Combine PDFs in the order you choose.", "tier": "free", "limit": "3 files at a time" },
-        { "name": "Split & Extract", "benefit": "Pull out pages or ranges into new PDFs.", "tier": "free" },
-        { "name": "Manage Pages", "benefit": "Fix page order and orientation, or remove what you don't need. Rotate Pages, Reorder Pages and Delete Pages each do one of these jobs.", "tier": "free" },
-        { "name": "Multi-Page Sheet", "benefit": "Fit 2, 4, 6, 9 or 16 pages onto each sheet.", "tier": "pro" }
+        { "name": "Merge PDF", "icon": "merge", "benefit": "Combine PDFs in the order you choose.", "tier": "free", "limit": "3 files at a time" },
+        { "name": "Split & Extract", "icon": "split", "benefit": "Pull out pages or ranges into new PDFs.", "tier": "free" },
+        { "name": "Manage Pages", "icon": "rotate", "benefit": "Fix page order and orientation, or remove what you don't need. Rotate Pages, Reorder Pages and Delete Pages each do one of these jobs.", "tier": "free" },
+        { "name": "Multi-Page Sheet", "icon": "grid", "benefit": "Fit 2, 4, 6, 9 or 16 pages onto each sheet.", "tier": "pro" }
       ]
     },
     {
+      "id": "view-ocr", "icon": "text",
       "name": "View & OCR",
       "summary": "Text recognition runs on your phone.",
       "tools": [
-        { "name": "Document Viewer", "benefit": "Open PDFs and images, zoom, and search the text. Scanned pages are recognised on your phone first. Password-protected PDFs open once you enter the password.", "tier": "free", "limit": "scanned PDFs up to 10 pages for search" },
-        { "name": "Extract Text", "benefit": "Recognise the text in a photo or scanned PDF, then copy or share it.", "tier": "free", "limit": "10 pages at a time" },
-        { "name": "Make Searchable PDF", "benefit": "Add an invisible text layer so a scanned PDF can be searched and copied.", "tier": "pro" },
-        { "name": "OCR Document Viewer", "benefit": "Select, copy and share text straight off scanned pages.", "tier": "pro" }
+        { "name": "Document Viewer", "ai": true, "icon": "eye", "benefit": "Open PDFs and images, zoom, and search the text. Scanned pages are recognised on your phone first. Password-protected PDFs open once you enter the password.", "tier": "free", "limit": "scanned PDFs up to 10 pages for search" },
+        { "name": "Extract Text", "ai": true, "icon": "text", "benefit": "Recognise the text in a photo or scanned PDF, then copy or share it.", "tier": "free", "limit": "10 pages at a time" },
+        { "name": "Make Searchable PDF", "ai": true, "icon": "search", "benefit": "Add an invisible text layer so a scanned PDF can be searched and copied.", "tier": "pro" },
+        { "name": "OCR Document Viewer", "ai": true, "icon": "select", "benefit": "Select, copy and share text straight off scanned pages.", "tier": "pro" }
       ]
     },
     {
+      "id": "convert", "icon": "word",
       "name": "Convert & Export",
       "summary": "Get the file the next person needs.",
       "tools": [
-        { "name": "PDF / Image to Word", "benefit": "Turn a PDF or a photo into a Word document.", "tier": "free", "limit": "50 pages at a time" },
-        { "name": "PDF / Image to Excel", "benefit": "Tables become sheets, with numbers and dates kept as values.", "tier": "free", "limit": "10 pages at a time" },
-        { "name": "PDF to Images", "benefit": "One JPEG per page, or with Pro, one long image of up to 10 pages.", "tier": "free", "limit": "10 pages at a time" },
-        { "name": "PDF / Image to Word Pro", "benefit": "Word documents that follow the original page layout.", "tier": "pro" },
-        { "name": "PDF / Image to Excel Pro", "benefit": "Spreadsheets that keep complex tables and formatting.", "tier": "pro" }
+        { "name": "PDF / Image to Word", "ai": true, "icon": "word", "benefit": "Turn a PDF or a photo into a Word document.", "tier": "free", "limit": "50 pages at a time" },
+        { "name": "PDF / Image to Excel", "ai": true, "icon": "sheet", "benefit": "Tables become sheets, with numbers and dates kept as values.", "tier": "free", "limit": "10 pages at a time" },
+        { "name": "PDF to Images", "icon": "images", "benefit": "One JPEG per page, or with Pro, one long image of up to 10 pages.", "tier": "free", "limit": "10 pages at a time" },
+        { "name": "PDF / Image to Word Pro", "ai": true, "icon": "word", "benefit": "Word documents that follow the original page layout.", "tier": "pro" },
+        { "name": "PDF / Image to Excel Pro", "ai": true, "icon": "sheet", "benefit": "Spreadsheets that keep complex tables and formatting.", "tier": "pro" }
       ]
     },
     {
+      "id": "protect", "icon": "lock",
       "name": "Optimise & Protect",
       "summary": "Make it smaller, or lock it.",
       "tools": [
-        { "name": "Compress PDF", "benefit": "Shrink a PDF for email. Pro adds stronger Balanced and Maximum levels.", "tier": "free", "limit": "files up to 50 MB" },
-        { "name": "Password Protect", "benefit": "Save a password-protected copy with AES-256 encryption.", "tier": "pro" }
+        { "name": "Compress PDF", "icon": "compress", "benefit": "Shrink a PDF for email. Pro adds stronger Balanced and Maximum levels.", "tier": "free", "limit": "files up to 50 MB" },
+        { "name": "Password Protect", "icon": "lock", "benefit": "Save a password-protected copy with AES-256 encryption.", "tier": "pro" }
       ]
     }
   ],
   "looks": {
     "free": ["Original", "Light", "Enhance", "B&W", "Grayscale"],
-    "proCount": 4,
-    "proNamed": ["Magic Pro", "No Shadow", "Eco", "Invert"]
+    "proCount": 7,
+    "proNamed": ["Nexa Magic", "Nexa Renew", "No Shadow", "No Watermark", "No Handwriting", "Eco", "Invert"]
   },
   "compare": [
     { "feature": "Document scanner with live page detection and Auto Capture", "free": "Up to 10 pages per document", "pro": "Up to 200 pages per scan" },
     { "feature": "Import photos and PDF pages into a scan", "free": "10 at a time", "pro": "Free limit lifted" },
-    { "feature": "Clean-up looks", "free": "Original, Light, Enhance, B&W, Grayscale", "pro": "4 more: Magic Pro, No Shadow, Eco and Invert" },
+    { "feature": "Clean-up looks", "free": "Original, Light, Enhance, B&W, Grayscale", "pro": "7 more: Nexa Magic, Nexa Renew, No Shadow, No Watermark, No Handwriting, Eco and Invert" },
     { "feature": "Save as PDF or JPEG images", "free": true, "pro": true },
     { "feature": "Save every page as one long image", "free": false, "pro": true },
     { "feature": "Extract Text from photos and scanned PDFs", "free": "10 pages at a time", "pro": "10 pages at a time" },
@@ -96,19 +102,21 @@
     { "feature": "Image to PDF", "free": "10 images at a time", "pro": "Free limit lifted" },
     { "feature": "PDF to images", "free": "10 pages at a time", "pro": "20 pages at a time" },
     { "feature": "Sign PDF and Crop & Enhance", "free": "PDFs up to 10 pages", "pro": "Free limit lifted" },
-    { "feature": "Add text, drawing and your signature to pages", "free": true, "pro": true },
-    { "feature": "Edit PDF, Obscure (pixelate), watermarks, page numbers, multi-page sheets", "free": false, "pro": true },
+    { "feature": "Add text, drawing and your signature to scanned pages", "free": "3 text boxes and 20 pen strokes per document", "pro": "Free limit lifted" },
+    { "feature": "Edit PDF, shapes, form marks (tick, cross, date), Obscure (pixelate), watermarks, page numbers, multi-page sheets", "free": false, "pro": true },
+    { "feature": "Saved signature and initials, ready to reuse", "free": false, "pro": true },
     { "feature": "Remove Watermark and Remove Handwriting (also the scanner's No Watermark and No Handwriting tiles)", "free": false, "pro": true },
     { "feature": "Password protection (AES-256)", "free": false, "pro": true },
     { "feature": "No NexaScan watermark, no ads, no account", "free": true, "pro": true }
   ],
   "proHighlights": [
-    "Longer scans and bigger jobs: the 10-page, 3-file and 50 MB Free limits are lifted",
-    "Four more clean-up looks: Magic Pro, No Shadow, Eco and Invert",
+    "Nexa Magic and Nexa Renew: folds and creases repaired, or a worn page rebuilt clean",
+    "Seven more looks in all, including No Shadow, Eco and Invert",
     "Remove Watermark and Remove Handwriting, on one page or across up to 25 pages",
+    "Longer scans and bigger jobs: the 10-page, 3-file and 50 MB Free limits are lifted",
     "Searchable PDFs, select text on scanned pages, and save pages as one long image",
     "Word Pro and Excel Pro conversions that follow the original layout",
-    "Edit PDF, watermarks, page numbers and multi-page sheets",
+    "Edit PDF with shapes, form marks and a saved signature; watermarks, page numbers and multi-page sheets",
     "Password protection with AES-256"
   ]
 }
