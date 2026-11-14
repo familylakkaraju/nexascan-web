@@ -86,6 +86,12 @@ const screens = [
   ['ocr-select', 'OCR Document Viewer', 'Rows of a scanned invoice selected in the OCR Document Viewer, with Copy and Share'],
   ['extract-text', 'Extract Text', 'Extract Text showing the recognised words of a scanned invoice'],
   ['convert', 'PDF to Word', 'A Word document created from the invoice, ready to open or share'],
+  ['merge', 'Merge PDF', 'Merge PDF with three sample PDFs in order, ready to merge'],
+  ['split', 'Split & Extract', 'Split & Extract with the pages of a sample PDF to pick from'],
+  ['page-numbers', 'Add Page Numbers', 'Add Page Numbers with its format, position, style and page options'],
+  ['watermark-pdf', 'Watermark PDF', 'Watermark PDF adding a CONFIDENTIAL text watermark, with colour choices'],
+  ['multi-page', 'Multi-Page Sheet', 'Multi-Page Sheet fitting a three-page PDF onto one sheet, 4 per sheet'],
+  ['compress', 'Compress PDF', 'Compress PDF with High quality, Balanced and Maximum compression levels'],
   ['save-as', 'Save a scan', 'Saving a scan as a PDF with Make PDF searchable and Extract text switched on'],
 ];
 
