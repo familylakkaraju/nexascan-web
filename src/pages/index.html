@@ -1,13 +1,13 @@
-<!--{"title":"NexaScan – Document Scanner & PDF Tools for Android","description":"Scan paper into clean, straight PDFs, recognise text on your phone, and convert, sign, merge or compress documents. NexaScan works offline and needs no account.","nav":"home","bodyClass":"home"}-->
-<section class="hero" aria-labelledby="hero-title">
+<!--{"title":"NexaScan – AI Scanner, PDF Editor & Converter for Android","description":"Much more than a scanner: scan, restore with Nexa Magic and Nexa Renew, edit, sign, convert to Word and Excel, organise and protect PDFs. 24 tools on your Android phone, with no account and no uploads.","nav":"home","bodyClass":"home"}-->
+<section class="hero hero-brand" aria-labelledby="hero-title">
   <div class="container hero-grid">
     <div class="hero-copy">
       <p class="hero-descriptor"><img src="{{root}}assets/brand/nexascan-logo.png" alt="" width="28" height="28">NexaScan · AI Scanner &amp; PDF Tools</p>
-      <h1 id="hero-title">Scan it. Clean it. <span class="accent">Done.</span></h1>
-      <p class="lead">NexaScan turns photos of paper into clean, straight documents, then lets you search, convert, sign and share them. All on your Android phone, and your documents are never uploaded.</p>
+      <h1 id="hero-title">Not just a scanner. <span class="accent">Your AI document studio.</span></h1>
+      <p class="lead">Scan, restore, edit, sign, convert and protect. {{gen:tool-count}} tools, {{gen:looks-count}} clean-up looks and three AI models that run on your Android phone, so your documents are never uploaded.</p>
       <div class="button-row">
         {{store_cta}}
-        <a class="button button-ghost" href="#how">See how it works</a>
+        <a class="button button-ghost" href="#tools">Explore the tools</a>
       </div>
       {{store_note}}
       <ul class="hero-points">
@@ -18,10 +18,117 @@
     </div>
     <div class="hero-visual" aria-hidden="true">
       <div class="hero-glow"></div>
-      <div class="phone phone-back"><img src="{{root}}assets/screenshots/crop.webp" alt="" width="540" height="1094"><span class="scan-beam"></span></div>
-      <div class="phone phone-front"><img src="{{root}}assets/screenshots/modify.webp" alt="" width="540" height="1094" fetchpriority="high"></div>
-      <span class="floating-chip chip-a"><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/></svg></span>Edges found and straightened</span>
-      <span class="floating-chip chip-b"><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg></span>Enhanced automatically</span>
+      <div class="phone phone-back"><img src="{{root}}assets/screenshots/looks.webp" alt="" width="540" height="1094"><span class="scan-beam"></span></div>
+      <div class="phone phone-front"><img src="{{root}}assets/screenshots/home.webp" alt="" width="540" height="1094" fetchpriority="high"></div>
+      <span class="floating-chip chip-a"><span class="dot">{{icon:sparkle}}</span>Stains and shadows cleaned up</span>
+      <span class="floating-chip chip-b"><span class="dot">{{icon:shield}}</span>Processed on your phone</span>
+    </div>
+  </div>
+</section>
+
+<section class="proof" aria-label="NexaScan in numbers">
+  <div class="container">
+    <ul class="proof-list reveal">
+      <li><strong>{{gen:tool-count}}</strong><span>scanner and PDF tools</span></li>
+      <li><strong>{{gen:looks-count}}</strong><span>clean-up looks, including Nexa Magic and Nexa Renew</span></li>
+      <li><strong>Offline</strong><span>every tool works without a connection</span></li>
+      <li><strong>Private</strong><span>documents never uploaded, no account, no ads</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="tools" aria-labelledby="tools-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">More than a scanner</p>
+      <h2 id="tools-title">One app for every document job</h2>
+      <p class="lead">Six families of tools, grouped the way they are in the app. Start from a photo, a scan or any PDF.</p>
+    </div>
+    <div class="families">
+{{gen:tool-families}}
+    </div>
+    <p class="center-link reveal"><a class="button button-ghost" href="{{root}}features/">See every tool</a></p>
+  </div>
+</section>
+
+<section class="section section-dark ai-zone" id="nexa-ai" aria-labelledby="ai-title">
+  <div class="container">
+    <div class="ai-head">
+      <div class="reveal">
+        <p class="ai-mark">{{icon:sparkle}}Nexa AI</p>
+        <h2 id="ai-title">Three AI models. All on your phone.</h2>
+        <p class="lead">Before NexaScan cleans a page, its AI reads it: what is paper, what is print, what is a pen mark, a fold or a stain. The models run on your phone and work offline, so your pages never leave it.</p>
+        <p class="ai-engine">Runs on <strong>ONNX Runtime</strong> and <strong>Google ML Kit</strong>, built into the app. No cloud processing and no uploads.</p>
+      </div>
+      <figure class="compare-figure reveal reveal-delay-1" style="margin:0">
+        <div class="compare" data-compare style="aspect-ratio:824/1228;max-width:420px">
+          <img src="{{root}}assets/screenshots/ai-photo.webp" alt="A photo of the folded sample invoice" width="824" height="1228" loading="lazy">
+          <img class="compare-after" src="{{root}}assets/screenshots/ai-labels.webp" alt="The same invoice as the Nexa Page Model labels it: paper, text, table lines, the header band, the folds and their shading each in their own colour" width="824" height="1228" loading="lazy">
+          <span class="compare-line" aria-hidden="true"></span>
+          <span class="compare-label before" aria-hidden="true">Photo</span>
+          <span class="compare-label after" aria-hidden="true">How Nexa sees it</span>
+          <input type="range" min="0" max="100" value="50" aria-label="Compare the photo with the Nexa Page Model's reading of it">
+          <span class="compare-knob" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span>
+        </div>
+        <figcaption>The real Nexa Page Model's output on a folded sample invoice.</figcaption>
+        <ul class="ai-legend" aria-label="Colour key">
+          <li><i style="background:#F6FAF9"></i>Paper</li><li><i style="background:#0E766D"></i>Text</li><li><i style="background:#C8930E"></i>Handwriting</li><li><i style="background:#3FD6C4"></i>Lines</li><li><i style="background:#7C5CFF"></i>Pictures</li><li><i style="background:#EF5C54"></i>Creases</li><li><i style="background:#D68C28"></i>Stains</li>
+        </ul>
+      </figure>
+    </div>
+    <ul class="ai-models">
+      <li class="ai-model reveal">
+        <span class="flow-icon">{{icon:layers}}</span>
+        <span class="ai-kind">Page understanding</span>
+        <h3>Nexa Page Model</h3>
+        <p>Labels every pixel of the page as paper, text, handwriting, lines, pictures, creases or stains, so clean-up fixes the paper and leaves your content alone.</p>
+        <ul><li>Nexa Renew</li><li>Nexa Magic</li><li>No Shadow</li><li>Remove Handwriting</li></ul>
+      </li>
+      <li class="ai-model reveal reveal-delay-1">
+        <span class="flow-icon">{{icon:eraser}}</span>
+        <span class="ai-kind">Mark detection</span>
+        <h3>Nexa Watermark Model</h3>
+        <p>Spots the pixels of a watermark or stamp that a search by shape and colour can miss. Nothing is removed until you confirm.</p>
+        <ul><li>Remove Watermark</li><li>No Watermark look</li></ul>
+      </li>
+      <li class="ai-model reveal reveal-delay-2">
+        <span class="flow-icon">{{icon:text}}</span>
+        <span class="ai-kind">Text recognition</span>
+        <h3>On-device OCR</h3>
+        <p>Google's ML Kit text recognition, built into the app, reads the words on scans and photos even in flight mode.</p>
+        <ul><li>Extract Text</li><li>Searchable PDF</li><li>OCR Viewer</li><li>Word &amp; Excel</li></ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-dark" aria-labelledby="studio-title">
+  <div class="container studio" data-tabs>
+    <div class="reveal">
+      <p class="eyebrow">Nexa AI at work</p>
+      <h2 id="studio-title">Pages that look better than the paper</h2>
+      <p class="lead">Photos of real documents come with folds, stains, shadows and scribbles. NexaScan cleans them up on your phone and keeps every word of your text.</p>
+      <div class="studio-tabs" role="tablist" aria-label="Clean-up examples" aria-orientation="vertical">
+        <button class="studio-tab" role="tab" id="tab-magic" aria-controls="panel-magic" aria-selected="true">
+          <span class="flow-icon">{{icon:sparkle}}</span><strong>Nexa Magic <span class="tag tag-pro">Pro</span></strong>
+          <span class="desc">Removes folds, creases and torn-edge damage from the enhanced page. Nothing on the page is lost.</span>
+        </button>
+        <button class="studio-tab" role="tab" id="tab-renew" aria-controls="panel-renew" aria-selected="false" tabindex="-1">
+          <span class="flow-icon">{{icon:layers}}</span><strong>Nexa Renew <span class="tag tag-pro">Pro</span></strong>
+          <span class="desc">Recreates a worn or stained page on fresh paper, keeping its text, pictures and layout. Nothing is invented.</span>
+        </button>
+        <button class="studio-tab" role="tab" id="tab-shadow" aria-controls="panel-shadow" aria-selected="false" tabindex="-1">
+          <span class="flow-icon">{{icon:image}}</span><strong>No Shadow <span class="tag tag-pro">Pro</span></strong>
+          <span class="desc">Evens out shadows and uneven lighting, keeping colour and print.</span>
+        </button>
+        <button class="studio-tab" role="tab" id="tab-watermark" aria-controls="panel-watermark" aria-selected="false" tabindex="-1">
+          <span class="flow-icon">{{icon:eraser}}</span><strong>Remove Watermark <span class="tag tag-pro">Pro</span></strong>
+          <span class="desc">Finds a watermark or stamp on the page, or on up to 25 pages, and removes it after you check. Or brush over one yourself.</span>
+        </button>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+{{gen:studio-panels}}
     </div>
   </div>
 </section>
@@ -35,57 +142,30 @@
     </div>
     <ol class="steps reveal">
       <li>
-        <span class="step-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+        <span class="step-icon" aria-hidden="true">{{icon:scan}}</span>
         <h3>Scan</h3>
-        <p>Point your camera at a page. NexaScan finds the edges and straightens the shot. Tap the shutter, or turn on Auto Capture to take it for you.</p>
+        <p>Point your camera at a page. NexaScan finds the edges and straightens the shot. Tap the shutter, or let Auto Capture take it for you.</p>
       </li>
       <li>
-        <span class="step-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/><path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8z"/></svg></span>
-        <h3>Improve</h3>
-        <p>Enhance whitens the paper and sharpens the text for you. Try another look, or compare with the original.</p>
+        <span class="step-icon" aria-hidden="true">{{icon:sparkle}}</span>
+        <h3>Clean up</h3>
+        <p>Enhance whitens the paper and sharpens the text for you. Try any of {{gen:looks-count}} looks, apply one to every page, or compare with the original.</p>
       </li>
       <li>
-        <span class="step-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M8 9h8M8 12h8M8 15h5"/></svg></span>
-        <h3>Read</h3>
-        <p>Pull the words out of your scan to copy and share. With Pro, save a searchable PDF whose words can be found and copied.</p>
+        <span class="step-icon" aria-hidden="true">{{icon:edit}}</span>
+        <h3>Finish</h3>
+        <p>Crop, sign, add text, read the words off the page, or turn it into a searchable PDF.</p>
       </li>
       <li>
-        <span class="step-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg></span>
+        <span class="step-icon" aria-hidden="true">{{icon:word}}</span>
         <h3>Share</h3>
-        <p>Keep it as a PDF or images, convert it to Word or Excel, and send it to any app.</p>
+        <p>Save a PDF or images, convert to Word or Excel, and send it to any app.</p>
       </li>
     </ol>
   </div>
 </section>
 
-<section class="section" aria-labelledby="result-title">
-  <div class="container showcase">
-    <div class="showcase-copy reveal">
-      <p class="eyebrow">The result</p>
-      <h2 id="result-title">From phone photo to clean page</h2>
-      <p class="lead">A page photographed at an angle, on a dark desk, in uneven light. NexaScan straightens it, lifts the grey and keeps the text crisp.</p>
-      <ul class="checks">
-        <li><div><strong>Automatic page detection</strong><span>Drag the corners to fine-tune, or let Auto Crop do it.</span></div></li>
-        <li><div><strong>Enhance by default</strong><span>Free looks: {{gen:free-looks}}. Pro adds four more, plus watermark and handwriting removal.</span></div></li>
-        <li><div><strong>Change your mind any time</strong><span>Compare with the original, or apply a look to every page.</span></div></li>
-      </ul>
-    </div>
-    <figure class="compare-figure reveal reveal-delay-1">
-      <div class="compare" data-compare>
-        <img src="{{root}}assets/screenshots/enhance-before.webp" alt="The fictional sample invoice as photographed: grey paper with a shadow across it" width="816" height="1156" loading="lazy">
-        <img class="compare-after" src="{{root}}assets/screenshots/enhance-after.webp" alt="The same invoice after NexaScan's Enhance look: white paper and crisp text" width="816" height="1156" loading="lazy">
-        <span class="compare-line" aria-hidden="true"></span>
-        <span class="compare-label before" aria-hidden="true">Photo</span>
-        <span class="compare-label after" aria-hidden="true">NexaScan</span>
-        <input type="range" min="0" max="100" value="50" aria-label="Compare the photographed page with the NexaScan result">
-        <span class="compare-knob" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span>
-      </div>
-      <figcaption>A real NexaScan result on a fictional sample invoice. Drag to compare.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="section section-tint" aria-label="Features">
+<section class="section" aria-label="Highlights">
   <div class="container">
     <div class="story">
       <div class="story-copy reveal">
@@ -99,44 +179,55 @@
         </ul>
       </div>
       <div class="story-visual reveal reveal-delay-1">
-        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/save-as.webp" alt="Save document with Make PDF searchable and Extract text switched on" width="540" height="1094" loading="lazy"></div>
-        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/ocr-select.webp" alt="Rows of a scanned invoice selected in the OCR Viewer, with Copy and Share buttons" width="540" height="1094" loading="lazy"></div>
+        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/extract-text.webp" alt="Extract Text showing the recognised words of a scanned invoice, with Copy and Share" width="540" height="1094" loading="lazy"></div>
+        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/ocr-select.webp" alt="Rows of a scanned invoice selected in the OCR Document Viewer, with Copy and Share buttons" width="540" height="1094" loading="lazy"></div>
       </div>
     </div>
 
     <div class="story flip">
       <div class="story-copy reveal">
-        <p class="eyebrow">Convert &amp; organise</p>
-        <h2 id="convert-title">Every PDF job, without a computer</h2>
-        <p class="lead">Merge, split, compress and convert in a few taps. Your original file is never changed.</p>
+        <p class="eyebrow">Edit &amp; sign</p>
+        <h2 id="sign-title">Sign it, fill it in, mark it up</h2>
+        <p class="lead">Sign any PDF for free. With Pro, edit across every page: text, shapes, form marks, pixelation and watermarks.</p>
         <ul class="checks">
-          <li><div><strong>PDF or photo to Word and Excel</strong><span>Word documents, and Excel sheets with tables you can edit. Pro adds Word Pro and Excel Pro, which follow the original layout.</span></div></li>
-          <li><div><strong>Merge, split and tidy pages</strong><span>Reorder, rotate or delete pages in any PDF.</span></div></li>
-          <li><div><strong>Compress and convert</strong><span>Smaller files for email, images to PDF and back.</span></div></li>
+          <li><div><strong>Sign PDF</strong><span>Draw your signature, then place it on any page.</span></div></li>
+          <li><div><strong>Edit PDF <span class="tag tag-pro">Pro</span></strong><span>Text, drawing, boxes, circles and arrows, and tick, cross or date marks for forms. Your signature and initials stay saved on this phone.</span></div></li>
+          <li><div><strong>Page numbers and watermarks <span class="tag tag-pro">Pro</span></strong><span>Number pages in the style you choose, and add a text or logo watermark.</span></div></li>
         </ul>
       </div>
       <div class="story-visual reveal reveal-delay-1">
-        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/tools.webp" alt="The All Tools screen: Create, Edit and sign, and Organise pages" width="540" height="1094" loading="lazy"></div>
-        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/convert.webp" alt="Word document created from the invoice PDF, ready to open or share" width="540" height="1094" loading="lazy"></div>
+        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/edit-pdf.webp" alt="Edit PDF with a signature placed on the invoice and the Sign, Add Text, Brush and Watermark tools" width="540" height="1094" loading="lazy"></div>
+        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/remove-watermark.webp" alt="Remove Watermark showing the DRAFT watermark it found on a sample letter, ready to remove" width="540" height="1094" loading="lazy"></div>
       </div>
     </div>
 
     <div class="story">
       <div class="story-copy reveal">
-        <p class="eyebrow">Sign &amp; finish</p>
-        <h2 id="sign-title">Sign it, mark it, protect it</h2>
-        <p class="lead">Add your signature in seconds. With Pro, edit across pages, add watermarks and page numbers, and lock files with a password.</p>
+        <p class="eyebrow">Convert, organise, protect</p>
+        <h2 id="convert-title">Every PDF job, without a computer</h2>
+        <p class="lead">Convert, merge, split, compress and lock files in a few taps. Your original file is never changed.</p>
         <ul class="checks">
-          <li><div><strong>Sign PDF</strong><span>Draw your signature, then place it on any page.</span></div></li>
-          <li><div><strong>Edit PDF <span class="tag tag-pro">Pro</span></strong><span>Text, drawing, pixelation and watermarks on any page.</span></div></li>
-          <li><div><strong>Remove watermarks and handwriting <span class="tag tag-pro">Pro</span></strong><span>Brush over a stamp, watermark or pen mark. Similar marks are found and cleaned away, keeping your text.</span></div></li>
-          <li><div><strong>Password protection <span class="tag tag-pro">Pro</span></strong><span>An AES-256 encrypted copy. Your password is never stored.</span></div></li>
+          <li><div><strong>PDF or photo to Word and Excel</strong><span>Editable documents and sheets with numbers and dates kept as values. Word Pro and Excel Pro <span class="tag tag-pro">Pro</span> follow the original layout.</span></div></li>
+          <li><div><strong>Merge, split and manage pages</strong><span>Combine files, pull out pages, and rotate, reorder or delete them.</span></div></li>
+          <li><div><strong>Compress and protect</strong><span>Smaller files for email, and AES-256 password protection <span class="tag tag-pro">Pro</span>.</span></div></li>
         </ul>
       </div>
       <div class="story-visual reveal reveal-delay-1">
-        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/edit-pdf.webp" alt="Edit PDF with a signature placed on the invoice and the Sign, Add Text, Brush and Watermark tools" width="540" height="1094" loading="lazy"></div>
+        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/tools.webp" alt="The All Tools screen: Create, Edit and sign, and Organise pages" width="540" height="1094" loading="lazy"></div>
+        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/convert.webp" alt="A Word document created from the invoice PDF, ready to open or share" width="540" height="1094" loading="lazy"></div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section section-tint" aria-labelledby="looks-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">{{gen:looks-count}} clean-up looks</p>
+      <h2 id="looks-title">The right look for every page</h2>
+      <p class="lead">Every scan gets Enhance automatically. Switch with one tap, or apply a look to every page.</p>
+    </div>
+{{gen:looks-grid}}
   </div>
 </section>
 
@@ -147,7 +238,7 @@
       <h2 id="privacy-title">Your documents stay on your phone</h2>
       <p class="lead">Scanning, clean-up, text recognition and every PDF tool run on your device. Your documents are never uploaded, and you don't need an account.</p>
       <ul class="checks">
-        <li><div><strong>Works offline</strong><span>The text-recognition model is built into the app.</span></div></li>
+        <li><div><strong>Works offline</strong><span>The text-recognition and clean-up models are built into the app.</span></div></li>
         <li><div><strong>Private storage</strong><span>Other apps can't browse it, and it's left out of Google cloud backups.</span></div></li>
         <li><div><strong>Shared only when you choose</strong><span>A document leaves NexaScan only when you share it or open it in another app.</span></div></li>
       </ul>
@@ -156,11 +247,11 @@
     <div class="boundary-diagram reveal reveal-delay-1" role="img" aria-label="Diagram: everything NexaScan does to your document happens inside your phone">
       <span class="boundary-label">Your phone</span>
       <ul class="flow">
-        <li><span class="flow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>Camera captures the page</li>
-        <li><span class="flow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></span>Clean-up and text recognition</li>
-        <li><span class="flow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></span>PDF, Word and Excel files created</li>
-        <li><span class="flow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>Saved in private app storage</li>
-        <li class="flow-out"><span class="flow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg></span>Leaves only when you share or open it</li>
+        <li><span class="flow-icon">{{icon:scan}}</span>Camera captures the page</li>
+        <li><span class="flow-icon">{{icon:sparkle}}</span>Clean-up and text recognition</li>
+        <li><span class="flow-icon">{{icon:word}}</span>PDF, Word and Excel files created</li>
+        <li><span class="flow-icon">{{icon:lock}}</span>Saved in private app storage</li>
+        <li class="flow-out"><span class="flow-icon">{{icon:shield}}</span>Leaves only when you share or open it</li>
       </ul>
     </div>
   </div>
@@ -170,7 +261,7 @@
   <div class="container">
     <div class="section-head center reveal">
       <p class="eyebrow">Free and Pro</p>
-      <h2 id="plans-title">Free for everyday scanning. Pro for bigger jobs.</h2>
+      <h2 id="plans-title">Free for everyday scanning. Pro for everything else.</h2>
     </div>
     <div class="plans">
       <article class="plan reveal">
@@ -178,6 +269,7 @@
         <p class="plan-price">No account, no ads, no watermark on your files.</p>
         <ul>
           <li>Scanner with live page detection and Auto Capture</li>
+          <li>Five clean-up looks: {{gen:free-looks}}</li>
           <li>Text recognition with Extract Text</li>
           <li>Sign, merge, split, compress and convert</li>
           <li>Generous limits for everyday jobs</li>
@@ -187,10 +279,10 @@
         <h3>NexaScan Pro</h3>
         <p class="plan-price">{{gen:price-line}}</p>
         <ul>
-          <li>The Free limits lifted, for longer scans and bigger jobs</li>
-          <li>Searchable PDFs, select text on scanned pages, Word Pro and Excel Pro</li>
-          <li>Edit PDF, watermark and handwriting removal, page numbers and password protection</li>
-          <li>Four more clean-up looks</li>
+          <li>Nexa Magic, Nexa Renew and {{gen:pro-looks-count}} more looks in all</li>
+          <li>Remove Watermark and Remove Handwriting</li>
+          <li>Edit PDF, searchable PDFs, Word Pro and Excel Pro</li>
+          <li>Password protection, and the Free limits lifted</li>
         </ul>
       </article>
     </div>
@@ -208,11 +300,15 @@
     <div class="faq-list reveal reveal-delay-1">
       <details>
         <summary>Does NexaScan upload my documents?</summary>
-        <div class="answer"><p>No. Everything you do to a document happens on your phone. If you buy Pro or redeem a Pro code, the app checks your Pro status with our licence service (and, for a purchase, with Google Play), which never receive your documents. See the <a href="{{root}}privacy/">Privacy Policy</a>.</p></div>
+        <div class="answer"><p>No. Everything you do to a document happens on your phone. The <a href="{{root}}privacy/">Privacy Policy</a> lists the few things the app does send, such as checking your Pro status, and none of them includes your documents.</p></div>
+      </details>
+      <details>
+        <summary>Is it only a scanner?</summary>
+        <div class="answer"><p>No. Besides the scanner, NexaScan has {{gen:tool-count}} tools for editing, signing, converting, organising and protecting PDFs and photos. See <a href="{{root}}features/">every tool</a>.</p></div>
       </details>
       <details>
         <summary>Can I use it offline?</summary>
-        <div class="answer"><p>Yes. Every tool works without a connection, including text recognition. You only need one to buy or restore Pro, and now and then so the app can confirm that your subscription has renewed.</p></div>
+        <div class="answer"><p>Yes. Every tool works without a connection, including text recognition and the clean-up looks. You only need one to buy or restore Pro, and now and then so the app can confirm that your subscription has renewed.</p></div>
       </details>
       <details>
         <summary>Which phones does it run on?</summary>
