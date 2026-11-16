@@ -3,12 +3,13 @@
   "checked": "2026-11-14",
   "appVersion": "1.0 (versionCode 20)",
   "pricing": {
-    "$comment": "Prices come from Google Play at run time, not from the app. Set confirmed to true only when the owner confirms the production prices; until then the site says prices are shown in Google Play.",
-    "confirmed": false,
-    "asOf": "2026-10-08",
+    "$comment": "Prices come from the store at run time (Google Play on Android, the App Store on iPhone), not from the app. The same two plans are sold on both stores at the same UK prices (Google Play product nexascan_pro, base plans monthly and annual, offer new-customer-intro; App Store group NexaScan Pro, nexascan_pro_monthly and nexascan_pro_yearly, 175 countries), as set up on 2026-11-16. introMonthly is the first-month price for new monthly subscribers on both stores. Set confirmed to false to show only 'the store shows the price'.",
+    "confirmed": true,
+    "asOf": "2026-11-16",
     "region": "UK",
     "monthly": "£3.99",
-    "annual": "£29.99"
+    "annual": "£29.99",
+    "introMonthly": "£1.99"
   },
   "groups": [
     {

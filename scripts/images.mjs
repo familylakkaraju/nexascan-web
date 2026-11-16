@@ -6,7 +6,8 @@
 //     wide (2x for the ~270 px phone frames). Only captures that were reviewed for personal data belong in there.
 //     Every capture loses the phone's status bar and gesture bar (Pixel 9: top 173 px, bottom 63 px), so no clock,
 //     notification or signal icon is ever published. Pairs named <name>.crop.json ({"left","top","width","height"}
-//     in source pixels) are cropped that way instead (the before/after page crops).
+//     in source pixels) are cropped that way instead (the before/after page crops). iPhone captures (iphone-*.png)
+//     must have one, since the Pixel's bar heights don't fit them.
 import sharp from 'sharp';
 import { readFile, writeFile, readdir, mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -47,6 +48,8 @@ for (const file of (await readdir(rawDir).catch(() => [])).filter((f) => f.toLow
   const name = path.basename(file, '.png');
   let img = sharp(path.join(rawDir, file));
   const crop = await readFile(path.join(rawDir, `${name}.crop.json`), 'utf8').then(JSON.parse).catch(() => null);
+  // iPhone captures have their own status bar and home indicator, so the Pixel crop below would be wrong for them.
+  if (!crop && name.startsWith('iphone-')) { console.warn(`${file}: skipped, an iPhone capture needs ${name}.crop.json`); continue; }
   const meta = await sharp(path.join(rawDir, file)).metadata();
   img = img.extract(crop ?? { left: 0, top: 173, width: meta.width, height: meta.height - 173 - 63 });
   // Before/after pages fill a ~480 px slider, so they keep 2x of that; look tiles are small; phone screens are 540.

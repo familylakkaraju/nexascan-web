@@ -1,16 +1,18 @@
 {
-  "$comment": "Owner-editable settings. storeUrl: paste the real (public) Google Play listing URL when it exists; every download button then becomes the Google Play badge. testUrl: a Google Play testing opt-in link (Play Console's 'Join on the web'); used only while storeUrl is empty, as 'Install the test version' with a note that it is for invited testers. testAndroidUrl: Play Console's 'Join on Android' link for the same test; when set, the note and the download section offer both links. With neither, buttons read 'Coming to Google Play'. siteUrl: the deployed root (change it when a custom domain is added). Items in knownPlaceholders are owner inputs still outstanding (see docs/OWNER-DETAILS-NEEDED.md); scripts/check.mjs fails if a page publishes any other [... REQUIRED] marker.",
+  "$comment": "Owner-editable settings. storeUrl: paste the real (public) Google Play listing URL when it exists; every download button then becomes the Google Play badge. testUrl: a Google Play testing opt-in link (Play Console's 'Join on the web'); used only while storeUrl is empty, as 'Install the test version' with a note that it is for invited testers. testAndroidUrl: Play Console's 'Join on Android' link for the same test; when set, the note and the download section offer both links. With neither, buttons read 'Coming to Google Play'. appStoreUrl: the App Store listing (https://apps.apple.com/app/id<Apple ID>); when set, the site shows an App Store button beside Google Play (the official badge once assets/brand/app-store-badge.svg exists). testFlightUrl: a public TestFlight link, used only while appStoreUrl is empty. With neither, the iPhone button reads 'Coming to the App Store'. siteUrl: the deployed root (change it when a custom domain is added). Items in knownPlaceholders are owner inputs still outstanding (see docs/OWNER-DETAILS-NEEDED.md); scripts/check.mjs fails if a page publishes any other [... REQUIRED] marker.",
   "siteUrl": "https://greenplantapps.github.io/nexascan-web/",
   "storeUrl": "",
   "testUrl": "https://play.google.com/apps/testing/com.greenplant.nexascan",
   "testAndroidUrl": "https://play.google.com/store/apps/details?id=com.greenplant.nexascan",
+  "appStoreUrl": "https://apps.apple.com/app/id6835465703",
+  "testFlightUrl": "",
   "appName": "NexaScan",
   "descriptor": "AI Scanner & PDF Tools",
   "developer": "GreenPlant Technologies",
   "legalEntity": "the trading name of Kalyana Lakkamraju, a sole trader based in Witham, Essex, United Kingdom",
   "supportEmail": "greenplant.apps@gmail.com",
   "privacyEmail": "greenplant.apps@gmail.com",
-  "policyDate": "14 November 2026",
+  "policyDate": "16 November 2026",
   "seo": {
     "$comment": "googleSiteVerification: the content value of Search Console's HTML-tag verification (docs/SEO-MANUAL-STEPS.md, Step 4). Leave empty until you have it; the tag is then added to the home page.",
     "googleSiteVerification": ""

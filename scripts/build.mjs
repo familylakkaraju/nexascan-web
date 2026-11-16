@@ -30,7 +30,7 @@ const pages = [];
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const proTag = '<span class="tag tag-pro">Pro</span>';
 // "ai": true in plans.json marks a tool that runs one of the app's on-device models (the Nexa Page Model, the Nexa
-// Watermark Model or ML Kit text recognition), checked against the app's code like every other claim.
+// Watermark Model, or on-device text recognition: ML Kit on Android, Apple's Vision on iPhone), checked against the app's code like every other claim.
 const aiTag = '<span class="tag tag-ai" title="Uses NexaScan\'s on-device AI">AI</span>';
 
 // One line icon per tool and tool family (24 × 24, drawn with the current colour). Keys are the "icon" values in
@@ -94,6 +94,22 @@ const screens = [
   ['compress', 'Compress PDF', 'Compress PDF with High quality, Balanced and Maximum compression levels'],
   ['save-as', 'Save a scan', 'Saving a scan as a PDF with Make PDF searchable and Extract text switched on'],
 ];
+
+// iPhone screens: the same set that is uploaded to the App Store, captured on an iPhone on the fictional demo documents
+// and named assets/screenshots/iphone-<name>.webp. Each one appears on the Home and Features pages as soon as its file
+// exists; until then nothing is shown (no stand-in images). [file, caption, alt text].
+const iphoneScreens = [
+  ['iphone-home', 'Home', 'NexaScan\'s Home screen on iPhone, with Scan and the recent sample documents'],
+  ['iphone-looks', 'Clean-up looks', 'A scanned sample invoice on iPhone with the strip of clean-up looks below it'],
+  ['iphone-tools', 'All Tools', 'The All Tools screen on iPhone, with every tool grouped as in the app'],
+  ['iphone-edit-pdf', 'Edit PDF', 'Edit PDF on iPhone with a signature placed on the sample invoice'],
+  ['iphone-ocr-select', 'OCR Document Viewer', 'Rows of the sample invoice selected in the OCR Document Viewer on iPhone'],
+  ['iphone-convert', 'PDF to Word', 'A Word document created from the sample invoice on iPhone, ready to open or share'],
+];
+const iphoneScreensPresent = [];
+for (const shot of iphoneScreens) {
+  try { await stat(path.join(root, 'assets', 'screenshots', `${shot[0]}.webp`)); iphoneScreensPresent.push(shot); } catch { /* not captured yet */ }
+}
 
 // The home page's Nexa AI studio: one before/after pair per clean-up, real app output on the fictional demo pages.
 const studio = [
@@ -182,11 +198,16 @@ ${[...plans.looks.free.map((n) => [n, false]), ...plans.looks.proNamed.map((n) =
   'screen-gallery': () => `<div class="gallery reveal">
 ${screens.map(([file, caption, alt]) => `      <figure><div class="phone phone-sm"><img src="{{root}}assets/screenshots/${file}.webp" alt="${esc(alt)}" width="540" height="1094" loading="lazy"></div><figcaption>${esc(caption)}</figcaption></figure>`).join('\n')}
     </div>`,
+  // iPhone screens that exist so far, in the same strip as the Android ones; an empty string until the first is added.
+  'iphone-screens': () => (iphoneScreensPresent.length ? `<h3 class="gallery-title reveal">On iPhone</h3>
+    <div class="gallery reveal">
+${iphoneScreensPresent.map(([file, caption, alt]) => `      <figure><div class="phone phone-sm phone-iphone"><img src="{{root}}assets/screenshots/${file}.webp" alt="${esc(alt)}" width="540" height="1173" loading="lazy"></div><figcaption>${esc(caption)}</figcaption></figure>`).join('\n')}
+    </div>` : ''),
   // Features: in-page navigation to each family.
   'family-nav': () => plans.groups.map((g) => `<li><a href="#${esc(g.id)}">${icon(g.icon, 18)}${esc(g.name)}</a></li>`).join(''),
   'price-line': () => (plans.pricing.confirmed
-    ? `${esc(plans.pricing.monthly)} a month or ${esc(plans.pricing.annual)} a year in the ${esc(plans.pricing.region)}. Google Play shows the price for your country before you pay.`
-    : 'Monthly or yearly subscription. Google Play shows the price for your country before you pay.'),
+    ? `${esc(plans.pricing.monthly)} a month or ${esc(plans.pricing.annual)} a year in the ${esc(plans.pricing.region)}${plans.pricing.introMonthly ? `, with the first month at ${esc(plans.pricing.introMonthly)} for new monthly subscribers` : ''}. The App Store or Google Play shows the price for your country before you pay.`
+    : 'Monthly or yearly subscription. The App Store or Google Play shows the price for your country before you pay.'),
 };
 
 // Site identity for Google (home page only): the site name and who publishes it. Only facts that are visible on the
@@ -203,50 +224,103 @@ function jsonLd() {
   return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 }
 
-// Download buttons, from site.config.json. Three states:
-//   storeUrl (the public listing)  the official Google Play badge everywhere (Google's badge guidelines need a real
-//                                  public listing to link to)
+// Download buttons, from site.config.json: one set for Android (Google Play) and one for iPhone (App Store), shown side
+// by side with equal weight. The App Store comes first in a line-up, as Apple's marketing guidelines ask.
+// Android, three states:
+//   storeUrl (the public listing)  the official Google Play badge (Google's badge guidelines need a real public listing)
 //   testUrl (a testing opt-in)     "Install the test version", with a note that it is for invited testers: a test
 //                                  link works only for Google accounts on the test's tester list. testUrl is Play
 //                                  Console's "Join on the web" link; with testAndroidUrl ("Join on Android") also
 //                                  set, the note and the download section offer both
 //   neither                        "Coming to Google Play", linking to the download section
-// download_cta is the download section's buttons: store_cta, except for a test with both join links.
-function downloadVars(rootPrefix) {
+// iPhone, three states:
+//   appStoreUrl                    the official "Download on the App Store" badge when assets/brand/app-store-badge.svg
+//                                  exists (Apple's own artwork, downloaded from Apple's marketing tools; never redrawn),
+//                                  otherwise a plain "Download on the App Store" button
+//   testFlightUrl                  "Install the iPhone test version" (TestFlight)
+//   neither                        "Coming to the App Store", linking to the download section
+// Variables: store_cta (both buttons, for the hero), store_note, store_href/label/rel (the single header and plan
+// buttons: a store's own link when only one store has a link, otherwise the download section), download_cta,
+// download_heading and download_text (the download band).
+const appStoreBadge = path.join(root, 'assets', 'brand', 'app-store-badge.svg');
+const appStoreBadgeSize = await readFile(appStoreBadge, 'utf8').then((svg) => {
+  const vb = svg.match(/viewBox="[\d.\s-]*?([\d.]+)\s+([\d.]+)"/);
+  return vb ? [Math.round(Number(vb[1])), Math.round(Number(vb[2]))] : [120, 40];
+}).catch(() => null);
+
+function androidStore(rootPrefix) {
   if (config.storeUrl) {
     const href = esc(config.storeUrl);
     const cta = `<a class="store-badge" href="${href}" rel="noopener"><img src="${rootPrefix}assets/brand/google-play-badge.png" alt="Get it on Google Play" width="646" height="250"></a>`;
-    return {
-      store_href: href, store_label: 'Get it on Google Play', store_rel: 'rel="noopener"', store_note: '',
-      store_cta: cta, download_cta: cta,
-      download_heading: 'Get NexaScan on Google Play',
-      download_text: 'Free to download for Android phones. Scan your first document in seconds.',
-    };
+    return { state: 'live', href, label: 'Get it on Google Play', cta, band: cta, note: '',
+      sentence: 'Free to download for Android phones on Google Play.' };
   }
   if (config.testUrl) {
     const web = esc(config.testUrl);
     const android = config.testAndroidUrl ? esc(config.testAndroidUrl) : '';
     const cta = `<a class="button" href="${web}" rel="noopener">Install the test version</a>`;
     return {
-      store_href: web, store_label: 'Install the test version', store_rel: 'rel="noopener"', store_cta: cta,
-      store_note: android
-        ? `<p class="store-note">Test version on Google Play, for invited testers. Join <a href="${android}" rel="noopener">on Android</a> or <a href="${web}" rel="noopener">on the web</a>.</p>`
-        : '<p class="store-note">Test version on Google Play, for invited testers.</p>',
-      download_cta: android
-        ? `<a class="button" href="${android}" rel="noopener">Join on Android</a><a class="button button-outline" href="${web}" rel="noopener">Join on the web</a>`
-        : cta,
-      download_heading: 'Try NexaScan now',
-      download_text: android
-        ? 'NexaScan is being tested on Google Play. Invited testers can join on an Android phone or on the web, then install the test version.'
-        : 'NexaScan is being tested on Google Play. Invited testers can install the test version with this link.',
+      state: 'test', href: web, label: 'Install the test version', cta,
+      note: android
+        ? `<p class="store-note">Android: test version on Google Play, for invited testers. Join <a href="${android}" rel="noopener">on Android</a> or <a href="${web}" rel="noopener">on the web</a>.</p>`
+        : '<p class="store-note">Android: test version on Google Play, for invited testers.</p>',
+      band: android
+        ? `<a class="button" href="${android}" rel="noopener">Join on Android</a><p class="store-group-note">Test version, for invited testers. Or <a href="${web}" rel="noopener">join on the web</a>.</p>`
+        : `${cta}<p class="store-group-note">Test version, for invited testers.</p>`,
+      sentence: android
+        ? 'On Android, NexaScan is being tested on Google Play: invited testers can join on an Android phone or on the web, then install the test version.'
+        : 'On Android, NexaScan is being tested on Google Play: invited testers can install the test version.',
     };
   }
   const cta = `<a class="button" href="${rootPrefix}#download">Coming to Google Play</a>`;
+  return { state: 'none', href: '', label: 'Coming to Google Play', cta, band: cta, note: '',
+    sentence: 'It is coming to Google Play for Android phones.' };
+}
+
+function appleStore(rootPrefix) {
+  if (config.appStoreUrl) {
+    const href = esc(config.appStoreUrl);
+    // TODO(owner, launch day): put Apple's official black badge at assets/brand/app-store-badge.svg (App Store
+    // Marketing Tools, "Download on the App Store", English (UK)). Until then this is a plain button.
+    const cta = appStoreBadgeSize
+      ? `<a class="store-badge store-badge-apple" href="${href}" rel="noopener"><img src="${rootPrefix}assets/brand/app-store-badge.svg" alt="Download on the App Store" width="${appStoreBadgeSize[0]}" height="${appStoreBadgeSize[1]}"></a>`
+      : `<a class="button" href="${href}" rel="noopener">Download on the App Store</a>`;
+    return { state: 'live', href, label: 'Download on the App Store', cta, band: cta, note: '',
+      sentence: 'Free to download for iPhone on the App Store.' };
+  }
+  if (config.testFlightUrl) {
+    const href = esc(config.testFlightUrl);
+    const cta = `<a class="button" href="${href}" rel="noopener">Install the iPhone test version</a>`;
+    return { state: 'test', href, label: 'Install the iPhone test version', cta,
+      note: '<p class="store-note">iPhone: test version through Apple\'s TestFlight app.</p>',
+      band: `${cta}<p class="store-group-note">Test version, through Apple's TestFlight app.</p>`,
+      sentence: 'On iPhone, a test version is available through Apple\'s TestFlight app.' };
+  }
+  const cta = `<a class="button" href="${rootPrefix}#download">Coming to the App Store</a>`;
+  return { state: 'none', href: '', label: 'Coming to the App Store', cta, band: cta, note: '',
+    sentence: 'It is coming to the App Store for iPhone.' };
+}
+
+function downloadVars(rootPrefix) {
+  const apple = appleStore(rootPrefix);
+  const google = androidStore(rootPrefix);
+  const stores = [apple, google];
+  const linked = stores.filter((s) => s.href);
+  const single = linked.length === 1 ? linked[0] : null;
+  const group = (name, s) => `<div class="store-group"><p class="store-platform">${name}</p>${s.band}</div>`;
+  const live = stores.filter((s) => s.state === 'live');
   return {
-    store_href: `${rootPrefix}#download`, store_label: 'Coming to Google Play', store_rel: '', store_note: '',
-    store_cta: cta, download_cta: cta,
-    download_heading: 'NexaScan is coming to Google Play',
-    download_text: 'For Android phones. When the Google Play listing opens, this button will take you straight to it.',
+    store_cta: `${apple.cta}${google.cta}`,
+    store_note: `${apple.note}${google.note}`,
+    store_href: single ? single.href : `${rootPrefix}#download`,
+    store_label: single ? single.label : 'Get the app',
+    store_rel: single ? 'rel="noopener"' : '',
+    download_cta: `${group('iPhone', apple)}${group('Android', google)}`,
+    download_heading: live.length ? 'Get NexaScan'
+      : stores.some((s) => s.state === 'test') ? 'Try NexaScan now' : 'NexaScan is coming to the App Store and Google Play',
+    download_text: live.length === 2
+      ? 'Free to download for iPhone and Android phones. Scan your first document in seconds.'
+      : [...live, ...stores.filter((s) => s.state !== 'live')].map((s) => s.sentence).join(' '),
   };
 }
 
