@@ -1,4 +1,4 @@
-<!--{"title":"FAQ: NexaScan questions and answers","description":"Answers about NexaScan: uploads and privacy, offline use, text recognition, searchable PDFs, Word and Excel conversion, Free limits, NexaScan Pro and support.","nav":"faq"}-->
+<!--{"title":"FAQ: NexaScan questions and answers","description":"Answers about NexaScan on iPhone and Android: privacy, offline use, text recognition, Word and Excel conversion, Free limits, Pro and support.","nav":"faq"}-->
 <section class="page-hero" aria-labelledby="faq-title">
   <div class="container">
     <p class="eyebrow">FAQ</p>
@@ -13,7 +13,7 @@
       <h2 class="faq-cat">Privacy</h2>
       <details>
         <summary>Does NexaScan upload my documents?</summary>
-        <div class="answer"><p>No. Scanning, clean-up, text recognition, conversion and the PDF tools all run on your phone, and the app never uploads your documents, images or their text. Three small exceptions, none of which includes your documents: Google's text-recognition component may send limited diagnostic data to Google; if you buy Pro or redeem a Pro code, the app checks your Pro status with our licence service (and, for a purchase, with Google Play); and if you turn on usage data or crash reports, which are off by default, technical data goes to Google's Firebase. The <a href="{{root}}privacy/">Privacy Policy</a> has the details.</p></div>
+        <div class="answer"><p>No. Scanning, clean-up, text recognition, conversion and the PDF tools all run on your phone, and the app never uploads your documents, images or their text. A few small exceptions, none of which includes your documents: the app downloads the current Pro plans and Free limits; if you buy Pro or redeem a Pro code, it checks your Pro status with our licence service (and, for a purchase, with the App Store or Google Play); and on Android only, Google's text-recognition component may send limited diagnostic data to Google, and if you turn on usage data or crash reports, which are off by default, technical data goes to Google's Firebase. The iPhone app has no usage analytics or crash reporting at all. The <a href="{{root}}privacy/">Privacy Policy</a> has the details.</p></div>
       </details>
       <details>
         <summary>Can I use it offline?</summary>
@@ -25,13 +25,13 @@
       </details>
       <details>
         <summary>Where are my files stored?</summary>
-        <div class="answer"><p>In NexaScan's private storage on your phone, which other apps can't browse. This storage is left out of Google cloud backups. To keep a copy elsewhere, share the file to Files, Drive or email.</p></div>
+        <div class="answer"><p>In NexaScan's private storage on your phone, which other apps can't browse. This storage is left out of iCloud backup on iPhone and Google cloud backup on Android. To keep a copy elsewhere, share or save the file to Files, iCloud Drive, Google Drive or email.</p></div>
       </details>
 
       <h2 class="faq-cat">Scanning and text</h2>
       <details>
         <summary>Does NexaScan use AI, and where does it run?</summary>
-        <div class="answer"><p>Yes, three AI models, and all of them run on your phone. The <strong>Nexa Page Model</strong> labels each part of a page (paper, text, handwriting, lines, pictures, creases and stains) for Nexa Renew, Nexa Magic, No Shadow and Remove Handwriting. The <strong>Nexa Watermark Model</strong> helps Remove Watermark find the marks to clean. Text recognition uses Google's ML Kit model. All three are built into the app and work offline, so your pages are never sent anywhere to be processed. Page detection and the other looks use image processing that also runs on your phone.</p></div>
+        <div class="answer"><p>Yes, three AI models, and all of them run on your phone. The <strong>Nexa Page Model</strong> labels each part of a page (paper, text, handwriting, lines, pictures, creases and stains) for Nexa Renew, Nexa Magic, No Shadow and Remove Handwriting. The <strong>Nexa Watermark Model</strong> helps Remove Watermark find the marks to clean. Text recognition uses Apple's Vision framework on iPhone and Google's ML Kit model on Android. All three work on the phone and offline, so your pages are never sent anywhere to be processed. Page detection and the other looks use image processing that also runs on your phone.</p></div>
       </details>
       <details>
         <summary>Does it support OCR (text recognition)?</summary>
@@ -75,19 +75,45 @@
       </details>
       <details>
         <summary>What does Pro add?</summary>
-        <div class="answer"><p>Pro lifts the Free limits and adds Nexa Magic, Nexa Renew and five more clean-up looks, Remove Watermark and Remove Handwriting, searchable PDFs, the OCR Document Viewer, Word Pro and Excel Pro, Edit PDF with shapes, form marks and a saved signature, watermarks, page numbers, multi-page sheets, one long image, and password protection. It's a monthly or yearly subscription through Google Play. See <a href="{{root}}pricing/">Pricing</a>.</p></div>
+        <div class="answer"><p>Pro lifts the Free limits and adds Nexa Magic, Nexa Renew and five more clean-up looks, Remove Watermark and Remove Handwriting, searchable PDFs, the OCR Document Viewer, Word Pro and Excel Pro, Edit PDF with shapes, form marks and a saved signature, watermarks, page numbers, multi-page sheets, one long image, and password protection. It's a monthly or yearly subscription, through the App Store on iPhone and Google Play on Android. See <a href="{{root}}pricing/">Pricing</a>.</p></div>
+      </details>
+      <details>
+        <summary>Does Pro carry over between Android and iPhone?</summary>
+        <div class="answer"><p>No. The App Store and Google Play are separate stores. A subscription from the App Store unlocks Pro on iPhone, and on your other Apple devices signed in to the same Apple Account, up to a limit. A subscription from Google Play unlocks Pro on Android. To have Pro on both, you would need a subscription from each store. A Pro code works on either.</p></div>
       </details>
       <details>
         <summary>How do I restore purchases?</summary>
-        <div class="answer"><p>Your subscription is tied to your Google Play account. On a new phone, sign in to Google Play with the same account, open NexaScan, go to <strong>Settings › NexaScan Pro</strong> and tap <strong>Restore purchases</strong>. If Pro still doesn't appear, <a href="{{root}}support/#purchases">see Support</a>.</p></div>
+        <div class="answer"><p>Your subscription is tied to the store account you bought it with: your Apple Account on iPhone, or your Google account on Android. On a new phone, sign in to the App Store or Google Play with the same account, open NexaScan, go to <strong>Settings › NexaScan Pro</strong> and tap <strong>Restore purchases</strong>. If Pro still doesn't appear, <a href="{{root}}support/#purchases">see Support</a>.</p></div>
       </details>
       <details>
         <summary>I have a Pro code. How do I use it?</summary>
-        <div class="answer"><p>Go to <strong>Settings › NexaScan Pro</strong>, tap <strong>Have a code?</strong>, type the code and tap <strong>Redeem</strong>. You need an Internet connection to redeem it. Pro from a code lasts until the code's end date.</p></div>
+        <div class="answer"><p>Go to <strong>Settings › NexaScan Pro</strong>, tap <strong>Have a code?</strong>, type the code and tap <strong>Redeem</strong>. Codes work on iPhone and Android. You need an Internet connection to redeem one. Pro from a code lasts until the code's end date.</p></div>
       </details>
       <details>
-        <summary>How do I cancel Pro?</summary>
+        <summary>How do I cancel on iPhone?</summary>
+        <div class="answer"><p>Open <strong>Settings › [your name] › Subscriptions</strong>, choose NexaScan and tap <strong>Cancel Subscription</strong>. You can also get there from the app: on the NexaScan Pro screen, tap <strong>Manage subscription in the App Store</strong>. You keep Pro until the end of the period you've paid for. Deleting the app does not cancel a subscription. For a refund, ask Apple at <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>.</p></div>
+      </details>
+      <details>
+        <summary>How do I cancel on Android?</summary>
         <div class="answer"><p>In the Google Play app, go to <strong>Payments &amp; subscriptions › Subscriptions</strong>, choose NexaScan and cancel. You keep Pro until the end of the period you've paid for. Uninstalling the app does not cancel a subscription.</p></div>
+      </details>
+
+      <h2 class="faq-cat">iPhone and Android</h2>
+      <details>
+        <summary>Is NexaScan on iPhone?</summary>
+        <div class="answer"><p>Yes. NexaScan is on the App Store as <strong>NexaScan: PDF Scanner &amp; Editor</strong>, for iPhones running iOS 16 or later. It is the same app as on Android, with the same tools and the same Free and Pro plans.</p></div>
+      </details>
+      <details>
+        <summary>Which phones does it run on?</summary>
+        <div class="answer"><p>iPhones running iOS 16 or later, from the App Store, and Android phones running Android 8.0 or later, from Google Play. On Google Play, NexaScan is available as a test version for invited testers until its public release.</p></div>
+      </details>
+      <details>
+        <summary>Is anything different on iPhone?</summary>
+        <div class="answer"><p>The tools are the same. Two things work differently underneath: text recognition uses Apple's Vision framework on iPhone and Google's ML Kit on Android, both on the phone; and the iPhone app has no usage analytics or crash reporting at all, while on Android you can choose to share them. Pro is bought through the App Store on iPhone and Google Play on Android.</p></div>
+      </details>
+      <details>
+        <summary>Is it suitable for all ages?</summary>
+        <div class="answer"><p>Yes. NexaScan is a document tool with no ads and no account, and it is rated 4+ on the App Store, which means suitable for all ages.</p></div>
       </details>
 
       <h2 class="faq-cat">Help</h2>
@@ -95,10 +121,7 @@
         <summary>How do I contact support?</summary>
         <div class="answer"><p>Email {{email:supportEmail}}, or visit the <a href="{{root}}support/">Support</a> page for troubleshooting tips.</p></div>
       </details>
-      <details>
-        <summary>Is NexaScan available on iPhone?</summary>
-        <div class="answer"><p>No. NexaScan is available for Android phones running Android 8.0 or later.</p></div>
-      </details>
+
     </div>
   </div>
 </section>
