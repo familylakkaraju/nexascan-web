@@ -1,10 +1,10 @@
-<!--{"title":"NexaScan – AI Scanner, PDF Editor & Converter for iPhone and Android","description":"Much more than a scanner: scan, restore with Nexa Magic and Nexa Renew, edit, sign, convert to Word and Excel, organise and protect PDFs. 24 tools on iPhone and Android, with no account and no uploads.","nav":"home","bodyClass":"home"}-->
+<!--{"title":"NexaScan – AI Scanner, PDF Editor & Converter for iPhone and Android","description":"Much more than a scanner: scan, restore with Nexa Magic and Nexa Renew, edit, sign, convert to Word and Excel, organise, redact and protect PDFs. 25 tools on iPhone, iPad, Mac and Android, with no account and no uploads.","nav":"home","bodyClass":"home"}-->
 <section class="hero hero-brand" aria-labelledby="hero-title">
   <div class="container hero-grid">
     <div class="hero-copy">
       <p class="hero-descriptor"><img src="{{root}}assets/brand/nexascan-logo.png" alt="" width="28" height="28">NexaScan · AI Scanner &amp; PDF Tools</p>
       <h1 id="hero-title">Not just a scanner. <span class="accent">Your AI document studio.</span></h1>
-      <p class="lead">Scan, restore, edit, sign, convert and protect. {{gen:tool-count}} tools, {{gen:looks-count}} clean-up looks and three AI models that run on your iPhone or Android phone, so your documents are never uploaded.</p>
+      <p class="lead">Scan, restore, edit, sign, convert, redact and protect. {{gen:tool-count}} tools, {{gen:looks-count}} clean-up looks and four AI models that run on your iPhone, iPad, Mac or Android phone, so your documents are never uploaded.</p>
       <div class="button-row">
         {{store_cta}}
       </div>
@@ -53,15 +53,15 @@
 <section class="section section-tint" id="iphone-android" aria-labelledby="platforms-title">
   <div class="container">
     <div class="section-head center reveal">
-      <p class="eyebrow">iPhone and Android</p>
-      <h2 id="platforms-title">One app, both phones</h2>
-      <p class="lead">NexaScan is the same app on iPhone and Android: the same {{gen:tool-count}} tools, the same clean-up looks and on-device AI, and the same Free and Pro plans.</p>
+      <p class="eyebrow">iPhone, iPad, Mac and Android</p>
+      <h2 id="platforms-title">One app, on every device you use</h2>
+      <p class="lead">NexaScan is the same app on iPhone, iPad, Mac and Android: the same {{gen:tool-count}} tools, the same clean-up looks and on-device AI, and the same Free and Pro plans. Get it from the App Store on Apple devices, and from Google Play on Android.</p>
     </div>
     <div class="cards platforms">
       <article class="card reveal">
         <span class="tool-icon">{{icon:layers}}</span>
         <h3>The same tools</h3>
-        <p>Every tool and clean-up look works the same way on both, and works offline.</p>
+        <p>Every tool and clean-up look works the same way everywhere, and works offline. On a Mac with Apple silicon, the iPad app runs in its own window.</p>
       </article>
       <article class="card reveal reveal-delay-1">
         <span class="tool-icon">{{icon:shield}}</span>
@@ -71,7 +71,7 @@
       <article class="card reveal reveal-delay-2">
         <span class="tool-icon">{{icon:lock}}</span>
         <h3>Pro from your phone's store</h3>
-        <p>Through the App Store on iPhone, and Google Play on Android. Pro bought in one store doesn't carry over to the other.</p>
+        <p>Through the App Store on iPhone, iPad and Mac, and Google Play on Android. Pro bought in one store doesn't carry over to the other.</p>
       </article>
     </div>
 {{gen:iphone-screens}}
@@ -83,7 +83,7 @@
     <div class="ai-head">
       <div class="reveal">
         <p class="ai-mark">{{icon:sparkle}}Nexa AI</p>
-        <h2 id="ai-title">Three AI models. All on your phone.</h2>
+        <h2 id="ai-title">Four AI models. All on your device.</h2>
         <p class="lead">Before NexaScan cleans a page, its AI reads it: what is paper, what is print, what is a pen mark, a fold or a stain. The models run on your phone and work offline, so your pages never leave it.</p>
         <p class="ai-engine">Runs on <strong>ONNX Runtime</strong>, built into the app, with <strong>Apple's Vision</strong> on iPhone and <strong>Google ML Kit</strong> on Android for text. No cloud processing and no uploads.</p>
       </div>
@@ -122,8 +122,15 @@
         <span class="flow-icon">{{icon:text}}</span>
         <span class="ai-kind">Text recognition</span>
         <h3>On-device OCR</h3>
-        <p>Reads the words on scans and photos, even in flight mode: with Apple's Vision on iPhone, and Google's ML Kit, built into the app, on Android.</p>
+        <p>Reads the words on scans and photos, even in flight mode: with Apple's Vision on iPhone, iPad and Mac, and Google's ML Kit, built into the app, on Android.</p>
         <ul><li>Extract Text</li><li>Searchable PDF</li><li>OCR Viewer</li><li>Word &amp; Excel</li></ul>
+      </li>
+      <li class="ai-model reveal reveal-delay-3">
+        <span class="flow-icon">{{icon:redact}}</span>
+        <span class="ai-kind">Personal details</span>
+        <h3>Nexa Redact Model</h3>
+        <p>Reads the recognised text for names, addresses, account and ID numbers and other personal details, together with checks for numbers such as card numbers and IBANs. It suggests; you review before anything is hidden.</p>
+        <ul><li>Smart Redact</li></ul>
       </li>
     </ul>
   </div>
@@ -228,7 +235,34 @@
       </div>
     </div>
 
-    <div class="story">
+    <div class="story" id="redact">
+      <div class="story-copy reveal">
+        <p class="eyebrow">New · Smart Redact <span class="tag tag-pro">Pro</span></p>
+        <h2 id="redact-title">Hide personal details before you share</h2>
+        <p class="lead">Smart Redact finds names, addresses, phone numbers, account and ID numbers in a PDF or photo, for you to review. Then it saves a new copy with them hidden. Done on your phone. Nothing is uploaded.</p>
+        <ul class="checks">
+          <li><div><strong>Found for you to review</strong><span>Names, addresses, emails, phone numbers, dates of birth, card and bank details, passport and ID numbers, and words of your own. Items it is unsure of are marked "Please check".</span></div></li>
+          <li><div><strong>You stay in control</strong><span>Keep anything visible, hide every mention in one tap, or draw a box over something it missed.</span></div></li>
+          <li><div><strong>Hidden for real</strong><span>A box, a label such as [NAME], or a pseudonym such as Person A. Redacted pages are flattened, so the text underneath can't be copied back out. Your original stays as it was.</span></div></li>
+        </ul>
+      </div>
+      <div class="story-visual reveal reveal-delay-1">
+        <figure class="redact-demo" aria-label="Illustration: a fictional Harbour &amp; Pine payslip with the employee's name, address, National Insurance number and bank details hidden by black boxes">
+          <div class="redact-sheet" aria-hidden="true">
+            <p class="rd-head">Harbour &amp; Pine Interiors<span>Payslip · October</span></p>
+            <p><b>Employee</b> <i class="rd-box">Jordan Ellison</i></p>
+            <p><b>Address</b> <i class="rd-box">14 Quayside Walk, Sample City</i></p>
+            <p><b>NI number</b> <i class="rd-box">QQ 12 34 56 C</i></p>
+            <p><b>Role</b> Interior designer</p>
+            <p><b>Paid to</b> <i class="rd-box">Sort code 00-00-00</i></p>
+            <p class="rd-total"><b>Net pay</b> £2,140.00</p>
+          </div>
+          <figcaption>Four details hidden on a fictional payslip.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="story flip">
       <div class="story-copy reveal">
         <p class="eyebrow">Convert, organise, protect</p>
         <h2 id="convert-title">Every PDF job, without a computer</h2>
@@ -309,7 +343,7 @@
           <li>Nexa Magic, Nexa Renew and {{gen:pro-looks-count}} more looks in all</li>
           <li>Remove Watermark and Remove Handwriting</li>
           <li>Edit PDF, searchable PDFs, Word Pro and Excel Pro</li>
-          <li>Password protection, and the Free limits lifted</li>
+          <li>Smart Redact, password protection, and the Free limits lifted</li>
         </ul>
       </article>
     </div>
@@ -338,8 +372,8 @@
         <div class="answer"><p>Yes. Every tool works without a connection, including text recognition and the clean-up looks. You only need one to buy or restore Pro, and now and then so the app can confirm that your subscription has renewed.</p></div>
       </details>
       <details>
-        <summary>Which phones does it run on?</summary>
-        <div class="answer"><p>iPhones running iOS 16 or later, from the App Store, and Android phones running Android 8.0 or later, from Google Play, where NexaScan is available as a test version for invited testers until its public release.</p></div>
+        <summary>Which devices does it run on?</summary>
+        <div class="answer"><p>iPhones and iPads running iOS or iPadOS 16 or later, and Macs with Apple silicon (M1 or later), from the App Store, and Android phones running Android 8.0 or later, from Google Play, where NexaScan is available as a test version for invited testers until its public release.</p></div>
       </details>
     </div>
   </div>

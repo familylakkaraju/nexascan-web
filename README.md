@@ -21,12 +21,14 @@ Static HTML/CSS/JS, built by a small dependency-free Node script and deployed to
   first as Apple's guidelines ask. They come from `site.config.json`:
   - `appStoreUrl` is the App Store listing, `https://apps.apple.com/app/id6835465703` (Apple's country-neutral link:
     it sends each visitor to their own storefront, and returns "not found" until Apple releases the app). With it set,
-    the iPhone button reads "Download on the App Store". If `assets/brand/app-store-badge.svg` exists, the build uses
+    the Apple button is the site's own black two-line "Download on the App Store" button (no Apple artwork), labelled
+    iPhone · iPad · Mac: one listing covers iPhone, iPad and Macs with Apple silicon. If `assets/brand/app-store-badge.svg` exists, the build uses
     that file, Apple's official black badge, instead of the plain button. `testFlightUrl` (a public TestFlight link) is
     used only while `appStoreUrl` is empty; with neither, the iPhone button reads "Coming to the App Store".
   - `storeUrl` is the public Google Play listing. While it is empty, `testUrl` (a Google Play testing opt-in link,
-    Play Console's "Join on the web") makes the Android button "Install the test version" with a note that it is
-    for invited testers, and `testAndroidUrl` ("Join on Android") adds a second join link; with neither, it reads
+    Play Console's "Join on the web") marks Android as a test version for invited testers. With `testAndroidUrl` (the
+    app's Google Play listing, "Join on Android") also set, the Android button is the official Google Play badge linking
+    to that listing, with the note and a "Join on the web" link beside it; without it, "Install the test version"; with neither, it reads
     "Coming to Google Play". When `storeUrl` is set, the Android button becomes the official "Get it on Google Play" badge.
   - With both stores live, the header and the Pricing buttons read "Get the app" and go to the download section.
 - **iPhone launch day** (App Store release):
@@ -102,5 +104,6 @@ run the same checks without deploying. In the repository's **Settings › Pages*
 ## Accuracy rule
 
 Every product, privacy and security claim on this site was checked against the app's source code (PDFToolKit;
-last full check 2026-10-15, app commit 178f39e, Google Play versionCode 11; see `src/data/plans.json`; iPhone claims checked 2026-11-16 against app build 1.0 (21)). Before changing a claim, check it against the app. The privacy policy in particular
+last full check 2026-10-15, app commit 178f39e, Google Play versionCode 11; tools rechecked 2026-11-19 at app commit
+3b305bd, build 26, adding Smart Redact and iPad and Mac; see `src/data/plans.json`; iPhone claims checked 2026-11-16 against app build 1.0 (21)). Before changing a claim, check it against the app. The privacy policy in particular
 must stay in step with the app's permissions, network calls, SDKs and billing.
