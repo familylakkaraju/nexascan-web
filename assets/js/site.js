@@ -1,7 +1,77 @@
 // NexaScan site behaviour. No dependencies. Everything here is progressive: the pages read and work without it.
 document.documentElement.classList.add('js');
 
+// Which store suits this visitor: Apple (iPhone, iPad, Mac) or Google Play (Android). iPadOS reports itself as a Mac,
+// and a Mac can install the iPad app, so both count as Apple. Anything else (Windows, Linux) sees both stores.
+const platform = (() => {
+  const ua = navigator.userAgent || '';
+  if (/android/i.test(ua)) return 'android';
+  if (/iphone|ipad|ipod|macintosh|mac os x/i.test(ua)) return 'apple';
+  return 'other';
+})();
+document.documentElement.classList.add(`on-${platform}`);
+
+// Ad campaign tags. A landing URL such as /smart-redact/?utm_source=google&utm_campaign=redact-uk keeps its tags for
+// this visit (sessionStorage, never a cookie) and passes them to the stores' own install reports:
+//   Google Play: the referrer parameter (Play Console › Statistics › Acquisition by campaign);
+//   App Store:   ct (the campaign) and pt (the provider token in site.config.json), for App Analytics › Campaigns.
+// Nothing is sent to us or to anyone else.
+const campaign = (() => {
+  const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  const q = new URLSearchParams(location.search);
+  let tags = {};
+  keys.forEach((k) => { if (q.get(k)) tags[k] = q.get(k).slice(0, 100); });
+  try {
+    if (Object.keys(tags).length) sessionStorage.setItem('nexascan-campaign', JSON.stringify(tags));
+    else tags = JSON.parse(sessionStorage.getItem('nexascan-campaign') || '{}');
+  } catch { /* storage blocked: tags apply to this page only */ }
+  return tags;
+})();
+
+function storeLink(href) {
+  if (!Object.keys(campaign).length || !href) return href;
+  let url;
+  try { url = new URL(href, location.href); } catch { return href; }
+  if (url.hostname === 'play.google.com' && url.pathname.startsWith('/store/apps/details')) {
+    url.searchParams.set('referrer', new URLSearchParams(campaign).toString());
+  } else if (url.hostname === 'apps.apple.com') {
+    const pt = document.querySelector('meta[name="nexascan:app-store-pt"]')?.content;
+    if (pt) {
+      url.searchParams.set('pt', pt);
+      url.searchParams.set('ct', (campaign.utm_campaign || campaign.utm_source || 'web').slice(0, 40));
+      url.searchParams.set('mt', '8');
+    }
+  }
+  return url.toString();
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('a[data-store]').forEach((a) => { a.href = storeLink(a.getAttribute('href')); });
+
+  // The /get/ smart link (for ads and QR codes): straight to this device's store; other devices see both buttons.
+  const smart = document.querySelector('[data-smart-link]');
+  if (smart) {
+    const target = document.querySelector(`[data-smart-link] a[data-store="${platform === 'android' ? 'google' : 'apple'}"]`);
+    if (platform !== 'other' && target && target.href) location.replace(target.href);
+  }
+
+  // Phones: a slim "Get the app" bar once the visitor has scrolled past the first screen, hidden again over the
+  // download section so the bar never covers the buttons it repeats.
+  const bar = document.querySelector('[data-getbar]');
+  const band = document.getElementById('download');
+  if (bar && !smart) {
+    bar.hidden = false;
+    const update = () => {
+      const past = window.scrollY > window.innerHeight * 0.9;
+      const r = band?.getBoundingClientRect();
+      const overBand = r && r.top < window.innerHeight && r.bottom > 0;
+      bar.classList.toggle('is-shown', past && !overBand);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+
   // Header shadow once the page scrolls.
   const header = document.querySelector('[data-header]');
   const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);

@@ -209,6 +209,10 @@ ${iphoneScreensPresent.map(([file, caption, alt]) => `      <figure><div class="
   'price-line': () => (plans.pricing.confirmed
     ? `${esc(plans.pricing.monthly)} a month or ${esc(plans.pricing.annual)} a year in the ${esc(plans.pricing.region)}${plans.pricing.introMonthly ? `, with the first month at ${esc(plans.pricing.introMonthly)} for new monthly subscribers` : ''}. The App Store or Google Play shows the price for your country before you pay.`
     : 'Monthly or yearly subscription. The App Store or Google Play shows the price for your country before you pay.'),
+  // Ads and landing pages: the new-subscriber offer, in one short line (empty until prices are confirmed).
+  'offer-line': () => (plans.pricing.confirmed && plans.pricing.introMonthly
+    ? `<p class="offer-line">${icon('sparkle', 18)}<span>New to Pro? Your first month is <strong>${esc(plans.pricing.introMonthly)}</strong> (${esc(plans.pricing.region)}), then ${esc(plans.pricing.monthly)} a month. Cancel any time in your store.</span></p>`
+    : ''),
 };
 
 // Site identity for Google (home page only): the site name and who publishes it. Only facts that are visible on the
@@ -250,12 +254,12 @@ const appStoreBadgeSize = await readFile(appStoreBadge, 'utf8').then((svg) => {
 }).catch(() => null);
 
 // Google's official badge (assets/brand/google-play-badge.png, unchanged artwork).
-const playBadge = (rootPrefix, href) => `<a class="store-badge" href="${href}" rel="noopener"><img src="${rootPrefix}assets/brand/google-play-badge.png" alt="Get it on Google Play" width="646" height="250"></a>`;
+const playBadge = (rootPrefix, href) => `<a class="store-badge" data-store="google" href="${href}" rel="noopener"><img src="${rootPrefix}assets/brand/google-play-badge.png" alt="Get it on Google Play" width="646" height="250"></a>`;
 
 // Until Apple's own badge file is added, a store button of the site's own design: it names the App Store in words and
 // draws no Apple artwork (no Apple logo, no copy of Apple's badge), which Apple's marketing guidelines allow.
 const deviceIcon = '<svg class="store-button-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="13" height="10" rx="1.6"/><path d="M1 19h15"/><rect x="16.5" y="4" width="6.5" height="15" rx="1.6"/><path d="M19.2 16.5h1.1"/></svg>';
-const storeButton = (href, small, big) => `<a class="store-button" href="${href}" rel="noopener">${deviceIcon}<span><small>${small}</small><strong>${big}</strong></span></a>`;
+const storeButton = (href, small, big) => `<a class="store-button" data-store="apple" href="${href}" rel="noopener">${deviceIcon}<span><small>${small}</small><strong>${big}</strong></span></a>`;
 
 function androidStore(rootPrefix) {
   if (config.storeUrl) {
@@ -297,7 +301,7 @@ function appleStore(rootPrefix) {
     // Owner: put Apple's official black badge at assets/brand/app-store-badge.svg (App Store Marketing Tools,
     // "Download on the App Store", English (UK)), unchanged. Until then this is the site's own store button.
     const cta = appStoreBadgeSize
-      ? `<a class="store-badge store-badge-apple" href="${href}" rel="noopener"><img src="${rootPrefix}assets/brand/app-store-badge.svg" alt="Download on the App Store" width="${appStoreBadgeSize[0]}" height="${appStoreBadgeSize[1]}"></a>`
+      ? `<a class="store-badge store-badge-apple" data-store="apple" href="${href}" rel="noopener"><img src="${rootPrefix}assets/brand/app-store-badge.svg" alt="Download on the App Store" width="${appStoreBadgeSize[0]}" height="${appStoreBadgeSize[1]}"></a>`
       : storeButton(href, 'Download on the', 'App Store');
     return { state: 'live', href, label: 'Download on the App Store', cta, note: '',
       band: `${cta}<p class="store-group-note">iPhone and iPad, and Macs with Apple silicon (M1 or later) from the Mac App Store.</p>`,
@@ -326,6 +330,8 @@ function downloadVars(rootPrefix) {
   const live = stores.filter((s) => s.state === 'live');
   return {
     store_cta: `${apple.cta}${google.cta}`,
+    apple_href: apple.href, google_href: google.href,
+    apple_cta: apple.cta, google_cta: google.cta,
     store_note: [apple.note, google.note].some(Boolean)
       ? `<p class="store-note">${[apple.note, google.note].filter(Boolean).join(' ')}</p>` : '',
     store_href: single ? single.href : `${rootPrefix}#download`,
@@ -436,6 +442,10 @@ for (const file of pageFiles) {
     seo_head: head,
     og_image: siteBase + '/assets/brand/og-image.png',
     year: String(new Date().getFullYear()),
+    // App Store campaign links (App Store Connect › App Analytics › Campaigns): with a provider token, the page script
+    // adds pt and ct to App Store links, so installs from each ad campaign show up there. No cookies, no tracking.
+    campaign_meta: config.appStoreProviderToken
+      ? `<meta name="nexascan:app-store-pt" content="${esc(config.appStoreProviderToken)}">` : '',
     ...downloadVars(rootPrefix),
   };
   const html = render(layout.replace('{{content}}', body), vars);

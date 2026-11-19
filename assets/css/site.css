@@ -673,3 +673,68 @@ p { margin: 0 0 1em; }
 .usecase-title { margin: 26px 0 10px; font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-700); }
 .usecases { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .usecases li { padding: 6px 12px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--mint-200); font-size: .86rem; font-weight: 700; color: var(--ink); }
+
+/* Store order by device: Android visitors see Google Play first, Apple visitors the App Store (the default order). */
+.on-android .button-row [data-store="google"], .on-android .download-cta .store-group:last-child { order: -1; }
+
+/* Phones: the slim "Get the app" bar (shown by site.js after the first screen). One link per device. */
+.get-bar { display: none; }
+@media (max-width: 760px) {
+  .get-bar {
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; display: flex; align-items: center; gap: 12px;
+    padding: 10px 10px 10px 12px; border-radius: 18px; background: rgba(1, 18, 31, .94); color: #fff;
+    box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .6), 0 0 0 1px rgba(63, 214, 196, .25);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transform: translateY(140%); transition: transform .35s var(--ease);
+  }
+  .get-bar[hidden] { display: none; }
+  .get-bar.is-shown { transform: none; }
+  .get-bar img { border-radius: 10px; flex: none; }
+  .get-bar p { margin: 0; display: grid; line-height: 1.2; flex: 1; min-width: 0; }
+  .get-bar p strong { font-size: .98rem; }
+  .get-bar p span { font-size: .78rem; color: #B8CCDB; }
+  .get-bar-cta { flex: none; padding: 11px 18px; border-radius: 12px; background: var(--mint-400); color: var(--teal-950); font-weight: 800; text-decoration: none; }
+  .get-bar-cta:hover { color: var(--teal-950); }
+  .get-apple, .get-google { display: none; }
+  .on-apple .get-apple, .on-android .get-google { display: inline-block; }
+  .on-apple .get-other, .on-android .get-other { display: none; }
+  .get-bar a[href=""] { display: none !important; }
+  .on-apple .get-bar:has(.get-apple[href=""]) .get-other, .on-android .get-bar:has(.get-google[href=""]) .get-other { display: inline-block; }
+  body { padding-bottom: 84px; }
+}
+@media (prefers-reduced-motion: reduce) { .get-bar { transition: none; } }
+
+/* The new-subscriber offer on landing pages. */
+.offer-line { display: inline-flex; align-items: center; gap: 10px; margin: 18px 0 0; padding: 10px 14px; border-radius: 12px; background: rgba(63, 214, 196, .12); color: #DDEBF2; font-size: .92rem; box-shadow: inset 0 0 0 1px rgba(63, 214, 196, .3); }
+.offer-line svg { color: var(--mint-400); flex: none; }
+.offer-line strong { color: #fff; }
+
+/* Smart Redact landing page. */
+.hero-descriptor .tag-new { margin-left: 4px; }
+.hero-visual-redact { display: grid; place-items: center; }
+.hero-visual-redact .redact-demo figcaption { color: #B8CCDB; }
+.find-chips { list-style: none; margin: 0 auto; padding: 0; max-width: 900px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.find-chips li { padding: 9px 16px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--mint-200), var(--shadow-sm); font-weight: 700; font-size: .94rem; }
+.center-note { text-align: center; margin: 22px auto 0; color: var(--ink-soft); font-size: .92rem; }
+.center { text-align: center; }
+.center .eyebrow { justify-content: center; }
+.lead.narrow { max-width: 640px; margin-left: auto; margin-right: auto; }
+.style-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.style-card { margin: 0; padding: 22px; border-radius: var(--radius); background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px rgba(63, 214, 196, .2); }
+.style-sample { margin: 0 0 16px; padding: 16px; border-radius: 10px; background: #fff; color: var(--ink); display: flex; justify-content: space-between; gap: 10px; font-size: .92rem; }
+.style-sample b { color: var(--ink-soft); }
+.rd-label { font-style: normal; background: #0B1D2B; color: #fff; border-radius: 3px; padding: 0 8px; font-weight: 700; font-size: .84rem; }
+.style-sample mark { background: #FFE76A; padding: 0 4px; border-radius: 3px; }
+.style-card figcaption { color: #B8CCDB; font-size: .92rem; }
+.style-card figcaption strong { display: block; color: #fff; font-size: 1.05rem; margin-bottom: 4px; }
+@media (max-width: 980px) { .style-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .style-grid { grid-template-columns: 1fr; } }
+/* /get/ smart link page */
+.get-page { min-height: 70vh; display: grid; align-items: center; }
+.get-logo { border-radius: 22px; box-shadow: var(--shadow); margin-bottom: 18px; }
+.get-stores { justify-content: center; margin-top: 28px; }
+.get-page .store-platform { margin: 0; font-size: .74rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-700); }
+.get-page .store-group { justify-items: center; }
+.get-more { margin-top: 28px; }
+.nav-new { margin-left: 4px; padding: 2px 7px; font-size: .62rem; }
+.story-link { margin: 26px 0 0; }

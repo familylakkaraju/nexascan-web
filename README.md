@@ -14,6 +14,12 @@ Static HTML/CSS/JS, built by a small dependency-free Node script and deployed to
 | `/support/` | Support and contact |
 | `/privacy/` | Privacy policy (linked from the App Store and Google Play: keep this URL) |
 | `/terms/` | Terms of use |
+| `/smart-redact/` | Smart Redact landing page, for ads |
+| `/get/` | Smart link to the right store, for ads and QR codes (noindex) |
+
+## Ads
+
+Landing pages, campaign tags and store install reports: see `docs/ADS-AND-CAMPAIGNS.md`.
 
 ## Everyday edits
 
