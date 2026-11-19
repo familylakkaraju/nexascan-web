@@ -335,7 +335,7 @@ function downloadVars(rootPrefix) {
     download_heading: live.length ? 'Get NexaScan'
       : stores.some((s) => s.state === 'test') ? 'Try NexaScan now' : 'NexaScan is coming to the App Store and Google Play',
     download_text: live.length === 2
-      ? 'Free to download for iPhone, iPad, Mac and Android. Scan your first document in seconds.'
+      ? 'Free to download for iPhone, iPad, Mac and Android. Your AI document studio, from first scan to final share.'
       : [...live, ...stores.filter((s) => s.state !== 'live')].map((s) => s.sentence).join(' '),
   };
 }
