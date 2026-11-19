@@ -13,6 +13,7 @@
         <li>Works offline</li>
         <li>No account</li>
         <li>No watermark on your files</li>
+        <li>Hide personal details before you share</li>
       </ul>
     </div>
     <div class="hero-visual" aria-hidden="true">
@@ -20,6 +21,7 @@
       <div class="phone phone-back"><img src="{{root}}assets/screenshots/looks.webp" alt="" width="540" height="1094"><span class="scan-beam"></span></div>
       <div class="phone phone-front"><img src="{{root}}assets/screenshots/home.webp" alt="" width="540" height="1094" fetchpriority="high"></div>
       <span class="floating-chip chip-a"><span class="dot">{{icon:sparkle}}</span>Stains and shadows cleaned up</span>
+      <span class="floating-chip chip-c"><span class="dot">{{icon:redact}}</span>Personal details hidden</span>
       <span class="floating-chip chip-b"><span class="dot">{{icon:shield}}</span>Processed on your phone</span>
     </div>
   </div>
@@ -33,6 +35,102 @@
       <li><strong>Offline</strong><span>every tool works without a connection</span></li>
       <li><strong>Private</strong><span>documents never uploaded, no account, no ads</span></li>
     </ul>
+  </div>
+</section>
+
+<section class="section" id="powerful" aria-labelledby="powerful-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">Powerful tools</p>
+      <h2 id="powerful-title">The hard document jobs, done in a few taps</h2>
+      <p class="lead">Work that used to need a computer and paid desktop software. In NexaScan it runs on your device, works offline, and your files are never uploaded.</p>
+    </div>
+    <div class="power-grid">
+      <a class="power-card power-feature reveal" href="#redact">
+        <span class="power-tags"><span class="tag tag-new">New</span><span class="tag tag-ai">AI</span><span class="tag tag-pro">Pro</span></span>
+        <span class="tool-icon">{{icon:redact}}</span>
+        <h3>Smart Redact</h3>
+        <p>Anonymise payslips, bank statements, IDs and contracts before you share them. It finds names, addresses, account and ID numbers for you to review, then hides them for real.</p>
+        <span class="power-for">For rental and mortgage applications, new jobs, insurers and support tickets</span>
+      </a>
+      <a class="power-card reveal reveal-delay-1" href="#restore">
+        <span class="power-tags"><span class="tag tag-ai">AI</span><span class="tag tag-pro">Pro</span></span>
+        <span class="tool-icon">{{icon:sparkle}}</span>
+        <h3>Nexa Magic and Nexa Renew</h3>
+        <p>Folds, creases, stains and yellowed paper repaired, or a worn page rebuilt clean on fresh paper.</p>
+        <span class="power-for">For old letters, receipts and family records</span>
+      </a>
+      <a class="power-card reveal reveal-delay-2" href="{{root}}features/#edit-sign">
+        <span class="power-tags"><span class="tag tag-ai">AI</span><span class="tag tag-pro">Pro</span></span>
+        <span class="tool-icon">{{icon:eraser}}</span>
+        <h3>Remove Watermark and Handwriting</h3>
+        <p>Brush over a stamp or pen marks once. Similar marks across the document are found and cleaned away, and your text is kept.</p>
+        <span class="power-for">For your own drafts and forms you want to reuse</span>
+      </a>
+      <a class="power-card reveal" href="{{root}}features/#edit-sign">
+        <span class="power-tags"><span class="tag">Sign free</span><span class="tag tag-pro">Edit Pro</span></span>
+        <span class="tool-icon">{{icon:sign}}</span>
+        <h3>Edit and Sign PDF</h3>
+        <p>Sign, write, tick, cross and date a form, add shapes and arrows, pixelate and watermark, on any page.</p>
+        <span class="power-for">For contracts, permission slips and forms</span>
+      </a>
+      <a class="power-card reveal reveal-delay-1" href="{{root}}features/#convert">
+        <span class="power-tags"><span class="tag tag-ai">AI</span><span class="tag">Free</span></span>
+        <span class="tool-icon">{{icon:sheet}}</span>
+        <h3>PDF and photo to Word and Excel</h3>
+        <p>Tables become spreadsheets, with numbers and dates kept as values. Word Pro and Excel Pro follow the original layout.</p>
+        <span class="power-for">For invoices, statements and price lists</span>
+      </a>
+      <a class="power-card reveal reveal-delay-2" href="{{root}}features/#view-ocr">
+        <span class="power-tags"><span class="tag tag-ai">AI</span><span class="tag">Free</span></span>
+        <span class="tool-icon">{{icon:text}}</span>
+        <h3>Text recognition</h3>
+        <p>Copy the words off any photo or scan, and with Pro, make scanned PDFs searchable and select text right on the page.</p>
+        <span class="power-for">For notes, receipts and scanned archives</span>
+      </a>
+    </div>
+    <p class="center-link reveal"><a class="button button-ghost" href="{{root}}features/">See all {{gen:tool-count}} tools</a></p>
+  </div>
+</section>
+
+<section class="section section-tint" id="redact" aria-labelledby="redact-title">
+  <div class="container">
+    <div class="story">
+      <div class="story-copy reveal">
+        <p class="eyebrow">New · Smart Redact <span class="tag tag-pro">Pro</span></p>
+        <h2 id="redact-title">Hide personal details before you share</h2>
+        <p class="lead">Smart Redact finds names, addresses, phone numbers, account and ID numbers in a PDF or photo, for you to review. Then it saves a new copy with them hidden. Done on your phone. Nothing is uploaded.</p>
+        <ul class="checks">
+          <li><div><strong>Found for you to review</strong><span>Names, addresses, emails, phone numbers, dates of birth, card and bank details, passport and ID numbers, and words of your own. Items it is unsure of are marked "Please check".</span></div></li>
+          <li><div><strong>You stay in control</strong><span>Keep anything visible, hide every mention in one tap, or draw a box over something it missed.</span></div></li>
+          <li><div><strong>Hidden for real</strong><span>A box, a label such as [NAME], or a pseudonym such as Person A. Redacted pages are flattened, so the text underneath can't be copied back out. Your original stays as it was.</span></div></li>
+        </ul>
+        <p class="usecase-title">Made for the moments you share</p>
+        <ul class="usecases" aria-label="Examples">
+          <li>A payslip for a rental application</li>
+          <li>A bank statement for a mortgage broker</li>
+          <li>An ID copy for a new job</li>
+          <li>A medical letter for an insurer</li>
+          <li>A contract for a second opinion</li>
+          <li>A screenshot for a support ticket</li>
+        </ul>
+      </div>
+      <div class="story-visual reveal reveal-delay-1">
+        <figure class="redact-demo" aria-label="Illustration: a fictional Harbour &amp; Pine payslip with the employee's name, address, National Insurance number and bank details hidden by black boxes">
+          <div class="redact-sheet" aria-hidden="true">
+            <p class="rd-head">Harbour &amp; Pine Interiors<span>Payslip · October</span></p>
+            <p><b>Employee</b> <i class="rd-box">Jordan Ellison</i></p>
+            <p><b>Address</b> <i class="rd-box">14 Quayside Walk, Sample City</i></p>
+            <p><b>NI number</b> <i class="rd-box">QQ 12 34 56 C</i></p>
+            <p><b>Role</b> Interior designer</p>
+            <p><b>Paid to</b> <i class="rd-box">Sort code 00-00-00</i></p>
+            <p class="rd-total"><b>Net pay</b> £2,140.00</p>
+          </div>
+          <figcaption>Four details hidden on a fictional payslip.</figcaption>
+        </figure>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -136,7 +234,7 @@
   </div>
 </section>
 
-<section class="section section-dark" aria-labelledby="studio-title">
+<section class="section section-dark" id="restore" aria-labelledby="studio-title">
   <div class="container studio" data-tabs>
     <div class="reveal">
       <p class="eyebrow">Nexa AI at work</p>
@@ -235,34 +333,7 @@
       </div>
     </div>
 
-    <div class="story" id="redact">
-      <div class="story-copy reveal">
-        <p class="eyebrow">New · Smart Redact <span class="tag tag-pro">Pro</span></p>
-        <h2 id="redact-title">Hide personal details before you share</h2>
-        <p class="lead">Smart Redact finds names, addresses, phone numbers, account and ID numbers in a PDF or photo, for you to review. Then it saves a new copy with them hidden. Done on your phone. Nothing is uploaded.</p>
-        <ul class="checks">
-          <li><div><strong>Found for you to review</strong><span>Names, addresses, emails, phone numbers, dates of birth, card and bank details, passport and ID numbers, and words of your own. Items it is unsure of are marked "Please check".</span></div></li>
-          <li><div><strong>You stay in control</strong><span>Keep anything visible, hide every mention in one tap, or draw a box over something it missed.</span></div></li>
-          <li><div><strong>Hidden for real</strong><span>A box, a label such as [NAME], or a pseudonym such as Person A. Redacted pages are flattened, so the text underneath can't be copied back out. Your original stays as it was.</span></div></li>
-        </ul>
-      </div>
-      <div class="story-visual reveal reveal-delay-1">
-        <figure class="redact-demo" aria-label="Illustration: a fictional Harbour &amp; Pine payslip with the employee's name, address, National Insurance number and bank details hidden by black boxes">
-          <div class="redact-sheet" aria-hidden="true">
-            <p class="rd-head">Harbour &amp; Pine Interiors<span>Payslip · October</span></p>
-            <p><b>Employee</b> <i class="rd-box">Jordan Ellison</i></p>
-            <p><b>Address</b> <i class="rd-box">14 Quayside Walk, Sample City</i></p>
-            <p><b>NI number</b> <i class="rd-box">QQ 12 34 56 C</i></p>
-            <p><b>Role</b> Interior designer</p>
-            <p><b>Paid to</b> <i class="rd-box">Sort code 00-00-00</i></p>
-            <p class="rd-total"><b>Net pay</b> £2,140.00</p>
-          </div>
-          <figcaption>Four details hidden on a fictional payslip.</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <div class="story flip">
+    <div class="story">
       <div class="story-copy reveal">
         <p class="eyebrow">Convert, organise, protect</p>
         <h2 id="convert-title">Every PDF job, without a computer</h2>
@@ -366,6 +437,10 @@
       <details>
         <summary>Is it only a scanner?</summary>
         <div class="answer"><p>No. NexaScan is an AI document studio. The scanner is where many documents start, and besides it NexaScan has {{gen:tool-count}} tools for restoring, editing, signing, converting, organising, redacting and protecting PDFs and photos. See <a href="{{root}}features/">every tool</a>.</p></div>
+      </details>
+      <details>
+        <summary>Can I hide personal details before sharing a document?</summary>
+        <div class="answer"><p>Yes, with Smart Redact (Pro). It finds names, addresses, phone numbers, account and ID numbers and more in a PDF or photo, for you to review. You choose what to hide, then it saves a new copy with those details covered and the text under them removed. It runs on your device, so the document is never uploaded.</p></div>
       </details>
       <details>
         <summary>Can I use it offline?</summary>
