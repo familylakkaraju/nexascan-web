@@ -1,7 +1,7 @@
 {
-  "$comment": "The one source for what NexaScan offers on Free and Pro. Checked against the app's code and product catalogue (config/PrivatePdfToolkit/product-catalog.json, catalogVersion 10) at app commit a42fe5b (main, ApplicationVersion 20) on 2026-11-14; earlier checks: 178f39e / catalogVersion 7 / versionCode 11 on 2026-10-15, 1c4a9da / versionCode 10 on 2026-10-12, versionCode 8 with the installed app on 2026-10-08. Tool and group names are the ones on the app's All Tools screen. Change the app first, then this file. The Features and Pricing pages are generated from it. 'limit' is the Free limit; Pro lifts it (the app never promises 'unlimited'). A few per-run device limits apply to everyone, Pro included (the app's ToolPageLimits and RemovalLimits: Extract Text 10 pages, PDF to Images 20 (10 in its long-image format; the scanner's long image takes every page), Word 50, Remove Watermark / Handwriting 100 pages and 50 MB, with Check all pages up to 25 pages); the comparison rows and the Features details say so.",
-  "checked": "2026-11-14",
-  "appVersion": "1.0 (versionCode 20)",
+  "$comment": "The one source for what NexaScan offers on Free and Pro. Checked against the app's code and product catalogue (config/PrivatePdfToolkit/product-catalog.json, catalogVersion 12) at app commit 3b305bd (main, ApplicationVersion 26) on 2026-11-19 (new since 2026-11-14: Smart Redact, Pro, AN03 D5; per-page brightness, contrast and colour sliders in Crop & Enhance; Remove Watermark on dark pages; iPad and Mac); earlier checks: a42fe5b / catalogVersion 10 / ApplicationVersion 20 on 2026-11-14, 178f39e / catalogVersion 7 / versionCode 11 on 2026-10-15, 1c4a9da / versionCode 10 on 2026-10-12, versionCode 8 with the installed app on 2026-10-08. Tool and group names are the ones on the app's All Tools screen. Change the app first, then this file. The Features and Pricing pages are generated from it. 'limit' is the Free limit; Pro lifts it (the app never promises 'unlimited'). A few per-run device limits apply to everyone, Pro included (the app's ToolPageLimits and RemovalLimits: Extract Text 10 pages, PDF to Images 20 (10 in its long-image format; the scanner's long image takes every page), Word 50, Remove Watermark / Handwriting 100 pages and 50 MB, with Check all pages up to 25 pages); the comparison rows and the Features details say so.",
+  "checked": "2026-11-19",
+  "appVersion": "1.0 (build 26)",
   "pricing": {
     "$comment": "Prices come from the store at run time (Google Play on Android, the App Store on iPhone), not from the app. The same two plans are sold on both stores at the same UK prices (Google Play product nexascan_pro, base plans monthly and annual, offer new-customer-intro; App Store group NexaScan Pro, nexascan_pro_monthly and nexascan_pro_yearly, 175 countries), as set up on 2026-11-16. introMonthly is the first-month price for new monthly subscribers on both stores. Set confirmed to false to show only 'the store shows the price'.",
     "confirmed": true,
@@ -27,11 +27,11 @@
       "summary": "Finish a document before it goes anywhere.",
       "tools": [
         { "name": "Sign PDF", "icon": "sign", "benefit": "Draw your signature and place it on any page, then save a signed copy.", "tier": "free", "limit": "PDFs up to 10 pages" },
-        { "name": "Crop & Enhance", "ai": true, "icon": "crop", "benefit": "Open a PDF or photo as editable pages, then crop, rotate, retake, clean up with any look, add text, drawing or a signature, and save a new copy.", "tier": "free", "limit": "PDFs up to 10 pages, with 3 text boxes and 20 pen strokes per document" },
+        { "name": "Crop & Enhance", "ai": true, "icon": "crop", "benefit": "Open a PDF or photo as editable pages, then crop, rotate, retake, clean up with any look, fine-tune brightness, contrast and colour page by page, add text, drawing or a signature, and save a new copy.", "tier": "free", "limit": "PDFs up to 10 pages, with 3 text boxes and 20 pen strokes per document" },
         { "name": "Edit PDF", "icon": "edit", "benefit": "Write, draw and sign, add boxes, circles and arrows, tick, cross or date a form in one tap, obscure (pixelate) and watermark on any page, then save an edited copy. Pro also keeps your signature and initials on this phone, ready to reuse.", "tier": "pro" },
         { "name": "Add Page Numbers", "icon": "numbers", "benefit": "Number pages in the position and style you choose.", "tier": "pro" },
         { "name": "Watermark PDF", "icon": "stamp", "benefit": "Add a text or logo watermark to a whole PDF, once or tiled.", "tier": "pro" },
-        { "name": "Remove Watermark", "ai": true, "icon": "eraser", "benefit": "Brush over a watermark or stamp on a PDF page or a photo. Similar marks are found and cleaned away, keeping your text. On a document of up to 25 pages, you can check the marks found on every page and remove them in one go. Saved as a new copy.", "tier": "pro" },
+        { "name": "Remove Watermark", "ai": true, "icon": "eraser", "benefit": "Brush over a watermark or stamp on a PDF page or a photo. Similar marks are found and cleaned away, keeping your text, on light or dark pages. On a document of up to 25 pages, you can check the marks found on every page and remove them in one go. Saved as a new copy.", "tier": "pro" },
         { "name": "Remove Handwriting", "ai": true, "icon": "pen", "benefit": "Brush over pen or pencil marks on a PDF page or a photo. Similar strokes are found and cleaned away, keeping your text. Saved as a new copy.", "tier": "pro" }
       ]
     },
@@ -72,10 +72,11 @@
     {
       "id": "protect", "icon": "lock",
       "name": "Optimise & Protect",
-      "summary": "Make it smaller, or lock it.",
+      "summary": "Make it smaller, lock it, or hide personal details.",
       "tools": [
         { "name": "Compress PDF", "icon": "compress", "benefit": "Shrink a PDF for email. Pro adds stronger Balanced and Maximum levels.", "tier": "free", "limit": "files up to 50 MB" },
-        { "name": "Password Protect", "icon": "lock", "benefit": "Save a password-protected copy with AES-256 encryption.", "tier": "pro" }
+        { "name": "Password Protect", "icon": "lock", "benefit": "Save a password-protected copy with AES-256 encryption.", "tier": "pro" },
+        { "name": "Smart Redact", "ai": true, "icon": "redact", "benefit": "Anonymise personal details. Finds names, addresses, phone numbers, ID and account numbers and more in a PDF or photo for you to review, then hides them in a new copy with a box, a label or a pseudonym. Redacted pages are flattened, so hidden text can't be copied back out. Done on your phone.", "tier": "pro" }
       ]
     }
   ],
@@ -108,6 +109,7 @@
     { "feature": "Saved signature and initials, ready to reuse", "free": false, "pro": true },
     { "feature": "Remove Watermark and Remove Handwriting (also the scanner's No Watermark and No Handwriting tiles)", "free": false, "pro": true },
     { "feature": "Password protection (AES-256)", "free": false, "pro": true },
+    { "feature": "Smart Redact: find personal details for you to review, then hide them in a new copy", "free": false, "pro": true },
     { "feature": "No NexaScan watermark, no ads, no account", "free": true, "pro": true }
   ],
   "proHighlights": [
@@ -118,6 +120,7 @@
     "Searchable PDFs, select text on scanned pages, and save pages as one long image",
     "Word Pro and Excel Pro conversions that follow the original layout",
     "Edit PDF with shapes, form marks and a saved signature; watermarks, page numbers and multi-page sheets",
+    "Smart Redact: personal details found on your phone for you to review, then hidden in a new copy",
     "Password protection with AES-256"
   ]
 }

@@ -99,6 +99,18 @@ p { margin: 0 0 1em; }
 .store-badge img { height: 78px; width: auto; margin: -11px -12px; }
 /* Apple's badge has no built-in clear space: shown at the same 56 px as Google's, with its own margin. */
 .store-badge-apple img { height: 56px; margin: 0; }
+/* The site's own App Store button, until Apple's badge file is added: black like a store badge, 56 px tall like the
+   Google Play badge beside it, with the store named in words and no Apple artwork. */
+.store-button {
+  display: inline-flex; align-items: center; gap: 12px; height: 56px; padding: 0 20px 0 16px; border-radius: 12px;
+  background: #000; color: #fff; text-decoration: none; box-shadow: inset 0 0 0 1.5px #A6A6A6;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.store-button:hover { color: #fff; transform: translateY(-1px); box-shadow: inset 0 0 0 1.5px #fff, 0 14px 30px -14px rgba(0, 0, 0, .8); }
+.store-button span { display: grid; line-height: 1.1; text-align: left; }
+.store-button small { font-size: .74rem; font-weight: 600; letter-spacing: .02em; }
+.store-button strong { font-size: 1.32rem; font-weight: 700; letter-spacing: -.01em; }
+.store-button-icon { flex: none; }
 
 /* ── Header ──────────────────────────────────────────────────────────────── */
 .site-header {
@@ -226,8 +238,9 @@ p { margin: 0 0 1em; }
 .floating-chip .dot { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: var(--mint-100); color: var(--teal-700); }
 .floating-chip.chip-a { top: 17%; left: -5%; }
 .floating-chip.chip-b { bottom: 13%; right: -6%; animation-delay: -3.5s; }
+.floating-chip.chip-c { top: 52%; left: -8%; animation-delay: -1.7s; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@media (max-width: 920px) { .floating-chip.chip-a { left: 4%; } .floating-chip.chip-b { right: 4%; } }
+@media (max-width: 920px) { .floating-chip.chip-a { left: 4%; } .floating-chip.chip-b { right: 4%; } .floating-chip.chip-c { left: 2%; } }
 @media (max-width: 560px) { .floating-chip { display: none; } }
 
 /* ── Sections ────────────────────────────────────────────────────────────── */
@@ -496,7 +509,7 @@ p { margin: 0 0 1em; }
 .ai-zone { padding-bottom: clamp(48px, 6vw, 80px); background: radial-gradient(90% 60% at 85% 0%, #0B3D5E 0%, rgba(11, 61, 94, 0) 70%), linear-gradient(180deg, var(--teal-900) 0%, #021A2E 100%); }
 .ai-zone + .section-dark { padding-top: clamp(48px, 6vw, 80px); background: radial-gradient(80% 60% at 10% 100%, rgba(14, 118, 109, .25) 0%, rgba(14, 118, 109, 0) 70%), linear-gradient(180deg, #021A2E 0%, var(--teal-950) 100%); }
 .ai-head { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(36px, 6vw, 88px); align-items: center; }
-.ai-models { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; list-style: none; margin: clamp(48px, 6vw, 72px) 0 0; padding: 0; }
+.ai-models { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; list-style: none; margin: clamp(48px, 6vw, 72px) 0 0; padding: 0; }
 .ai-model {
   position: relative; padding: 28px 26px; border-radius: var(--radius-lg); overflow: hidden;
   background: linear-gradient(160deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02)); box-shadow: inset 0 0 0 1px rgba(63, 214, 196, .22);
@@ -513,6 +526,7 @@ p { margin: 0 0 1em; }
 .ai-legend i { width: 12px; height: 12px; border-radius: 4px; display: inline-block; box-shadow: 0 0 0 1px rgba(255, 255, 255, .25); }
 .ai-engine { margin-top: 26px; color: #8FA7B8; font-size: .9rem; }
 .ai-engine strong { color: #E6EEF4; }
+@media (max-width: 1100px) { .ai-models { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 980px) { .ai-models { grid-template-columns: 1fr; } .ai-head { grid-template-columns: 1fr; } }
 
 /* ── Proof strip: the numbers under the hero ─────────────────────────────── */
@@ -613,6 +627,7 @@ p { margin: 0 0 1em; }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 .js .reveal-delay-1 { transition-delay: .12s; }
 .js .reveal-delay-2 { transition-delay: .24s; }
+.js .reveal-delay-3 { transition-delay: .36s; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -620,3 +635,106 @@ p { margin: 0 0 1em; }
   .js .reveal { opacity: 1; transform: none; }
   .scan-beam { display: none; }
 }
+
+/* Smart Redact: an illustrated fictional payslip (text, not a screenshot), with the hidden details as black boxes. */
+.redact-demo { margin: 0; display: grid; justify-items: center; gap: 14px; position: relative; z-index: 1; }
+.redact-sheet {
+  width: min(100%, 380px); padding: 28px 26px 30px; background: #fff; border-radius: 14px; box-shadow: var(--shadow-lg), 0 0 0 1px rgba(1, 31, 54, .08);
+  transform: rotate(-1.5deg); font-size: .92rem; color: var(--ink);
+}
+.redact-sheet p { margin: 0; padding: 9px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; justify-content: space-between; }
+.redact-sheet b { color: var(--ink-soft); font-weight: 700; flex: none; }
+.redact-sheet .rd-head { display: grid; gap: 2px; border-bottom: 2px solid var(--teal-700); padding: 0 0 12px; margin-bottom: 4px; font-weight: 800; font-size: 1.05rem; color: var(--teal-700); }
+.redact-sheet .rd-head span { font-size: .8rem; font-weight: 700; color: var(--ink-soft); letter-spacing: .04em; text-transform: uppercase; }
+.redact-sheet .rd-total { border-bottom: 0; font-weight: 800; }
+.rd-box { font-style: normal; background: #0B1D2B; color: transparent; border-radius: 3px; padding: 0 6px; user-select: none; text-align: right; }
+.redact-demo figcaption { font-size: .88rem; color: var(--ink-soft); }
+
+/* Powerful tools: six flagship cards, Smart Redact first and highlighted. */
+.power-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.power-card {
+  position: relative; display: grid; align-content: start; gap: 10px; padding: 26px; border-radius: var(--radius); background: #fff; color: var(--ink);
+  text-decoration: none; box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm); transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.power-card:hover { color: var(--ink); transform: translateY(-4px); box-shadow: inset 0 0 0 1px var(--mint-200), var(--shadow); }
+.power-card h3 { margin: 6px 0 0; font-size: 1.15rem; }
+.power-card p { margin: 0; color: var(--ink-soft); font-size: .97rem; }
+.power-tags { position: absolute; top: 22px; right: 22px; display: flex; gap: 6px; }
+.power-for { margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--line); font-size: .86rem; font-weight: 700; color: var(--teal-700); }
+.power-feature { background: linear-gradient(160deg, #0B1D2B, #0E3B45); box-shadow: 0 0 0 1px rgba(63, 214, 196, .35), var(--shadow); }
+.power-feature:hover { box-shadow: 0 0 0 1px var(--mint-400), var(--shadow-lg); }
+.power-feature h3 { color: #fff; }
+.power-feature p { color: #C9D8E3; }
+.power-feature .power-for { color: var(--mint-400); border-top-color: rgba(63, 214, 196, .25); }
+.power-feature .tool-icon { background: rgba(63, 214, 196, .16); color: var(--mint-400); }
+.tag-new { background: var(--mint-400); color: var(--teal-950); }
+@media (max-width: 980px) { .power-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .power-grid { grid-template-columns: 1fr; } }
+.usecase-title { margin: 26px 0 10px; font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-700); }
+.usecases { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.usecases li { padding: 6px 12px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--mint-200); font-size: .86rem; font-weight: 700; color: var(--ink); }
+
+/* Store order by device: Android visitors see Google Play first, Apple visitors the App Store (the default order). */
+.on-android .button-row [data-store="google"], .on-android .download-cta .store-group:last-child { order: -1; }
+
+/* Phones: the slim "Get the app" bar (shown by site.js after the first screen). One link per device. */
+.get-bar { display: none; }
+@media (max-width: 760px) {
+  .get-bar {
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; display: flex; align-items: center; gap: 12px;
+    padding: 10px 10px 10px 12px; border-radius: 18px; background: rgba(1, 18, 31, .94); color: #fff;
+    box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .6), 0 0 0 1px rgba(63, 214, 196, .25);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transform: translateY(140%); transition: transform .35s var(--ease);
+  }
+  .get-bar[hidden] { display: none; }
+  .get-bar.is-shown { transform: none; }
+  .get-bar img { border-radius: 10px; flex: none; }
+  .get-bar p { margin: 0; display: grid; line-height: 1.2; flex: 1; min-width: 0; }
+  .get-bar p strong { font-size: .98rem; }
+  .get-bar p span { font-size: .78rem; color: #B8CCDB; }
+  .get-bar-cta { flex: none; padding: 11px 18px; border-radius: 12px; background: var(--mint-400); color: var(--teal-950); font-weight: 800; text-decoration: none; }
+  .get-bar-cta:hover { color: var(--teal-950); }
+  .get-apple, .get-google { display: none; }
+  .on-apple .get-apple, .on-android .get-google { display: inline-block; }
+  .on-apple .get-other, .on-android .get-other { display: none; }
+  .get-bar a[href=""] { display: none !important; }
+  .on-apple .get-bar:has(.get-apple[href=""]) .get-other, .on-android .get-bar:has(.get-google[href=""]) .get-other { display: inline-block; }
+  body { padding-bottom: 84px; }
+}
+@media (prefers-reduced-motion: reduce) { .get-bar { transition: none; } }
+
+/* The new-subscriber offer on landing pages. */
+.offer-line { display: inline-flex; align-items: center; gap: 10px; margin: 18px 0 0; padding: 10px 14px; border-radius: 12px; background: rgba(63, 214, 196, .12); color: #DDEBF2; font-size: .92rem; box-shadow: inset 0 0 0 1px rgba(63, 214, 196, .3); }
+.offer-line svg { color: var(--mint-400); flex: none; }
+.offer-line strong { color: #fff; }
+
+/* Smart Redact landing page. */
+.hero-descriptor .tag-new { margin-left: 4px; }
+.hero-visual-redact { display: grid; place-items: center; }
+.hero-visual-redact .redact-demo figcaption { color: #B8CCDB; }
+.find-chips { list-style: none; margin: 0 auto; padding: 0; max-width: 900px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.find-chips li { padding: 9px 16px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--mint-200), var(--shadow-sm); font-weight: 700; font-size: .94rem; }
+.center-note { text-align: center; margin: 22px auto 0; color: var(--ink-soft); font-size: .92rem; }
+.center { text-align: center; }
+.center .eyebrow { justify-content: center; }
+.lead.narrow { max-width: 640px; margin-left: auto; margin-right: auto; }
+.style-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.style-card { margin: 0; padding: 22px; border-radius: var(--radius); background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px rgba(63, 214, 196, .2); }
+.style-sample { margin: 0 0 16px; padding: 16px; border-radius: 10px; background: #fff; color: var(--ink); display: flex; justify-content: space-between; gap: 10px; font-size: .92rem; }
+.style-sample b { color: var(--ink-soft); }
+.rd-label { font-style: normal; background: #0B1D2B; color: #fff; border-radius: 3px; padding: 0 8px; font-weight: 700; font-size: .84rem; }
+.style-sample mark { background: #FFE76A; padding: 0 4px; border-radius: 3px; }
+.style-card figcaption { color: #B8CCDB; font-size: .92rem; }
+.style-card figcaption strong { display: block; color: #fff; font-size: 1.05rem; margin-bottom: 4px; }
+@media (max-width: 980px) { .style-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .style-grid { grid-template-columns: 1fr; } }
+/* /get/ smart link page */
+.get-page { min-height: 70vh; display: grid; align-items: center; }
+.get-logo { border-radius: 22px; box-shadow: var(--shadow); margin-bottom: 18px; }
+.get-stores { justify-content: center; margin-top: 28px; }
+.get-page .store-platform { margin: 0; font-size: .74rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-700); }
+.get-page .store-group { justify-items: center; }
+.get-more { margin-top: 28px; }
+.nav-new { margin-left: 4px; padding: 2px 7px; font-size: .62rem; }
+.story-link { margin: 26px 0 0; }

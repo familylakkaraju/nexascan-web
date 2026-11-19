@@ -1,4 +1,4 @@
-<!--{"title":"FAQ: NexaScan questions and answers","description":"Answers about NexaScan on iPhone and Android: privacy, offline use, text recognition, Word and Excel conversion, Free limits, Pro and support.","nav":"faq"}-->
+<!--{"title":"FAQ: NexaScan questions and answers","description":"Answers about NexaScan on iPhone, iPad, Mac and Android: privacy, offline use, text recognition, Word and Excel conversion, Free limits, Pro and support.","nav":"faq"}-->
 <section class="page-hero" aria-labelledby="faq-title">
   <div class="container">
     <p class="eyebrow">FAQ</p>
@@ -31,7 +31,7 @@
       <h2 class="faq-cat">Scanning and text</h2>
       <details>
         <summary>Does NexaScan use AI, and where does it run?</summary>
-        <div class="answer"><p>Yes, three AI models, and all of them run on your phone. The <strong>Nexa Page Model</strong> labels each part of a page (paper, text, handwriting, lines, pictures, creases and stains) for Nexa Renew, Nexa Magic, No Shadow and Remove Handwriting. The <strong>Nexa Watermark Model</strong> helps Remove Watermark find the marks to clean. Text recognition uses Apple's Vision framework on iPhone and Google's ML Kit model on Android. All three work on the phone and offline, so your pages are never sent anywhere to be processed. Page detection and the other looks use image processing that also runs on your phone.</p></div>
+        <div class="answer"><p>Yes, four AI models, and all of them run on your device. The <strong>Nexa Page Model</strong> labels each part of a page (paper, text, handwriting, lines, pictures, creases and stains) for Nexa Renew, Nexa Magic, No Shadow and Remove Handwriting. The <strong>Nexa Watermark Model</strong> helps Remove Watermark find the marks to clean. The <strong>Nexa Redact Model</strong> helps Smart Redact find personal details for you to review. Text recognition uses Apple's Vision framework on iPhone, iPad and Mac, and Google's ML Kit model on Android. All four work on the device and offline, so your pages are never sent anywhere to be processed. Page detection and the other looks use image processing that also runs on your phone.</p></div>
       </details>
       <details>
         <summary>Does it support OCR (text recognition)?</summary>
@@ -75,7 +75,7 @@
       </details>
       <details>
         <summary>What does Pro add?</summary>
-        <div class="answer"><p>Pro lifts the Free limits and adds Nexa Magic, Nexa Renew and five more clean-up looks, Remove Watermark and Remove Handwriting, searchable PDFs, the OCR Document Viewer, Word Pro and Excel Pro, Edit PDF with shapes, form marks and a saved signature, watermarks, page numbers, multi-page sheets, one long image, and password protection. It's a monthly or yearly subscription, through the App Store on iPhone and Google Play on Android. See <a href="{{root}}pricing/">Pricing</a>.</p></div>
+        <div class="answer"><p>Pro lifts the Free limits and adds Nexa Magic, Nexa Renew and five more clean-up looks, Remove Watermark and Remove Handwriting, searchable PDFs, the OCR Document Viewer, Word Pro and Excel Pro, Edit PDF with shapes, form marks and a saved signature, watermarks, page numbers, multi-page sheets, one long image, Smart Redact, and password protection. It's a monthly or yearly subscription, through the App Store on iPhone, iPad and Mac, and Google Play on Android. See <a href="{{root}}pricing/">Pricing</a>.</p></div>
       </details>
       <details>
         <summary>Does Pro carry over between Android and iPhone?</summary>
@@ -98,14 +98,36 @@
         <div class="answer"><p>In the Google Play app, go to <strong>Payments &amp; subscriptions › Subscriptions</strong>, choose NexaScan and cancel. You keep Pro until the end of the period you've paid for. Uninstalling the app does not cancel a subscription.</p></div>
       </details>
 
-      <h2 class="faq-cat">iPhone and Android</h2>
+      <h2 class="faq-cat">Redacting and anonymising</h2>
+      <details>
+        <summary>How do I hide personal details in a PDF or photo before sharing it?</summary>
+        <div class="answer"><p>Open <strong>Smart Redact</strong> (Pro) and pick the file, or scan one. Choose what to look for (names, addresses, phone numbers, emails, dates of birth, card and bank details, passport and ID numbers, and any words of your own), then review what it found: keep anything visible, confirm the items marked "Please check", and draw a box over anything it missed. Choose a box, a label such as [NAME] or a pseudonym such as Person A, and save. You get a new copy; your original is not changed.</p></div>
+      </details>
+      <details>
+        <summary>Is the hidden information really gone?</summary>
+        <div class="answer"><p>Yes, on the pages you redact. Those pages are saved as flattened images with the boxes burned in, so the text, pictures and layers under a box are removed, not just covered, and can't be copied back out. Pages with nothing hidden keep their text. Document details such as author and title are removed from the copy.</p></div>
+      </details>
+      <details>
+        <summary>Does Smart Redact find everything?</summary>
+        <div class="answer"><p>It finds personal details for you to review, and it marks the items it is unsure of, but no tool can promise to catch everything. Always check each page before you share, and draw a box over anything it missed. It reads English, with UK and US formats for numbers, addresses and dates, and it doesn't read handwriting.</p></div>
+      </details>
+      <details>
+        <summary>Is my document uploaded to find the personal details?</summary>
+        <div class="answer"><p>No. Text recognition, detection and redaction all run on your device, and work offline. Nothing about the document is sent anywhere.</p></div>
+      </details>
+
+      <h2 class="faq-cat">iPhone, iPad, Mac and Android</h2>
       <details>
         <summary>Is NexaScan on iPhone?</summary>
         <div class="answer"><p>Yes. NexaScan is on the App Store as <strong>NexaScan: PDF Scanner &amp; Editor</strong>, for iPhones running iOS 16 or later. It is the same app as on Android, with the same tools and the same Free and Pro plans.</p></div>
       </details>
       <details>
-        <summary>Which phones does it run on?</summary>
-        <div class="answer"><p>iPhones running iOS 16 or later, from the App Store, and Android phones running Android 8.0 or later, from Google Play. On Google Play, NexaScan is available as a test version for invited testers until its public release.</p></div>
+        <summary>Can I use NexaScan on an iPad or a Mac?</summary>
+        <div class="answer"><p>Yes. The same App Store app runs on iPads with iPadOS 16 or later, and on Macs with Apple silicon (M1 or later), where you get it from the Mac App Store and it opens in its own resizable window. On a Mac you can scan with its camera, or open PDFs and photos from your files. A Pro subscription from the App Store works on your iPhone, iPad and Mac signed in to the same Apple Account.</p></div>
+      </details>
+      <details>
+        <summary>Which devices does it run on?</summary>
+        <div class="answer"><p>iPhones and iPads running iOS or iPadOS 16 or later, and Macs with Apple silicon (M1 or later), from the App Store, and Android phones running Android 8.0 or later, from Google Play. On Google Play, NexaScan is available as a test version for invited testers until its public release.</p></div>
       </details>
       <details>
         <summary>Is anything different on iPhone?</summary>
