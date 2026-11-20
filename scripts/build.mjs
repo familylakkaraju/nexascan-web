@@ -265,7 +265,7 @@ function androidStore(rootPrefix) {
   if (config.storeUrl) {
     const href = esc(config.storeUrl);
     const cta = playBadge(rootPrefix, href);
-    return { state: 'live', href, label: 'Get it on Google Play', cta, band: cta, note: '',
+    return { state: 'live', href, label: 'Get it on Google Play', cta, band: cta, note: '', short: 'For Android phones',
       sentence: 'Free to download for Android phones on Google Play.' };
   }
   if (config.testUrl) {
@@ -277,21 +277,21 @@ function androidStore(rootPrefix) {
       const cta = playBadge(rootPrefix, android);
       return {
         state: 'test', href: android, label: 'Get it on Google Play', cta,
-        note: `Android: a test version on Google Play, for invited testers (or <a href="${web}" rel="noopener">join on the web</a>).`,
-        band: `${cta}<p class="store-group-note">Test version, for invited testers. Not joined yet? <a href="${web}" rel="noopener">Join on the web</a>.</p>`,
+        note: '', short: 'For Android. Test version: invited testers only.',
+        band: `${cta}<p class="store-group-note">Test version: invited testers only.</p>`,
         sentence: 'On Android, NexaScan is being tested on Google Play: invited testers can join on an Android phone or on the web, then install the test version.',
       };
     }
     const cta = `<a class="button" href="${web}" rel="noopener">Install the test version</a>`;
     return {
       state: 'test', href: web, label: 'Install the test version', cta,
-      note: 'Android: test version on Google Play, for invited testers.',
-      band: `${cta}<p class="store-group-note">Test version, for invited testers.</p>`,
+      note: '', short: 'For Android. Test version: invited testers only.',
+      band: `${cta}<p class="store-group-note">Test version: invited testers only.</p>`,
       sentence: 'On Android, NexaScan is being tested on Google Play: invited testers can install the test version.',
     };
   }
   const cta = `<a class="button" href="${rootPrefix}#download">Coming to Google Play</a>`;
-  return { state: 'none', href: '', label: 'Coming to Google Play', cta, band: cta, note: '',
+  return { state: 'none', href: '', label: 'Coming to Google Play', cta, band: cta, note: '', short: 'For Android phones',
     sentence: 'It is coming to Google Play for Android phones.' };
 }
 
@@ -303,7 +303,7 @@ function appleStore(rootPrefix) {
     const cta = appStoreBadgeSize
       ? `<a class="store-badge store-badge-apple" data-store="apple" href="${href}" rel="noopener"><img src="${rootPrefix}assets/brand/app-store-badge.svg" alt="Download on the App Store" width="${appStoreBadgeSize[0]}" height="${appStoreBadgeSize[1]}"></a>`
       : storeButton(href, 'Download on the', 'App Store');
-    return { state: 'live', href, label: 'Download on the App Store', cta, note: '',
+    return { state: 'live', href, label: 'Download on the App Store', cta, note: '', short: 'For iPhone, iPad and Mac',
       band: `${cta}<p class="store-group-note">iPhone and iPad, and Macs with Apple silicon (M1 or later) from the Mac App Store.</p>`,
       sentence: 'Free to download for iPhone, iPad and Mac on the App Store.' };
   }
@@ -311,12 +311,12 @@ function appleStore(rootPrefix) {
     const href = esc(config.testFlightUrl);
     const cta = `<a class="button" href="${href}" rel="noopener">Install the iPhone test version</a>`;
     return { state: 'test', href, label: 'Install the iPhone test version', cta,
-      note: 'iPhone, iPad and Mac: test version through Apple\'s TestFlight app.',
+      note: '', short: 'For iPhone, iPad and Mac. Test version, through TestFlight.',
       band: `${cta}<p class="store-group-note">Test version, through Apple's TestFlight app.</p>`,
       sentence: 'On iPhone, a test version is available through Apple\'s TestFlight app.' };
   }
   const cta = `<a class="button" href="${rootPrefix}#download">Coming to the App Store</a>`;
-  return { state: 'none', href: '', label: 'Coming to the App Store', cta, band: cta, note: '',
+  return { state: 'none', href: '', label: 'Coming to the App Store', cta, band: cta, note: '', short: 'For iPhone, iPad and Mac',
     sentence: 'It is coming to the App Store for iPhone, iPad and Mac.' };
 }
 
@@ -326,23 +326,27 @@ function downloadVars(rootPrefix) {
   const stores = [apple, google];
   const linked = stores.filter((s) => s.href);
   const single = linked.length === 1 ? linked[0] : null;
-  const group = (name, s) => `<div class="store-group"><p class="store-platform">${name}</p>${s.band}</div>`;
+  const group = (key, name, s) => `<div class="store-group" data-for="${key}"><p class="store-platform">${name}</p>${s.band}</div>`;
+  // One store per phone: on an iPhone, iPad or Mac only the App Store shows, on Android only Google Play (site.js sets
+  // the device class; without JS, and on other computers, both show). Each button has one plain line under it.
+  const pick = (key, s) => `<div class="store-pick" data-for="${key}">${s.cta}<p class="store-pick-note">${s.short}</p></div>`;
   const live = stores.filter((s) => s.state === 'live');
   return {
-    store_cta: `${apple.cta}${google.cta}`,
+    store_cta: `${pick('apple', apple)}${pick('android', google)}`,
     apple_href: apple.href, google_href: google.href,
     apple_cta: apple.cta, google_cta: google.cta,
-    store_note: [apple.note, google.note].some(Boolean)
-      ? `<p class="store-note">${[apple.note, google.note].filter(Boolean).join(' ')}</p>` : '',
+    store_note: '<p class="store-other" data-store-other hidden><button type="button" data-show-stores>On another device? Show both stores</button></p>',
     store_href: single ? single.href : `${rootPrefix}#download`,
     store_label: single ? single.label : 'Get the app',
     store_rel: single ? 'rel="noopener"' : '',
-    download_cta: `${group('iPhone · iPad · Mac', apple)}${group('Android', google)}`,
+    download_cta: `${group('apple', 'iPhone · iPad · Mac', apple)}${group('android', 'Android', google)}`,
     download_heading: live.length ? 'Get NexaScan'
       : stores.some((s) => s.state === 'test') ? 'Try NexaScan now' : 'NexaScan is coming to the App Store and Google Play',
     download_text: live.length === 2
       ? 'Free to download for iPhone, iPad, Mac and Android. Your AI document studio, from first scan to final share.'
-      : [...live, ...stores.filter((s) => s.state !== 'live')].map((s) => s.sentence).join(' '),
+      : apple.state === 'live' && google.state === 'test'
+        ? 'Free on the App Store for iPhone, iPad and Mac. On Android, a test version for invited testers.'
+        : [...live, ...stores.filter((s) => s.state !== 'live')].map((s) => s.sentence).join(' '),
   };
 }
 
