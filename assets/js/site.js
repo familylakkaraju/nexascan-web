@@ -49,6 +49,15 @@ function storeLink(href) {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a[data-store]').forEach((a) => { a.href = storeLink(a.getAttribute('href')); });
 
+  // On a phone or Apple computer only its own store shows; a small link reveals the other one.
+  if (platform !== 'other') {
+    document.querySelectorAll('[data-store-other]').forEach((p) => { p.hidden = false; });
+    document.querySelectorAll('[data-show-stores]').forEach((b) => b.addEventListener('click', () => {
+      document.documentElement.classList.add('show-all-stores');
+      document.querySelectorAll('[data-store-other]').forEach((p) => { p.hidden = true; });
+    }));
+  }
+
   // The /get/ smart link (for ads and QR codes): straight to this device's store; other devices see both buttons.
   const smart = document.querySelector('[data-smart-link]');
   if (smart) {

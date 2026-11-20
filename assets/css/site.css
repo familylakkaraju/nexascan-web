@@ -92,7 +92,7 @@ p { margin: 0 0 1em; }
 .button-light { background: var(--mint-400); color: var(--teal-950); box-shadow: none; }
 .button-light:hover { background: #6BE3D5; color: var(--teal-950); }
 .button-small { min-height: 42px; padding: 8px 18px; font-size: .94rem; }
-.button-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 30px; }
+.button-row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px 22px; margin-top: 30px; }
 .store-note { margin: 12px 0 0; font-size: .9rem; color: var(--ink-soft); }
 .store-badge { display: inline-block; line-height: 0; border-radius: 12px; }
 /* The badge artwork has its own clear space; show it at 56 px tall (well above Google's minimum). */
@@ -675,7 +675,15 @@ p { margin: 0 0 1em; }
 .usecases li { padding: 6px 12px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--mint-200); font-size: .86rem; font-weight: 700; color: var(--ink); }
 
 /* Store order by device: Android visitors see Google Play first, Apple visitors the App Store (the default order). */
-.on-android .button-row [data-store="google"], .on-android .download-cta .store-group:last-child { order: -1; }
+.on-android .button-row [data-for="android"], .on-android .download-cta .store-group:last-child { order: -1; }
+/* One store per device (both on other computers, or after "Show both stores"). */
+.on-apple:not(.show-all-stores) [data-for="android"], .on-android:not(.show-all-stores) [data-for="apple"] { display: none; }
+.store-pick { display: grid; justify-items: start; gap: 8px; }
+.store-pick-note { margin: 0; font-size: .86rem; font-weight: 600; color: var(--ink-soft); }
+.hero-brand .store-pick-note { color: #B8CCDB; }
+.store-other { margin: 14px 0 0; }
+.store-other button { padding: 0; border: 0; background: none; font: inherit; font-size: .88rem; color: var(--ink-soft); text-decoration: underline; cursor: pointer; }
+.hero-brand .store-other button { color: #B8CCDB; }
 
 /* Phones: the slim "Get the app" bar (shown by site.js after the first screen). One link per device. */
 .get-bar { display: none; }
