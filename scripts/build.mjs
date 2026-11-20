@@ -8,6 +8,7 @@
 //   {{seo_head}}     canonical + og:url (indexable pages) or robots noindex; JSON-LD and the Search Console
 //                    verification tag on the home page
 //   {{title}} {{description}} {{og_image}} {{year}}
+//   {{css_v}} {{js_v}} a content hash of site.css / site.js, added to their links so a new version is never served stale
 //   {{nav:<key>}}    aria-current="page" on the active nav link
 //   {{include:name}} a partial from src/partials
 //   {{config:key}}   a value from site.config.json (store URL, developer name …)
@@ -16,6 +17,7 @@
 // Pages at src/pages/<name>/index.html become dist/<name>/index.html, so /privacy/ works directly.
 import { readFile, writeFile, mkdir, readdir, cp, rm, stat } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -381,6 +383,13 @@ for (const file of await readdir(path.join(src, 'partials'))) {
 }
 const layout = await readFile(path.join(src, 'layout.html'), 'utf8');
 
+// Cache busting: the stylesheet and script are linked with ?v=<hash of their content>, so a browser that cached the
+// previous version (GitHub Pages lets them keep it for 10 minutes) fetches the new one as soon as a page changes,
+// instead of showing new pages with old styles and behaviour.
+const assetVersion = async (rel) => createHash('sha256').update(await readFile(path.join(root, rel))).digest('hex').slice(0, 10);
+const cssVersion = await assetVersion('assets/css/site.css');
+const jsVersion = await assetVersion('assets/js/site.js');
+
 function render(template, vars, depth = 0) {
   if (depth > 5) throw new Error('include nesting too deep');
   return template
@@ -439,6 +448,8 @@ for (const file of pageFiles) {
   ].filter(Boolean).join('\n  ');
   const vars = {
     root: rootPrefix,
+    css_v: cssVersion,
+    js_v: jsVersion,
     title: esc(front.title),
     description: esc(front.description),
     nav: front.nav ?? '',
