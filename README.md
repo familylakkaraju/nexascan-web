@@ -1,6 +1,6 @@
 # NexaScan website
 
-The public product site for **NexaScan – AI Scanner & PDF Tools**, by GreenPlant Technologies.
+The public product site for **NexaScan – AI Scan, Edit & Redact**, by GreenPlant Technologies.
 Static HTML/CSS/JS, built by a small dependency-free Node script and deployed to GitHub Pages.
 
 ## Pages

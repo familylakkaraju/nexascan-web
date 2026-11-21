@@ -1,19 +1,19 @@
-<!--{"title":"NexaScan – AI Document Studio for iPhone, iPad, Mac and Android","description":"Not just a scanner: an AI document studio. Scan, restore, edit, sign, convert, redact and protect PDFs on iPhone, iPad, Mac and Android. Nothing is uploaded.","nav":"home","bodyClass":"home"}-->
+<!--{"title":"NexaScan – AI Scan, Edit & Redact PDFs on iPhone and Android","description":"Scan, edit and redact documents on your iPhone, iPad, Mac or Android phone. Edit and sign PDFs, hide personal details with Smart Redact. Nothing is uploaded.","nav":"home","bodyClass":"home"}-->
 <section class="hero hero-brand" aria-labelledby="hero-title">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="hero-descriptor"><img src="{{root}}assets/brand/nexascan-logo.png" alt="" width="28" height="28">NexaScan · AI Scanner &amp; PDF Tools</p>
+      <p class="hero-descriptor"><img src="{{root}}assets/brand/nexascan-logo.png" alt="" width="28" height="28">NexaScan · AI Scan, Edit &amp; Redact</p>
       <h1 id="hero-title">Not just a scanner. <span class="accent">Your AI document studio.</span></h1>
-      <p class="lead">Scan, restore, edit, sign, convert, redact and protect. {{gen:tool-count}} tools, {{gen:looks-count}} clean-up looks and four AI models that run on your iPhone, iPad, Mac or Android phone, so your documents are never uploaded.</p>
+      <p class="lead">Scan it, edit it, redact it. Then sign, convert and protect it. {{gen:tool-count}} tools, {{gen:looks-count}} clean-up looks and four AI models that run on your iPhone, iPad, Mac or Android phone, so your documents are never uploaded.</p>
       <div class="button-row">
         {{store_cta}}
       </div>
       {{store_note}}
       <ul class="hero-points">
+        <li>Edit any PDF on your phone</li>
+        <li>Hide personal details before you share</li>
         <li>Works offline</li>
         <li>No account</li>
-        <li>No watermark on your files</li>
-        <li>Hide personal details before you share</li>
       </ul>
     </div>
     <div class="hero-visual" aria-hidden="true">
@@ -38,6 +38,39 @@
   </div>
 </section>
 
+<section class="section" id="scan-edit-redact" aria-labelledby="pillars-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">Scan · Edit · Redact</p>
+      <h2 id="pillars-title">Three jobs, one app</h2>
+      <p class="lead">Capture a page, change what it says, and hide what nobody else should see, all on your device.</p>
+    </div>
+    <div class="power-grid">
+      <a class="power-card reveal" href="{{root}}features/#create">
+        <span class="power-tags"><span class="tag tag-ai">AI</span><span class="tag">Free</span></span>
+        <span class="tool-icon">{{icon:scan}}</span>
+        <h3>Scan</h3>
+        <p>Page edges found live and every shot straightened. Auto Capture takes the picture when the page is steady, and {{gen:looks-count}} clean-up looks make it sharp.</p>
+        <span class="power-for">Save as a PDF or JPEG images</span>
+      </a>
+      <a class="power-card power-feature reveal reveal-delay-1" href="#edit">
+        <span class="power-tags"><span class="tag">Sign free</span><span class="tag tag-pro">Edit Pro</span></span>
+        <span class="tool-icon">{{icon:edit}}</span>
+        <h3>Edit</h3>
+        <p>Write, draw and sign on any page, fill in forms with a tick, cross or date, add shapes and arrows, pixelate and watermark, and remove stamps and pen marks.</p>
+        <span class="power-for">Saved as an edited copy, your original kept</span>
+      </a>
+      <a class="power-card power-feature reveal reveal-delay-2" href="{{root}}smart-redact/">
+        <span class="power-tags"><span class="tag tag-new">New</span><span class="tag tag-ai">AI</span><span class="tag tag-pro">Pro</span></span>
+        <span class="tool-icon">{{icon:redact}}</span>
+        <h3>Redact</h3>
+        <p>Smart Redact finds names, addresses, account and ID numbers for you to review, then hides them for real, so the text can't be copied back out.</p>
+        <span class="power-for">For payslips, bank statements, IDs and contracts</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="powerful" aria-labelledby="powerful-title">
   <div class="container">
     <div class="section-head center reveal">
@@ -53,26 +86,26 @@
         <p>Anonymise payslips, bank statements, IDs and contracts before you share them. It finds names, addresses, account and ID numbers for you to review, then hides them for real.</p>
         <span class="power-for">For rental and mortgage applications, new jobs, insurers and support tickets</span>
       </a>
-      <a class="power-card reveal reveal-delay-1" href="#restore">
+      <a class="power-card reveal reveal-delay-1" href="#edit">
+        <span class="power-tags"><span class="tag">Sign free</span><span class="tag tag-pro">Edit Pro</span></span>
+        <span class="tool-icon">{{icon:sign}}</span>
+        <h3>Edit and Sign PDF</h3>
+        <p>Sign, write, tick, cross and date a form, add shapes and arrows, pixelate and watermark, on any page.</p>
+        <span class="power-for">For contracts, permission slips and forms</span>
+      </a>
+      <a class="power-card reveal reveal-delay-2" href="#restore">
         <span class="power-tags"><span class="tag tag-ai">AI</span><span class="tag tag-pro">Pro</span></span>
         <span class="tool-icon">{{icon:sparkle}}</span>
         <h3>Nexa Magic and Nexa Renew</h3>
         <p>Folds, creases, stains and yellowed paper repaired, or a worn page rebuilt clean on fresh paper.</p>
         <span class="power-for">For old letters, receipts and family records</span>
       </a>
-      <a class="power-card reveal reveal-delay-2" href="{{root}}features/#edit-sign">
+      <a class="power-card reveal" href="{{root}}features/#edit-sign">
         <span class="power-tags"><span class="tag tag-ai">AI</span><span class="tag tag-pro">Pro</span></span>
         <span class="tool-icon">{{icon:eraser}}</span>
         <h3>Remove Watermark and Handwriting</h3>
         <p>Brush over a stamp or pen marks once. Similar marks across the document are found and cleaned away, and your text is kept.</p>
         <span class="power-for">For your own drafts and forms you want to reuse</span>
-      </a>
-      <a class="power-card reveal" href="{{root}}features/#edit-sign">
-        <span class="power-tags"><span class="tag">Sign free</span><span class="tag tag-pro">Edit Pro</span></span>
-        <span class="tool-icon">{{icon:sign}}</span>
-        <h3>Edit and Sign PDF</h3>
-        <p>Sign, write, tick, cross and date a form, add shapes and arrows, pixelate and watermark, on any page.</p>
-        <span class="power-for">For contracts, permission slips and forms</span>
       </a>
       <a class="power-card reveal reveal-delay-1" href="{{root}}features/#convert">
         <span class="power-tags"><span class="tag tag-ai">AI</span><span class="tag">Free</span></span>
@@ -132,6 +165,30 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<section class="section" id="edit" aria-labelledby="edit-title">
+  <div class="container">
+    <div class="story flip">
+      <div class="story-copy reveal">
+        <p class="eyebrow">PDF editor</p>
+        <h2 id="edit-title">Edit any PDF, right on your phone</h2>
+        <p class="lead">Sign any PDF for free. With Pro, edit across every page: text, shapes, form marks, pixelation and watermarks. Every edit is saved as a new copy, so your original stays as it was.</p>
+        <ul class="checks">
+          <li><div><strong>Sign PDF</strong><span>Draw your signature, then place it on any page.</span></div></li>
+          <li><div><strong>Crop &amp; Enhance</strong><span>Open a PDF or photo as editable pages: crop, rotate, retake, fine-tune brightness, contrast and colour, and add text, drawing or a signature.</span></div></li>
+          <li><div><strong>Edit PDF <span class="tag tag-pro">Pro</span></strong><span>Text, drawing, boxes, circles and arrows, tick, cross or date marks for forms, pixelation and watermarks. Your signature and initials stay saved on this phone.</span></div></li>
+          <li><div><strong>Remove Watermark and Handwriting <span class="tag tag-ai">AI</span> <span class="tag tag-pro">Pro</span></strong><span>Brush over a stamp or pen marks once. Similar marks are found and cleaned away, and your text is kept.</span></div></li>
+          <li><div><strong>Page numbers and watermarks <span class="tag tag-pro">Pro</span></strong><span>Number pages in the style you choose, and add a text or logo watermark.</span></div></li>
+        </ul>
+        <p class="story-link"><a class="button button-ghost" href="{{root}}features/#edit-sign">All editing tools</a></p>
+      </div>
+      <div class="story-visual reveal reveal-delay-1">
+        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/edit-pdf.webp" alt="Edit PDF with a signature placed on the invoice and the Sign, Add Text, Brush and Watermark tools" width="540" height="1094" loading="lazy"></div>
+        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/remove-watermark.webp" alt="Remove Watermark showing the DRAFT watermark it found on a sample letter, ready to remove" width="540" height="1094" loading="lazy"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -314,23 +371,6 @@
       <div class="story-visual reveal reveal-delay-1">
         <div class="phone phone-sm"><img src="{{root}}assets/screenshots/extract-text.webp" alt="Extract Text showing the recognised words of a scanned invoice, with Copy and Share" width="540" height="1094" loading="lazy"></div>
         <div class="phone phone-sm"><img src="{{root}}assets/screenshots/ocr-select.webp" alt="Rows of a scanned invoice selected in the OCR Document Viewer, with Copy and Share buttons" width="540" height="1094" loading="lazy"></div>
-      </div>
-    </div>
-
-    <div class="story flip">
-      <div class="story-copy reveal">
-        <p class="eyebrow">Edit &amp; sign</p>
-        <h2 id="sign-title">Sign it, fill it in, mark it up</h2>
-        <p class="lead">Sign any PDF for free. With Pro, edit across every page: text, shapes, form marks, pixelation and watermarks.</p>
-        <ul class="checks">
-          <li><div><strong>Sign PDF</strong><span>Draw your signature, then place it on any page.</span></div></li>
-          <li><div><strong>Edit PDF <span class="tag tag-pro">Pro</span></strong><span>Text, drawing, boxes, circles and arrows, and tick, cross or date marks for forms. Your signature and initials stay saved on this phone.</span></div></li>
-          <li><div><strong>Page numbers and watermarks <span class="tag tag-pro">Pro</span></strong><span>Number pages in the style you choose, and add a text or logo watermark.</span></div></li>
-        </ul>
-      </div>
-      <div class="story-visual reveal reveal-delay-1">
-        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/edit-pdf.webp" alt="Edit PDF with a signature placed on the invoice and the Sign, Add Text, Brush and Watermark tools" width="540" height="1094" loading="lazy"></div>
-        <div class="phone phone-sm"><img src="{{root}}assets/screenshots/remove-watermark.webp" alt="Remove Watermark showing the DRAFT watermark it found on a sample letter, ready to remove" width="540" height="1094" loading="lazy"></div>
       </div>
     </div>
 

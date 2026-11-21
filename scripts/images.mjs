@@ -33,7 +33,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" vi
   <rect x="0" y="560" width="1200" height="70" fill="url(#b)"/>
   <image href="${logoData}" x="96" y="150" width="250" height="250"/>
   <text x="400" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="104" font-weight="800" fill="#FFFFFF" letter-spacing="-3">Nexa<tspan fill="#3FD6C4">Scan</tspan></text>
-  <text x="406" y="342" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="600" fill="#BFD3E2">AI Scanner &amp; PDF Tools</text>
+  <text x="406" y="342" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="600" fill="#BFD3E2">AI Scan, Edit &amp; Redact</text>
   <text x="96" y="476" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#FFFFFF">Not just a scanner. Your AI document studio.</text>
   <text x="96" y="522" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="500" fill="#A9C0D0">24 tools · 3 on-device AI models · Your documents never uploaded</text>
 </svg>`;

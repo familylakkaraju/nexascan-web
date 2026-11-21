@@ -2,7 +2,7 @@
   "name": "nexascan-web",
   "version": "1.0.0",
   "private": true,
-  "description": "The public product website for NexaScan – AI Scanner & PDF Tools.",
+  "description": "The public product website for NexaScan – AI Scan, Edit & Redact.",
   "type": "module",
   "scripts": {
     "images": "node scripts/images.mjs",
