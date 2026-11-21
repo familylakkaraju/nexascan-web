@@ -26,6 +26,8 @@ const src = path.join(root, 'src');
 const dist = path.join(root, 'dist');
 const config = JSON.parse(await readFile(path.join(root, 'site.config.json'), 'utf8'));
 const plans = JSON.parse(await readFile(path.join(src, 'data', 'plans.json'), 'utf8'));
+// The ad kit (/ad-kit/, noindex): copy and links from marketing/ads/ads.json, files from marketing/ads/out/.
+const adKit = JSON.parse(await readFile(path.join(root, 'marketing', 'ads', 'ads.json'), 'utf8'));
 const siteBase = config.siteUrl.replace(/\/$/, '');
 const pages = [];
 
@@ -215,6 +217,36 @@ ${iphoneScreensPresent.map(([file, caption, alt]) => `      <figure><div class="
   'offer-line': () => (plans.pricing.confirmed && plans.pricing.introMonthly
     ? `<p class="offer-line">${icon('sparkle', 18)}<span>New to Pro? Your first month is <strong>${esc(plans.pricing.introMonthly)}</strong> (${esc(plans.pricing.region)}), then ${esc(plans.pricing.monthly)} a month. Cancel any time in your store.</span></p>`
     : ''),
+  // The /ad-kit/ page: one band per ad idea, its copy beside its images and videos.
+  'ad-kit-stats': () => {
+    const videos = adKit.ideas.reduce((n, i) => n + i.videos.length, 0);
+    return `<li><strong>${adKit.ideas.length}</strong> ad ideas</li><li><strong>${adKit.ideas.length * 3}</strong> images</li><li><strong>${videos}</strong> videos</li><li><strong>3</strong> sizes: 1:1, 4:5, 9:16</li>`;
+  },
+  'ad-kit': () => {
+    const sizes = { square: ['1:1 feed', '1080 × 1080'], portrait: ['4:5 feed', '1080 × 1350'], story: ['9:16 Stories', '1080 × 1920'] };
+    const link = (i) => `${siteBase}/${i.path}?utm_source=${adKit.utm.source}&utm_medium=${adKit.utm.medium}&utm_campaign=${i.campaign}${i.hash ?? ''}`;
+    const field = (label, text, cls = '') => `<div class="adkit-field"><div class="adkit-field-top"><span>${label}</span><button type="button" class="adkit-copy" data-copy="${esc(text)}">Copy</button></div><p class="${cls}">${esc(text)}</p></div>`;
+    const asset = (i, kind, size) => {
+      const base = `nexascan-${i.id}-${size}`;
+      const file = kind === 'video' ? `{{root}}ad-kit/videos/${base}.mp4` : `{{root}}ad-kit/images/${base}.jpg`;
+      const media = kind === 'video'
+        ? `<video src="${file}" poster="{{root}}ad-kit/images/${base}.jpg" controls muted loop playsinline preload="none" aria-label="${esc(i.name)} video, ${sizes[size][0]}"></video>`
+        : `<img src="${file}" alt="${esc(i.name)} ad, ${sizes[size][0]}: ${esc(i.title)}" width="1080" height="${{ square: 1080, portrait: 1350, story: 1920 }[size]}" loading="lazy">`;
+      return `<figure class="adkit-asset" data-kind="${kind}" data-size="${size}"><div class="adkit-media">${media}</div>
+        <figcaption><div><span class="adkit-kind">${kind === 'video' ? 'Video' : 'Image'}</span> <b>${sizes[size][0]}</b><small>${sizes[size][1]} · ${kind === 'video' ? 'MP4' : 'JPG'}</small></div>
+        <a class="adkit-dl" href="${file}" download>Download</a></figcaption></figure>`;
+    };
+    return adKit.ideas.map((i) => `
+  <section class="adkit-idea" id="${esc(i.id)}" aria-labelledby="${esc(i.id)}-title">
+    <div class="adkit-copycol">
+      <p class="eyebrow">${esc(i.name)}${i.pro ? ' <span class="tag tag-pro">Pro</span>' : ''}</p>
+      <h2 id="${esc(i.id)}-title">${esc(i.title)}</h2>
+      <p class="adkit-why">${esc(i.why)}</p>
+      ${field('Primary text', i.primary)}${field('Headline', i.headline)}${field('Description', i.description)}${field('Website link (tracked)', link(i), 'adkit-url')}
+    </div>
+    <div class="adkit-assets">${i.videos.map((s) => asset(i, 'video', s)).join('')}${['square', 'portrait', 'story'].map((s) => asset(i, 'image', s)).join('')}</div>
+  </section>`).join('\n');
+  },
 };
 
 // Site identity for Google (home page only): the site name and who publishes it. Only facts that are visible on the
@@ -472,6 +504,10 @@ for (const file of pageFiles) {
 
 // Static assets, copied as they are.
 await cp(path.join(root, 'assets'), path.join(dist, 'assets'), { recursive: true });
+// Ad kit images and videos, served beside the /ad-kit/ page.
+for (const dir of ['images', 'videos']) {
+  await cp(path.join(root, 'marketing', 'ads', 'out', dir), path.join(dist, 'ad-kit', dir), { recursive: true });
+}
 try { await stat(path.join(root, 'public', '.nojekyll')); await cp(path.join(root, 'public', '.nojekyll'), path.join(dist, '.nojekyll')); } catch { /* optional */ }
 
 // sitemap.xml: the canonical URL of every indexable page, nothing else.

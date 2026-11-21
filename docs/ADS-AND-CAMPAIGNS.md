@@ -1,5 +1,10 @@
 # Ads and campaigns
 
+**Ad kit:** https://greenplantapps.github.io/nexascan-web/ad-kit/ (unlisted, noindex) has every Facebook and
+Instagram creative, in 1:1, 4:5 and 9:16, with its ad text and tracked link. Edit the text and links in
+`marketing/ads/ads.json`; regenerate images and videos with `node marketing/ads/make-ads.cjs` (needs Playwright's
+Chromium and ffmpeg); then `npm run verify`, commit and push to main.
+
 The site is built to be an advert's landing page: no cookies, no analytics or ad pixels, so no consent banner.
 Installs are counted by the stores themselves.
 

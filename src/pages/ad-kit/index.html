@@ -1,0 +1,49 @@
+<!--{"title":"Ad kit | NexaScan","description":"NexaScan's Facebook and Instagram ad creatives: images and short videos in 1:1, 4:5 and 9:16, with ad text and tracked links.","nav":"","index":false,"bodyClass":"ad-kit-page"}-->
+<section class="page-hero" aria-labelledby="adkit-title">
+  <div class="container">
+    <p class="eyebrow">For the NexaScan team · not linked from the site</p>
+    <h1 id="adkit-title">Ad kit: Scan, Edit &amp; Redact</h1>
+    <p class="lead">Facebook and Instagram creatives in every Meta size, with the text to paste into Ads Manager and a tracked link for each ad.</p>
+    <ul class="adkit-stats">{{gen:ad-kit-stats}}</ul>
+    <nav class="adkit-filters" aria-label="Show">
+      <button type="button" data-adkit-filter="all" aria-pressed="true">Everything</button>
+      <button type="button" data-adkit-filter="image" aria-pressed="false">Images</button>
+      <button type="button" data-adkit-filter="video" aria-pressed="false">Videos</button>
+      <button type="button" data-adkit-filter="square" aria-pressed="false">1:1 feed</button>
+      <button type="button" data-adkit-filter="portrait" aria-pressed="false">4:5 feed</button>
+      <button type="button" data-adkit-filter="story" aria-pressed="false">9:16 Stories and Reels</button>
+    </nav>
+  </div>
+</section>
+
+<div class="container">
+{{gen:ad-kit}}
+</div>
+
+<section class="section" aria-labelledby="adkit-notes-title">
+  <div class="container">
+    <h2 id="adkit-notes-title">Before you run them</h2>
+    <div class="adkit-notes">
+      <div class="adkit-note adkit-warn">
+        <h3>Target iPhone, iPad and Mac only, for now</h3>
+        <p>Google Play is still a closed test, so Android viewers who aren't testers can't install. Every ad says "Free on the App Store". Add Android ads after the public Google Play release.</p>
+      </div>
+      <div class="adkit-note">
+        <h3>Which size goes where</h3>
+        <p><strong>1:1</strong> Facebook and Instagram feed. <strong>4:5</strong> feed on phones, the most space. <strong>9:16</strong> Stories and Reels: text stays clear of the top 14% and bottom 20%, where Meta puts its own buttons.</p>
+      </div>
+      <div class="adkit-note">
+        <h3>Videos</h3>
+        <p>MP4, H.264, 30 fps, 8 to 11 seconds, under 1 MB each. Silent, with every message on screen; you can add music from Meta's sound library in Ads Manager.</p>
+      </div>
+      <div class="adkit-note">
+        <h3>Keeping it true</h3>
+        <p>Smart Redact "finds personal details for you to review". Never say it anonymises automatically or give an accuracy figure. Smart Redact, Nexa Magic and Remove Watermark are Pro, so their ads carry the PRO tag.</p>
+      </div>
+      <div class="adkit-note">
+        <h3>Changing the kit</h3>
+        <p>Ad text and links: <code>marketing/ads/ads.json</code>. Images and videos: <code>node marketing/ads/make-ads.cjs</code>. Then <code>npm run verify</code>, commit and push to main.</p>
+      </div>
+    </div>
+  </div>
+</section>

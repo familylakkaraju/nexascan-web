@@ -47,6 +47,23 @@ function storeLink(href) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Ad kit: copy buttons and size/kind filters.
+  document.addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-copy]');
+    if (!b) return;
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied'; }
+    catch {
+      const r = document.createRange(); r.selectNodeContents(b.closest('.adkit-field').querySelector('p'));
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent = 'Selected';
+    }
+    setTimeout(() => { b.textContent = 'Copy'; }, 1800);
+  });
+  document.querySelectorAll('[data-adkit-filter]').forEach((btn) => btn.addEventListener('click', () => {
+    const f = btn.dataset.adkitFilter;
+    document.querySelectorAll('[data-adkit-filter]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+    document.querySelectorAll('.adkit-asset').forEach((a) => { a.hidden = !(f === 'all' || a.dataset.kind === f || a.dataset.size === f); });
+  }));
+
   document.querySelectorAll('a[data-store]').forEach((a) => { a.href = storeLink(a.getAttribute('href')); });
 
   // On a phone or Apple computer only its own store shows; a small link reveals the other one.
